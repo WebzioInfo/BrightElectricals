@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Bright Electrical and Engineering Works - Kerala's Premier Electrical
-      Services
-    </title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary Meta Tags -->
+  <title>Bright Electrical and Engineering Works - Electrical Services in Kerala</title>
+  <meta name="title" content="Bright Electrical and Engineering Works - Electrical Services in Kerala" />
+  <meta name="description" content="Bright Electrical offers expert domestic and industrial electrical solutions, automation systems, data and security installations across Kerala. Get a free quote today!" />
+  <meta name="keywords" content="Electrical Services Kerala, Electrician Nilambur, Domestic Wiring, Industrial Electrical, Automation Kerala, CCTV Installation, Data Cabling, Electrical Contractors Malappuram" />
+  <meta name="author" content="Bright Electrical and Engineering Works" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.brightelectricalkerala.com/" />
+  <meta property="og:title" content="Bright Electrical and Engineering Works - Trusted Electricians in Kerala" />
+  <meta property="og:description" content="Get top-quality electrical services across Kerala. Domestic & industrial wiring, automation, security systems and more." />
+  <meta property="og:image" content="https://www.brightelectricalkerala.com/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.brightelectricalkerala.com/" />
+  <meta property="twitter:title" content="Bright Electrical - Trusted Kerala Electrical Services" />
+  <meta property="twitter:description" content="Licensed electrical contractors offering complete domestic and industrial services across Kerala." />
+  <meta property="twitter:image" content="https://www.brightelectricalkerala.com/og-image.jpg" />
+
+  <!-- Favicon (Optional) -->
+  <!-- Favicon and App Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
     <style>
       * {
         margin: 0;
@@ -26,54 +61,109 @@
         margin: 0 auto;
         padding: 0 20px;
       }
-
-     
-     header {
-        background: linear-gradient(135deg, #9bbcfa 0%, #5072ae 100%);
-        color: white;
-        padding: 01rem 0;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-      }
-
+/* HEADER STYLES */
+    header {
+      background: linear-gradient(135deg, #73a0f2 0%, #2b5fba 100%);
+      color: white;
+      padding: 0.8rem 1rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 20px;
+      width: 100%;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    
+    /* NAV MENU */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: #ffd700;
+    }
+    
+    .call-now {
+      font-weight: bold;
+    }
+    
+    /* HAMBURGER ICON */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: white;
+      cursor: pointer;
+    }
+    
+    /* MOBILE STYLES */
+    @media (max-width: 768px) {
       .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+        /* Keep logo and hamburger in one line */
+        flex-wrap: nowrap;
       }
-
-      .logo {
-        display: flex;
-        align-items: center;
+      
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #2b5fba;
+        padding: 1rem 0;
+        margin-top: 10px;
         gap: 10px;
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #fff;
       }
-
-      .logo-img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-      }
-
-      .contact-header {
+    
+      .nav-menu.active {
         display: flex;
-        gap: 20px;
-        align-items: center;
-        flex-wrap: wrap;
       }
+    
+      .menu-toggle {
+        display: block;
+      }
+    
+      .nav-link {
+        padding: 0.5rem 1rem;
+        width: 100%;
+      }
+    }   
 
-      .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9rem;
-      }
 
       /* Hero Section */
       .hero {
@@ -162,7 +252,7 @@
       /* Services Section */
       .services {
         padding: 80px 0;
-        background: white;
+        background: rgb(227, 227, 246);
       }
 
       .section-title {
@@ -503,27 +593,38 @@
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header>
-      <div class="container">
-        <div class="header-content">
-          <div class="logo"><img class="logo-img" src="Screenshot_2025-07-26_132602-removebg-preview.png">Bright Electrical</div>
-          <div class="contact-header">
-            <div class="contact-item">
-              <span>📞</span>
-              <span>8304910099</span>
-            </div>
-            <div class="contact-item">
-              <span>📍</span>
-              <span>Chungathara, Nilambur</span>
-            </div>
-          </div>
+<!-- HEADER -->
+<header>
+    <div class="container">
+      <div class="header-content" onclick="document.getElementById('hero').scrollIntoView({ behavior: 'smooth' })">
+        <div class="logo">
+          <img class="logo-img" src="Logo.png" alt="Bright Electrical Logo" />
+          Bright Electrical
         </div>
+  
+        <!-- Hamburger Button -->
+        <div class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" role="button" tabindex="0">
+          <i class="fas fa-bars"></i>
+        </div>
+  
+        <!-- Nav Links -->
+        <nav class="nav-menu" id="nav-menu">
+          <a href="#hero" class="nav-link">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <a href="tel:8304910099" class="nav-link call-now">
+            <i class="fas fa-phone"></i> 8304910099
+          </a>
+        </nav>
       </div>
-    </header>
+    </div>
+  </header>
+
+
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
       <div class="hero-slideshow">
         <div
           class="hero-slide active"
@@ -723,38 +824,47 @@
       <div class="container">
         <h2 class="section-title" style="color: white">Contact Us</h2>
         <div class="contact-grid">
-          <div class="contact-info">
-            <h3>Get In Touch</h3>
-            <div class="contact-item-large" data-icon="🏢">
-              <strong>Bright Electrical and Engineering Works</strong>
-            </div>
-            <div class="contact-item-large" data-icon="📍">
-              Chungathara, Nilambur<br />
-              Malappuram District<br />
-              Kerala - 679334
-            </div>
-            <div class="contact-item-large" data-icon="📞">
-              <a
-                href="tel:8304910099"
-                style="color: white; text-decoration: none"
-                >8304910099</a
-              >
-            </div>
-            <div class="contact-item-large" data-icon="🌐">
-              Serving all of Kerala
-            </div>
+         <div class="contact-info">
+  <h3>Get In Touch</h3>
 
-            <div class="contact-buttons">
-              <a href="tel:8304910099" class="contact-btn"> 📞 Call Now </a>
-              <a
-                href="https://wa.me/918304910099?text=Hi%20Bright%20Electrical,%20I%20need%20electrical%20services.%20Please%20contact%20me."
-                class="contact-btn whatsapp-btn"
-                target="_blank"
-              >
-                💬 WhatsApp
-              </a>
-            </div>
-          </div>
+  <div class="contact-item-large">
+    <i class="fas fa-building"style="margin-right: 8px;"></i>
+    <strong>Bright Electrical and Engineering Works</strong>
+  </div>
+
+  <div class="contact-item-large">
+    <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>
+    Chungathara, Nilambur<br />
+    Malappuram District<br />
+    Kerala - 679334
+  </div>
+
+  <div class="contact-item-large">
+    <i class="fas fa-phone" style="margin-right: 8px;"></i>
+    <a href="tel:8304910099" style="color: white; text-decoration: none">
+      8304910099
+    </a>
+  </div>
+
+  <div class="contact-item-large">
+    <i class="fas fa-globe" style="margin-right: 8px;"></i>
+    Serving all of Kerala
+  </div>
+
+  <div class="contact-buttons">
+    <a href="tel:8304910099" class="contact-btn">
+      <i class="fas fa-phone"></i> Call Now
+    </a>
+    <a
+      href="https://wa.me/918304910099?text=Hi%20Bright%20Electrical,%20I%20need%20electrical%20services.%20Please%20contact%20me."
+      class="contact-btn whatsapp-btn"
+      target="_blank"
+    >
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
 
           <div class="contact-form">
             <h3>Request a Quote</h3>
@@ -803,14 +913,34 @@
 
     <!-- Floating WhatsApp Button -->
     <a
-      href="https://wa.me/918304910099?text=Hi%20Bright%20Electrical,%20I%20need%20electrical%20services.%20Please%20contact%20me."
-      class="floating-whatsapp"
-      target="_blank"
-    >
-      💬
-    </a>
+  href="https://wa.me/918304910099?text=Hi%20Bright%20Electrical,%20I%20need%20electrical%20services.%20Please%20contact%20me."
+  class="floating-whatsapp"
+  target="_blank"
+>
+  <i class="fab fa-whatsapp"></i>
+</a>
+
 
     <script>
+
+          const menuToggle = document.getElementById("mobile-menu");
+  const navMenu = document.getElementById("nav-menu");
+
+  menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        navMenu.classList.remove("active"); // Close mobile menu
+      }
+    });
+  });
       // Smooth scrolling for navigation links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
