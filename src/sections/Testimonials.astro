@@ -1,0 +1,208 @@
+---
+// ============================================================
+// Testimonials.astro — Large editorial quote, one at a time
+// Minimal magazine-style layout with navigation
+// ============================================================
+
+const testimonials = [
+  {
+    name:     'Rajesh Kumar',
+    role:     'Factory Owner',
+    location: 'Nilambur',
+    text:     'Bright Electrical did an outstanding job wiring our entire factory floor. The team was professional, safety-conscious, and completed the project ahead of schedule.',
+    initials: 'RK',
+  },
+  {
+    name:     'Priya Nair',
+    role:     'Homeowner',
+    location: 'Malappuram',
+    text:     'Called them for an emergency at midnight — they arrived within the hour. Fixed a dangerous short circuit quickly and professionally. Their 24/7 service is genuine.',
+    initials: 'PN',
+  },
+  {
+    name:     'Mohammed Rashid',
+    role:     'Hotel Manager',
+    location: 'Kozhikode',
+    text:     'We needed complete CCTV installation across our 80-room hotel. Bright Electrical handled everything seamlessly — from design to installation to training our staff.',
+    initials: 'MR',
+  },
+  {
+    name:     'Sreelakshmi V.',
+    role:     'School Principal',
+    location: 'Thrissur',
+    text:     'They rewired our entire school building during summer vacation — on time, within budget, and with zero disruption. The quality of work and materials is clearly superior.',
+    initials: 'SV',
+  },
+  {
+    name:     'Arun Thomas',
+    role:     'Architect',
+    location: 'Kochi',
+    text:     'I\'ve worked with Bright Electrical on multiple commercial projects. They\'re my first recommendation to every client. Technical knowledge, clean execution, and excellent communication.',
+    initials: 'AT',
+  },
+];
+---
+
+<section
+  class="section bg-warm-2"
+  aria-labelledby="testimonials-heading"
+>
+  <div class="container">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 items-start" style="gap: clamp(2rem, 5vw, 5rem);">
+
+      <!-- Left: Label + heading -->
+      <div class="lg:col-span-4 reveal">
+        <p class="section-label mb-4">Client Testimonials</p>
+        <h2
+          id="testimonials-heading"
+          class="heading-md mb-6"
+        >
+          Trusted by<br />industry leaders.
+        </h2>
+        <p style="font-size: clamp(0.875rem, 1.1vw, 1rem); line-height: 1.75; color: var(--text-muted); max-width: 340px;">
+          Our clients range from homeowners to factory managers, architects to hotel chains — all united by one outcome: reliable, premium electrical work.
+        </p>
+
+        <!-- Navigation -->
+        <div class="flex items-center gap-3 mt-8" aria-label="Testimonial navigation">
+          <button
+            id="test-prev"
+            class="test-nav-btn"
+            aria-label="Previous testimonial"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <button
+            id="test-next"
+            class="test-nav-btn"
+            aria-label="Next testimonial"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <span id="test-counter" class="ml-2" style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; font-variant-numeric: tabular-nums;">
+            01 / {String(testimonials.length).padStart(2, '0')}
+          </span>
+        </div>
+      </div>
+
+      <!-- Right: Quote card -->
+      <div class="lg:col-span-8 reveal delay-200">
+        <div class="test-viewport relative overflow-hidden" style="min-height: 260px;">
+
+          {testimonials.map((t, i) => (
+            <blockquote
+              class:list={['test-slide', i === 0 ? 'active' : '']}
+              data-index={i}
+              aria-hidden={i !== 0 ? 'true' : undefined}
+            >
+              <!-- Large quote mark -->
+              <span
+                class="block mb-6"
+                style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); line-height: 0.8; color: var(--concrete-dark);"
+                aria-hidden="true"
+              >"</span>
+
+              <!-- Quote text -->
+              <p
+                class="mb-8"
+                style="font-family: var(--font-display); font-weight: 400; font-size: clamp(1.125rem, 2vw, 1.625rem); line-height: 1.55; letter-spacing: -0.01em; color: var(--text-primary);"
+              >
+                {t.text}
+              </p>
+
+              <!-- Attribution -->
+              <footer class="flex items-center gap-3">
+                <div
+                  class="flex items-center justify-center rounded-full font-display font-700 text-white"
+                  style="width: 40px; height: 40px; font-size: 0.75rem; background: var(--brand-primary);"
+                  aria-hidden="true"
+                >
+                  {t.initials}
+                </div>
+                <div>
+                  <cite class="not-italic block font-semibold" style="font-size: 0.875rem; color: var(--text-primary);">{t.name}</cite>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">{t.role} · {t.location}</span>
+                </div>
+              </footer>
+            </blockquote>
+          ))}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .test-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--concrete-dark);
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color 200ms, color 200ms, background 200ms;
+  }
+  .test-nav-btn:hover {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+    background: rgba(13,79,92,0.04);
+  }
+
+  .test-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    pointer-events: none;
+  }
+  .test-slide.active {
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  function initTestimonials() {
+    const slides = document.querySelectorAll<HTMLElement>('.test-slide');
+    const counter = document.getElementById('test-counter');
+    const prevBtn = document.getElementById('test-prev');
+    const nextBtn = document.getElementById('test-next');
+    if (!slides.length || !counter || !prevBtn || !nextBtn) return;
+
+    let current = 0;
+    const total = slides.length;
+
+    function show(index: number) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+        s.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+      });
+      counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      current = (current - 1 + total) % total;
+      show(current);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      current = (current + 1) % total;
+      show(current);
+    });
+  }
+
+  initTestimonials();
+  document.addEventListener('astro:page-load', initTestimonials);
+</script>

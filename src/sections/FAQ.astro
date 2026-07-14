@@ -1,0 +1,167 @@
+---
+// FAQ.astro — Accordion FAQ with JSON-LD schema
+import { buildFAQSchema } from '@lib/schema';
+
+const faqs = [
+  {
+    question: 'What areas in Kerala do you serve?',
+    answer:   'We are based in Chungathara, Nilambur (Malappuram) and serve clients across all of Kerala, including Malappuram, Kozhikode, Thrissur, Kochi, Palakkad, and surrounding districts. For large projects, we can travel anywhere in Kerala.',
+  },
+  {
+    question: 'Do you offer 24/7 emergency electrical services?',
+    answer:   'Yes, we provide genuine 24/7 emergency electrical services. Whether it\'s a short circuit, power failure, or any other urgent electrical issue, our rapid-response team is available to assist you any time of day or night. Call us at +91-8304910099.',
+  },
+  {
+    question: 'Are your electricians licensed and certified?',
+    answer:   'Absolutely. All our electricians hold valid certifications from the Kerala Electricity Board and are trained in the latest safety standards. We maintain all required licenses for both domestic and industrial electrical work.',
+  },
+  {
+    question: 'Do you provide free site inspections and estimates?',
+    answer:   'Yes, we provide free site inspections and detailed estimates for all projects. Our engineer will visit your site, assess requirements, and provide a comprehensive quotation within 24 hours — at no charge to you.',
+  },
+  {
+    question: 'What types of electrical work do you handle?',
+    answer:   'We handle everything from domestic home wiring to complex industrial power systems. Our services include: home wiring & rewiring, industrial panel installations, ATS/AMF panels, smart automation, CCTV & security systems, structured cabling, and ongoing maintenance contracts.',
+  },
+  {
+    question: 'Do you offer Annual Maintenance Contracts (AMC)?',
+    answer:   'Yes, we offer comprehensive AMC packages for residential, commercial, and industrial clients. Our AMC includes scheduled inspections, preventive maintenance, priority response for breakdowns, and detailed service reports. Contact us to discuss a plan tailored to your needs.',
+  },
+  {
+    question: 'What payment methods do you accept?',
+    answer:   'We accept all major payment methods including cash, UPI (GPay, PhonePe, Paytm), NEFT/RTGS bank transfers, and cheques. We provide proper GST invoices for all services.',
+  },
+  {
+    question: 'How long does a typical home wiring project take?',
+    answer:   'A standard home wiring project for a 2-3 bedroom house typically takes 3–7 working days, depending on size and complexity. We provide a detailed timeline in our quotation before work begins, and we commit to completing on schedule.',
+  },
+];
+
+const faqSchema = buildFAQSchema(faqs);
+---
+
+<section
+  class="section bg-white"
+  aria-labelledby="faq-heading"
+>
+  <!-- Inline FAQ schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- Left: Header -->
+      <div class="lg:sticky lg:top-28">
+        <p class="section-label mb-3 reveal">FAQs</p>
+        <h2
+          id="faq-heading"
+          class="font-display font-800 text-surface-900 mb-4 reveal delay-100"
+          style="font-size: clamp(1.875rem, 3.5vw, 2.75rem); letter-spacing: -0.025em; line-height: 1.12;"
+        >
+          Common Questions
+        </h2>
+        <p class="text-surface-500 leading-relaxed mb-8 reveal delay-200">
+          Can't find the answer you're looking for? We're happy to help — reach out via call or WhatsApp.
+        </p>
+
+        <div class="flex flex-col gap-3 reveal delay-300">
+          <a href="/contact/" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+            Ask a Question
+          </a>
+          <a
+            href="tel:+918304910099"
+            class="btn btn-outline"
+            aria-label="Call 83049 10099"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15z"/>
+            </svg>
+            Call 83049 10099
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Accordion -->
+      <div class="space-y-3 reveal delay-100">
+        {faqs.map((faq, i) => (
+          <div
+            class="border border-surface-200 rounded-xl overflow-hidden transition-all duration-200 hover:border-brand-accent/30"
+            id={`faq-item-${i}`}
+          >
+            <button
+              class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-surface-800 text-sm hover:text-brand-primary transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-brand-accent"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-btn-${i}`}
+              type="button"
+            >
+              <span>{faq.question}</span>
+              <svg
+                id={`faq-icon-${i}`}
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="flex-shrink-0 text-surface-400 transition-transform duration-300"
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div
+              id={`faq-answer-${i}`}
+              role="region"
+              aria-labelledby={`faq-btn-${i}`}
+              class="overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out"
+            >
+              <p class="px-5 pb-4 text-sm text-surface-500 leading-relaxed">
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqButtons = document.querySelectorAll('[id^="faq-btn-"]');
+
+  faqButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const index    = btn.id.replace('faq-btn-', '');
+      const answer   = document.getElementById(`faq-answer-${index}`);
+      const icon     = document.getElementById(`faq-icon-${index}`);
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all others
+      faqButtons.forEach((other) => {
+        if (other !== btn) {
+          const otherIndex  = other.id.replace('faq-btn-', '');
+          const otherAnswer = document.getElementById(`faq-answer-${otherIndex}`);
+          const otherIcon   = document.getElementById(`faq-icon-${otherIndex}`);
+          other.setAttribute('aria-expanded', 'false');
+          if (otherAnswer) otherAnswer.style.maxHeight = '0';
+          otherIcon?.classList.remove('rotate-180');
+        }
+      });
+
+      // Toggle current
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (answer) {
+        answer.style.maxHeight = expanded ? '0' : `${answer.scrollHeight}px`;
+      }
+      icon?.classList.toggle('rotate-180', !expanded);
+    });
+  });
+</script>

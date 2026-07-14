@@ -1,0 +1,30 @@
+---
+// ============================================================
+// index.astro — Home page
+// ============================================================
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@sections/Hero.astro';
+import TrustBar from '@sections/TrustBar.astro';
+import Services from '@sections/Services.astro';
+import WhyChooseUs from '@sections/WhyChooseUs.astro';
+import Stats from '@sections/Stats.astro';
+import Industries from '@sections/Industries.astro';
+import Process from '@sections/Process.astro';
+import Testimonials from '@sections/Testimonials.astro';
+import FAQ from '@sections/FAQ.astro';
+import ContactCTA from '@sections/ContactCTA.astro';
+import { pageSEO } from '@data/seo';
+---
+
+<BaseLayout seo={pageSEO.home}>
+  <Hero />
+  <TrustBar />
+  <Services />
+  <Stats />
+  <WhyChooseUs />
+  <Industries />
+  <Process />
+  <Testimonials />
+  <FAQ />
+  <ContactCTA />
+</BaseLayout>

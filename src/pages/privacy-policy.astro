@@ -1,0 +1,77 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { company } from '@data/company';
+
+const seo = {
+  title:   `Privacy Policy | ${company.shortName}`,
+  description: 'Privacy policy for Bright Electrical and Engineering Works. Learn how we handle your personal information.',
+  canonical: `${company.site.url}/privacy-policy/`,
+  noIndex: true,
+};
+---
+
+<BaseLayout seo={seo}>
+  <section class="pt-36 pb-20 lg:pt-44 lg:pb-28 bg-surface-50" aria-labelledby="privacy-heading">
+    <div class="container max-w-3xl">
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 text-sm text-surface-400">
+          <li><a href="/" class="hover:text-brand-primary transition-colors">Home</a></li>
+          <li aria-hidden="true"><span>/</span></li>
+          <li class="text-surface-600" aria-current="page">Privacy Policy</li>
+        </ol>
+      </nav>
+
+      <h1
+        id="privacy-heading"
+        class="font-display font-800 text-surface-900 mb-3"
+        style="font-size: clamp(1.875rem, 4vw, 3rem); letter-spacing: -0.025em;"
+      >
+        Privacy Policy
+      </h1>
+      <p class="text-surface-400 text-sm mb-10">Last updated: July 2025</p>
+
+      <div class="prose-custom space-y-8 text-sm">
+        <section aria-labelledby="section-1">
+          <h2 id="section-1" class="font-display font-700 text-surface-900 text-xl mb-3">1. Information We Collect</h2>
+          <p>When you use our contact form, we collect your name, phone number, and any message you provide. This information is sent directly to our WhatsApp number and is not stored on this website.</p>
+          <p>We may also collect standard server log data (IP address, browser type, page visits) through our hosting provider for security and performance purposes.</p>
+        </section>
+
+        <section aria-labelledby="section-2">
+          <h2 id="section-2" class="font-display font-700 text-surface-900 text-xl mb-3">2. How We Use Your Information</h2>
+          <p>The information you provide through our contact form is used solely to respond to your enquiry and provide the electrical services you request. We do not sell, share, or rent your personal information to third parties.</p>
+        </section>
+
+        <section aria-labelledby="section-3">
+          <h2 id="section-3" class="font-display font-700 text-surface-900 text-xl mb-3">3. WhatsApp Communication</h2>
+          <p>Our contact form redirects to WhatsApp (wa.me) to facilitate communication. When you use this feature, your interaction is subject to WhatsApp's Privacy Policy in addition to ours. We encourage you to review WhatsApp's policies at whatsapp.com.</p>
+        </section>
+
+        <section aria-labelledby="section-4">
+          <h2 id="section-4" class="font-display font-700 text-surface-900 text-xl mb-3">4. Cookies</h2>
+          <p>This website does not use cookies for tracking or advertising purposes. Any cookies set are strictly necessary for the site to function correctly.</p>
+        </section>
+
+        <section aria-labelledby="section-5">
+          <h2 id="section-5" class="font-display font-700 text-surface-900 text-xl mb-3">5. Third-Party Services</h2>
+          <p>This site uses Google Maps for our location display. Google's use of data is governed by Google's Privacy Policy. We also use Google Fonts to serve typography — font files are loaded from Google's servers.</p>
+        </section>
+
+        <section aria-labelledby="section-6">
+          <h2 id="section-6" class="font-display font-700 text-surface-900 text-xl mb-3">6. Your Rights</h2>
+          <p>You have the right to request access to, correction of, or deletion of any personal information you have provided to us. To exercise these rights, contact us at the number below.</p>
+        </section>
+
+        <section aria-labelledby="section-7">
+          <h2 id="section-7" class="font-display font-700 text-surface-900 text-xl mb-3">7. Contact Us</h2>
+          <p>If you have any questions about this Privacy Policy, please contact us:</p>
+          <address class="not-italic">
+            <p><strong>{company.name}</strong></p>
+            <p>{company.address.full}</p>
+            <p>Phone: <a href={`tel:${company.phone}`} class="text-brand-primary hover:underline">{company.phoneDisplay}</a></p>
+          </address>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

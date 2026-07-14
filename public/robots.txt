@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /404
+Disallow: /privacy-policy
+
+Sitemap: https://brightwork.in/sitemap-index.xml

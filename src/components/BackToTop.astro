@@ -1,0 +1,31 @@
+---
+// BackToTop.astro — Smooth scroll-to-top button
+---
+
+<button
+  id="back-to-top"
+  class="fixed bottom-24 right-5 z-[145] w-10 h-10 bg-white border border-surface-200 text-brand-primary rounded-full shadow-soft flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:shadow-soft-md hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-brand-accent"
+  aria-label="Scroll back to top"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.getElementById('back-to-top');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      btn?.classList.remove('opacity-0', 'pointer-events-none');
+      btn?.classList.add('opacity-100');
+    } else {
+      btn?.classList.add('opacity-0', 'pointer-events-none');
+      btn?.classList.remove('opacity-100');
+    }
+  }, { passive: true });
+
+  btn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

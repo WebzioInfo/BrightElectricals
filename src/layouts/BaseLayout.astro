@@ -1,0 +1,160 @@
+---
+// ============================================================
+// BaseLayout.astro — HTML shell for every page
+// Handles: SEO, JSON-LD, Open Graph, fonts, preloads, View Transitions
+// ============================================================
+import '../styles/global.css';
+import { company } from '@data/company';
+import { defaultSEO, type SEOConfig } from '@data/seo';
+import { buildLocalBusinessSchema, buildWebSiteSchema } from '@lib/schema';
+import { ViewTransitions } from 'astro:transitions';
+import Navbar from '@components/Navbar.astro';
+import Footer from '@components/Footer.astro';
+import FloatingCTA from '@components/FloatingCTA.astro';
+import BackToTop from '@components/BackToTop.astro';
+
+export interface Props {
+  seo?:        Partial<SEOConfig>;
+  jsonLd?:     object[];
+  class?:      string;
+}
+
+const {
+  seo    = {},
+  jsonLd = [],
+  class: className,
+} = Astro.props;
+
+const meta = { ...defaultSEO, ...seo };
+const title       = meta.title ?? defaultSEO.title;
+const description = meta.description ?? defaultSEO.description;
+const canonical   = meta.canonical ?? Astro.url.href;
+const ogImage     = meta.ogImage ?? defaultSEO.ogImage;
+const noIndex     = meta.noIndex ?? false;
+
+const isHomePage = Astro.url.pathname === '/';
+
+const allSchemas = [
+  ...(isHomePage ? [buildLocalBusinessSchema(), buildWebSiteSchema()] : []),
+  ...jsonLd,
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary Meta -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="Electrical Contractor Kerala, Domestic Wiring, Industrial Panels, CCTV Installation, Smart Home Automation, Electrical Maintenance, Nilambur Electrician, Bright Electrical, Electrical Services Kerala, Malappuram Electrician" />
+  <meta name="author" content={company.name} />
+  {noIndex ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
+
+  <!-- Canonical -->
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="business.business" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content={company.name} />
+  <meta property="og:image" content={`${company.site.url}${ogImage}`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={`${company.shortName} — Electrical Contractor Kerala`} />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${company.site.url}${ogImage}`} />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0C1A2A" />
+  <meta name="msapplication-TileColor" content="#0C1A2A" />
+
+  <!-- DNS Prefetch / Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+  <!-- Font preload -->
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  </noscript>
+
+  <!-- Astro View Transitions -->
+  <ViewTransitions />
+
+  <!-- JSON-LD -->
+  {allSchemas.length > 0 && allSchemas.map(schema => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
+  <slot name="head" />
+</head>
+
+<body class:list={['antialiased', className]} style="background: var(--warm-white); color: var(--text-primary);">
+
+  <!-- Skip link -->
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-white focus:rounded-lg focus:shadow-lg focus:text-sm focus:font-medium"
+  >
+    Skip to main content
+  </a>
+
+  <Navbar transition:persist />
+
+  <main id="main-content" tabindex="-1" transition:animate="fade">
+    <slot />
+  </main>
+
+  <Footer />
+  <FloatingCTA />
+  <BackToTop />
+
+  <!-- Global IntersectionObserver for reveal animations -->
+  <script>
+    function initReveals() {
+      const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      if (els.length === 0) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      els.forEach((el) => observer.observe(el));
+    }
+
+    // Run on initial load and after view transitions
+    initReveals();
+    document.addEventListener('astro:page-load', initReveals);
+  </script>
+</body>
+</html>

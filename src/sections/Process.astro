@@ -1,0 +1,127 @@
+---
+// ============================================================
+// Process.astro — How We Work — Staggered timeline
+// Light warm background with alternating left/right steps
+// ============================================================
+
+const steps = [
+  {
+    title: 'Consultation',
+    desc: 'We begin with a thorough site assessment, understanding your requirements, load calculations, and safety considerations before any work starts.',
+  },
+  {
+    title: 'Design & Planning',
+    desc: 'Our engineers create detailed electrical layouts, select premium materials, and prepare transparent cost estimates for your approval.',
+  },
+  {
+    title: 'Execution',
+    desc: 'Licensed electricians carry out the installation following Kerala Electricity Board standards. Every connection is tested and verified.',
+  },
+  {
+    title: 'Quality Assurance',
+    desc: 'Comprehensive testing of all circuits, earthing, and safety systems. We don\'t sign off until every parameter meets our engineering standards.',
+  },
+  {
+    title: 'Support & Maintenance',
+    desc: 'Post-project support with Annual Maintenance Contracts available. Our team remains a single call away for any future requirements.',
+  },
+];
+---
+
+<section
+  class="section bg-warm texture-grid"
+  aria-labelledby="process-heading"
+>
+  <div class="container relative z-10">
+
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto" style="margin-bottom: clamp(3rem, 6vw, 5rem);">
+      <p class="section-label mb-4 reveal">How We Work</p>
+      <h2
+        id="process-heading"
+        class="heading-lg mb-5 reveal delay-100"
+      >
+        A Disciplined<br />Engineering Process
+      </h2>
+      <p class="reveal delay-200" style="font-size: clamp(0.9375rem, 1.2vw, 1.0625rem); line-height: 1.8; color: var(--text-muted); max-width: 520px; margin-inline: auto;">
+        Every project follows a structured methodology — ensuring precision, transparency, and lasting results.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline relative max-w-3xl mx-auto">
+
+      <!-- Vertical line -->
+      <div class="timeline-line absolute top-0 bottom-0 left-5 lg:left-1/2 lg:-translate-x-1/2" style="width: 1px; background: linear-gradient(180deg, transparent 0%, var(--concrete-dark) 10%, var(--concrete-dark) 90%, transparent 100%);" aria-hidden="true"></div>
+
+      {steps.map((step, i) => {
+        const num = String(i + 1).padStart(2, '0');
+        const isEven = i % 2 === 0;
+        return (
+          <div
+            class:list={[
+              'timeline-item relative flex items-start gap-6 lg:gap-0',
+              isEven ? 'lg:flex-row' : 'lg:flex-row-reverse',
+              'reveal'
+            ]}
+            style={`transition-delay: ${i * 100}ms; margin-bottom: clamp(2rem, 4vw, 3.5rem);`}
+          >
+            <!-- Dot on line -->
+            <div
+              class="timeline-dot flex-shrink-0 relative z-10 w-10 h-10 rounded-full flex items-center justify-center"
+              style="background: var(--warm-white); border: 2px solid var(--concrete-dark);"
+              aria-hidden="true"
+            >
+              <span class="font-display font-700 text-xs" style="color: var(--brand-primary); letter-spacing: -0.02em;">{num}</span>
+            </div>
+
+            <!-- Content -->
+            <div
+              class:list={[
+                'flex-1',
+                isEven ? 'lg:pr-16 lg:text-right' : 'lg:pl-16 lg:text-left',
+              ]}
+              style={`max-width: 380px; ${isEven ? '' : ''}`}
+            >
+              <h3
+                class="font-display font-700 mb-2"
+                style="font-size: clamp(1.125rem, 1.5vw, 1.375rem); letter-spacing: -0.02em; color: var(--text-primary);"
+              >
+                {step.title}
+              </h3>
+              <p style="font-size: clamp(0.8125rem, 1vw, 0.9375rem); line-height: 1.75; color: var(--text-muted);">
+                {step.desc}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* On desktop, center the dots on the vertical line */
+  @media (min-width: 1024px) {
+    .timeline-item {
+      justify-content: center;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .timeline-item > div:last-child {
+      width: calc(50% - 2rem);
+    }
+    .timeline-item:nth-child(odd) > div:last-child {
+      margin-right: auto;
+      margin-left: 0;
+    }
+    .timeline-item:nth-child(even) > div:last-child {
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { company } from '@data/company';
+
+const seo = {
+  title: `Page Not Found | ${company.shortName}`,
+  description: 'The page you are looking for could not be found.',
+  noIndex: true,
+};
+---
+
+<BaseLayout seo={seo}>
+  <section
+    class="min-h-screen flex items-center justify-center bg-surface-50 px-4"
+    aria-labelledby="not-found-heading"
+  >
+    <div class="text-center max-w-lg">
+      <!-- Large 404 -->
+      <p
+        class="font-display font-900 text-surface-100 select-none"
+        style="font-size: clamp(8rem, 25vw, 14rem); letter-spacing: -0.06em; line-height: 1;"
+        aria-hidden="true"
+      >
+        404
+      </p>
+
+      <div class="-mt-8 relative z-10">
+        <div class="w-16 h-16 rounded-2xl bg-brand-primary flex items-center justify-center mx-auto mb-6 shadow-soft-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v4M12 16h.01"/>
+          </svg>
+        </div>
+
+        <h1
+          id="not-found-heading"
+          class="font-display font-800 text-surface-900 mb-3"
+          style="font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.025em;"
+        >
+          Page Not Found
+        </h1>
+        <p class="text-surface-500 mb-8 leading-relaxed">
+          The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Go to Homepage
+          </a>
+          <a href="/contact/" class="btn btn-outline">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

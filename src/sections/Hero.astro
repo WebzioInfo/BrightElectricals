@@ -1,0 +1,252 @@
+---
+// ============================================================
+// Hero.astro — Cinematic full-bleed industrial hero
+// Full background photography with overlaid editorial typography
+// ============================================================
+import { company } from '@data/company';
+---
+
+<section
+  id="hero"
+  class="hero-root relative w-full overflow-hidden"
+  aria-label="Hero section"
+>
+
+  <!-- ── BACKGROUND LAYER ──────────────────────────────────────── -->
+  <div class="absolute inset-0 z-0" aria-hidden="true">
+    <!-- Cinematic photograph -->
+    <img
+      src="/images/hero-cinematic.jpg"
+      alt=""
+      width="1920"
+      height="1080"
+      class="hero-bg-img w-full h-full object-cover object-center"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <!-- Deep gradient overlay — keeps image visible but gives text contrast -->
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(12,26,42,0.92) 0%, rgba(12,26,42,0.75) 40%, rgba(12,26,42,0.55) 70%, rgba(12,26,42,0.70) 100%);" />
+    <!-- Bottom fade to next section -->
+    <div class="absolute bottom-0 left-0 right-0" style="height: 30%; background: linear-gradient(to top, var(--deep-navy) 0%, transparent 100%);" />
+    <!-- Noise texture -->
+    <div class="absolute inset-0 texture-noise" style="pointer-events: none;" />
+    <!-- Blueprint grid -->
+    <div class="absolute inset-0" style="background-image: linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);" />
+  </div>
+
+  <!-- ── CONTENT ───────────────────────────────────────────────── -->
+  <div
+    class="hero-content relative z-10 container flex flex-col justify-end"
+    style="min-height: 100svh; padding-top: clamp(7rem, 14vh, 10rem); padding-bottom: clamp(4rem, 8vh, 6rem);"
+  >
+
+    <!-- Eyebrow -->
+    <div class="hero-eyebrow mb-6 opacity-0">
+      <span class="section-label section-label-light">
+        Electrical Engineering · Kerala
+      </span>
+    </div>
+
+    <!-- Headline — massive editorial -->
+    <h1 class="hero-headline font-display font-900 text-white mb-8" style="letter-spacing: -0.045em; line-height: 0.95;">
+      <span class="h-line block overflow-hidden">
+        <span class="h-word block">Precision.</span>
+      </span>
+      <span class="h-line block overflow-hidden">
+        <span class="h-word block">Engineering.</span>
+      </span>
+      <span class="h-line block overflow-hidden">
+        <span class="h-word block" style="-webkit-text-fill-color: transparent; background: linear-gradient(90deg, #06B6D4 0%, #22D3EE 100%); -webkit-background-clip: text; background-clip: text;">For every space.</span>
+      </span>
+    </h1>
+
+    <!-- Descriptor -->
+    <p class="hero-desc max-w-lg mb-10 opacity-0" style="font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); line-height: 1.8; color: #94A3B8;">
+      Electrical solutions designed for modern homes, commercial facilities,
+      and industrial environments — crafted with precision and delivered by
+      certified professionals across Kerala.
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-ctas flex flex-wrap items-center gap-3 mb-12 opacity-0">
+      <a
+        href="/contact/"
+        class="btn btn-rect btn-accent"
+        id="hero-cta-primary"
+      >
+        Request a Consultation
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a
+        href="/services/"
+        class="btn btn-rect btn-outline-light"
+        id="hero-cta-secondary"
+      >
+        Our Capabilities
+      </a>
+    </div>
+
+    <!-- Trust line -->
+    <div class="hero-trust flex flex-wrap items-center gap-x-6 gap-y-2 opacity-0" style="font-size: 0.75rem; font-weight: 600; color: #64748B; letter-spacing: 0.02em;">
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" aria-hidden="true"></span>
+        Certified Professionals
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" aria-hidden="true"></span>
+        500+ Projects Delivered
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" aria-hidden="true"></span>
+        Serving Kerala Since 2012
+      </span>
+    </div>
+
+  </div>
+
+  <!-- ── SCROLL INDICATOR ──────────────────────────────────────── -->
+  <div class="scroll-ind absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 opacity-0" aria-hidden="true">
+    <span style="font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #475569;">Scroll</span>
+    <div style="width: 1px; height: 36px; background: rgba(100,116,139,0.3); border-radius: 99px; position: relative; overflow: hidden;">
+      <div class="scroll-dot" style="position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 6px; border-radius: 99px; background: var(--brand-accent);"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── STYLES ─────────────────────────────────────────────────────── -->
+<style>
+  /* Hero height */
+  .hero-root {
+    min-height: 100svh;
+    background: var(--deep-navy);
+  }
+
+  /* Headline fluid size */
+  .hero-headline {
+    font-size: clamp(3rem, 8vw + 0.5rem, 7rem);
+  }
+
+  /* Line reveal */
+  .h-word {
+    transform: translateY(110%);
+    opacity: 0;
+    will-change: transform, opacity;
+    transition:
+      transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity   0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-animate .h-word {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .h-line:nth-child(1) .h-word { transition-delay: 0.0s; }
+  .h-line:nth-child(2) .h-word { transition-delay: 0.15s; }
+  .h-line:nth-child(3) .h-word { transition-delay: 0.30s; }
+
+  /* Background parallax target */
+  .hero-bg-img {
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+
+  /* Scroll indicator dot animation */
+  .scroll-dot {
+    animation: scroll-fall 2.4s ease-in-out infinite;
+  }
+  @keyframes scroll-fall {
+    0%   { top: -6px; opacity: 0; }
+    15%  { opacity: 1; }
+    80%  { opacity: 0.5; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  /* Responsive */
+  @media (max-width: 639px) {
+    .hero-content {
+      justify-content: center !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .h-word {
+      transition-duration: 0.1s !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+    .scroll-dot {
+      animation: none !important;
+    }
+  }
+</style>
+
+<!-- ── SCRIPT ─────────────────────────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+  const section   = document.getElementById('hero');
+  if (!section) return;
+
+  const eyebrow   = section.querySelector('.hero-eyebrow') as HTMLElement | null;
+  const desc      = section.querySelector('.hero-desc') as HTMLElement | null;
+  const ctas      = section.querySelector('.hero-ctas') as HTMLElement | null;
+  const trust     = section.querySelector('.hero-trust') as HTMLElement | null;
+  const scrollInd = section.querySelector('.scroll-ind') as HTMLElement | null;
+  const bgImg     = section.querySelector('.hero-bg-img') as HTMLElement | null;
+
+  const ease = 'cubic-bezier(0.22,1,0.36,1)';
+  const ease2 = 'cubic-bezier(0.4,0,0.2,1)';
+
+  function entrance() {
+    // Reset
+    section.classList.remove('hero-animate');
+    [eyebrow, desc, ctas, trust, scrollInd].forEach(el => {
+      if (el) { el.style.opacity = '0'; el.style.transform = 'translateY(14px)'; el.style.transition = 'none'; }
+    });
+
+    // Force reflow
+    void section.offsetHeight;
+
+    // Sequence
+    setTimeout(() => {
+      if (eyebrow) { eyebrow.style.transition = `opacity 0.6s ${ease}, transform 0.6s ${ease}`; eyebrow.style.opacity = '1'; eyebrow.style.transform = 'translateY(0)'; }
+    }, 50);
+
+    setTimeout(() => section.classList.add('hero-animate'), 120);
+
+    setTimeout(() => {
+      if (desc) { desc.style.transition = `opacity 0.7s ${ease2}, transform 0.7s ${ease2}`; desc.style.opacity = '1'; desc.style.transform = 'translateY(0)'; }
+    }, 500);
+
+    setTimeout(() => {
+      if (ctas) { ctas.style.transition = `opacity 0.6s ${ease2}, transform 0.6s ${ease2}`; ctas.style.opacity = '1'; ctas.style.transform = 'translateY(0)'; }
+    }, 650);
+
+    setTimeout(() => {
+      if (trust) { trust.style.transition = `opacity 0.6s ${ease2}`; trust.style.opacity = '1'; trust.style.transform = 'translateY(0)'; }
+    }, 800);
+
+    setTimeout(() => {
+      if (scrollInd) { scrollInd.style.transition = `opacity 0.8s ${ease2}`; scrollInd.style.opacity = '1'; scrollInd.style.transform = 'translateY(0)'; }
+    }, 950);
+  }
+
+  entrance();
+  document.addEventListener('astro:page-load', entrance);
+
+  // Subtle parallax on background image
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (y < section.offsetHeight && bgImg) {
+        bgImg.style.transform = `scale(1.04) translateY(${y * 0.08}px)`;
+      }
+      ticking = false;
+    });
+  }, { passive: true });
+})();
+</script>

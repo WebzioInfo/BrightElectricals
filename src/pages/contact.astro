@@ -1,0 +1,391 @@
+---
+// ============================================================
+// contact.astro — Contact page with form, map, and CTAs
+// ============================================================
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { company } from '@data/company';
+import { pageSEO } from '@data/seo';
+import { buildBreadcrumbSchema } from '@lib/schema';
+
+const breadcrumb = buildBreadcrumbSchema([
+  { name: 'Home', url: company.site.url + '/' },
+  { name: 'Contact', url: company.site.url + '/contact/' },
+]);
+
+// Pre-fill service from URL param (handled client-side)
+---
+
+<BaseLayout seo={pageSEO.contact} jsonLd={[breadcrumb]}>
+
+  <!-- Hero -->
+  <section class="relative pt-36 pb-20 lg:pt-44 lg:pb-28 bg-brand-primary overflow-hidden" aria-labelledby="contact-page-heading">
+    <div class="absolute inset-0" aria-hidden="true">
+      <div class="absolute inset-0 bg-grid opacity-10" />
+    </div>
+    <div class="container relative z-10">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-white/50">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li aria-hidden="true"><span>/</span></li>
+          <li class="text-white/90" aria-current="page">Contact</li>
+        </ol>
+      </nav>
+      <div class="max-w-2xl">
+        <p class="section-label text-brand-accent mb-3">Get In Touch</p>
+        <h1
+          id="contact-page-heading"
+          class="font-display font-900 text-white mb-4"
+          style="font-size: clamp(2.25rem, 5vw, 3.75rem); letter-spacing: -0.03em; line-height: 1.08;"
+        >
+          Let's Discuss Your Project
+        </h1>
+        <p class="text-white/70 text-lg leading-relaxed">
+          Get a free quote, schedule a site visit, or ask us anything. We typically respond within 2 hours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Contact Section -->
+  <section class="section bg-surface-50" aria-label="Contact information and form">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+        <!-- Left: Contact Info -->
+        <div>
+          <h2 class="font-display font-800 text-surface-900 mb-8" style="font-size: clamp(1.5rem, 2.5vw, 2rem); letter-spacing: -0.025em;">
+            Contact Details
+          </h2>
+
+          <div class="space-y-5 mb-8">
+            <!-- Phone -->
+            <a
+              href={`tel:${company.phone}`}
+              class="flex items-start gap-4 p-5 bg-white rounded-2xl border border-surface-100 shadow-soft-sm hover:border-brand-accent/30 hover:shadow-soft transition-all duration-200 group"
+              aria-label={`Call us at ${company.phoneDisplay}`}
+            >
+              <div class="icon-box group-hover:bg-brand-primary/10 transition-colors" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-surface-400 uppercase tracking-wider mb-1">Phone</p>
+                <p class="font-semibold text-surface-900 text-base group-hover:text-brand-primary transition-colors">{company.phoneDisplay}</p>
+                <p class="text-xs text-surface-400 mt-0.5">Tap to call directly</p>
+              </div>
+            </a>
+
+            <!-- WhatsApp -->
+            <a
+              href={company.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-start gap-4 p-5 bg-white rounded-2xl border border-surface-100 shadow-soft-sm hover:border-[#25D366]/30 hover:shadow-soft transition-all duration-200 group"
+              aria-label="Chat on WhatsApp"
+            >
+              <div class="w-12 h-12 rounded-xl bg-[#25D366]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#25D366]/20 transition-colors" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#25D366">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-surface-400 uppercase tracking-wider mb-1">WhatsApp</p>
+                <p class="font-semibold text-surface-900 text-base">{company.phoneDisplay}</p>
+                <p class="text-xs text-surface-400 mt-0.5">Chat with us — fastest response</p>
+              </div>
+            </a>
+
+            <!-- Address -->
+            <div class="flex items-start gap-4 p-5 bg-white rounded-2xl border border-surface-100 shadow-soft-sm">
+              <div class="icon-box flex-shrink-0" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-surface-400 uppercase tracking-wider mb-1">Address</p>
+                <address class="not-italic font-semibold text-surface-900 text-base leading-snug">
+                  {company.name}<br />
+                  {company.address.street}<br />
+                  {company.address.city}<br />
+                  {company.address.state} – {company.address.zip}
+                </address>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hours -->
+          <div class="bg-brand-primary/5 border border-brand-primary/10 rounded-2xl p-5">
+            <h3 class="font-semibold text-surface-800 mb-3 text-sm">Business Hours</h3>
+            <dl class="space-y-2 text-sm">
+              <div class="flex justify-between">
+                <dt class="text-surface-500">Monday – Saturday</dt>
+                <dd class="font-medium text-surface-700">8:00 AM – 7:00 PM</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt class="text-surface-500">Sunday</dt>
+                <dd class="font-medium text-surface-700">9:00 AM – 5:00 PM</dd>
+              </div>
+              <div class="border-t border-brand-primary/10 pt-2 flex items-center gap-2">
+                <span class="relative flex h-2 w-2" aria-hidden="true">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                </span>
+                <dt class="sr-only">Emergency</dt>
+                <dd class="text-green-600 font-semibold">24/7 Emergency Available</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div>
+          <div class="bg-white rounded-3xl border border-surface-100 shadow-soft-md p-8 lg:p-10">
+            <h2 class="font-display font-800 text-surface-900 mb-2 text-xl">Request a Free Quote</h2>
+            <p class="text-sm text-surface-400 mb-8">Fill in the form below and we'll get back to you within 2 hours.</p>
+
+            <form
+              id="contact-form"
+              class="space-y-5"
+              novalidate
+              aria-label="Contact and quote request form"
+            >
+              <!-- Honeypot (spam protection) -->
+              <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <!-- Name -->
+              <div>
+                <label for="contact-name" class="form-label">
+                  Full Name <span class="text-red-500" aria-label="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Your full name"
+                  required
+                  autocomplete="name"
+                  aria-required="true"
+                  aria-describedby="name-error"
+                />
+                <p id="name-error" class="hidden mt-1.5 text-xs text-red-500" role="alert" aria-live="polite">Please enter your full name.</p>
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label for="contact-phone" class="form-label">
+                  Phone Number <span class="text-red-500" aria-label="required">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="contact-phone"
+                  name="phone"
+                  class="form-input"
+                  placeholder="10-digit mobile number"
+                  required
+                  autocomplete="tel"
+                  pattern="[6-9][0-9]{9}"
+                  aria-required="true"
+                  aria-describedby="phone-error"
+                />
+                <p id="phone-error" class="hidden mt-1.5 text-xs text-red-500" role="alert" aria-live="polite">Please enter a valid 10-digit Indian mobile number.</p>
+              </div>
+
+              <!-- Service -->
+              <div>
+                <label for="contact-service" class="form-label">Service Required</label>
+                <select
+                  id="contact-service"
+                  name="service"
+                  class="form-input"
+                  aria-label="Select the type of service you need"
+                >
+                  <option value="">Select a service…</option>
+                  <option value="Home Electrical Solutions">Home Electrical Solutions</option>
+                  <option value="Industrial Power Systems">Industrial Power Systems</option>
+                  <option value="ATS & AMF Panel Setup">ATS &amp; AMF Panel Setup</option>
+                  <option value="Automation & Smart Control">Automation &amp; Smart Control</option>
+                  <option value="Structured Cabling & Networks">Structured Cabling &amp; Networks</option>
+                  <option value="Surveillance & Security Systems">Surveillance &amp; Security Systems</option>
+                  <option value="Repair & Maintenance">Repair &amp; Maintenance</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- Location -->
+              <div>
+                <label for="contact-location" class="form-label">Your Location</label>
+                <input
+                  type="text"
+                  id="contact-location"
+                  name="location"
+                  class="form-input"
+                  placeholder="City / District in Kerala"
+                  autocomplete="address-level2"
+                />
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="contact-message" class="form-label">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="4"
+                  class="form-input resize-none"
+                  placeholder="Describe your electrical requirements…"
+                  aria-label="Describe your requirements"
+                ></textarea>
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                id="submit-btn"
+                class="btn btn-primary btn-lg w-full justify-center"
+                aria-label="Send message via WhatsApp"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Send via WhatsApp
+              </button>
+
+              <p class="text-xs text-surface-400 text-center">
+                Submitting opens WhatsApp with your details pre-filled. No data is stored on this site.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Map -->
+  <section class="bg-surface-100" aria-label="Our location on map">
+    <div class="container py-4">
+      <div class="rounded-3xl overflow-hidden shadow-soft-md" style="height: 420px;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31314.58038!2d76.1986!3d11.1187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba63a5c2b86e4d3%3A0x0!2sChungathara%2C%20Nilambur%2C%20Kerala%20679334!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
+          width="100%"
+          height="420"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Bright Electrical office location — Chungathara, Nilambur, Kerala"
+          aria-label="Google Maps showing Bright Electrical office in Chungathara, Nilambur, Kerala"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Pre-fill service from URL param
+  const params  = new URLSearchParams(window.location.search);
+  const service = params.get('service');
+  if (service) {
+    const select = document.getElementById('contact-service') as HTMLSelectElement;
+    if (select) {
+      const opt = Array.from(select.options).find(o => o.value === service);
+      if (opt) select.value = service;
+    }
+  }
+
+  // Form validation and WhatsApp redirect
+  const form       = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn  = document.getElementById('submit-btn') as HTMLButtonElement;
+  const nameInput  = document.getElementById('contact-name')     as HTMLInputElement;
+  const phoneInput = document.getElementById('contact-phone')    as HTMLInputElement;
+  const nameError  = document.getElementById('name-error')       as HTMLElement;
+  const phoneError = document.getElementById('phone-error')      as HTMLElement;
+
+  const showError = (el: HTMLElement, input: HTMLInputElement) => {
+    el.classList.remove('hidden');
+    input.classList.add('border-red-400', 'focus:border-red-400');
+    input.setAttribute('aria-invalid', 'true');
+  };
+
+  const clearError = (el: HTMLElement, input: HTMLInputElement) => {
+    el.classList.add('hidden');
+    input.classList.remove('border-red-400', 'focus:border-red-400');
+    input.removeAttribute('aria-invalid');
+  };
+
+  nameInput.addEventListener('input', () => {
+    if (nameInput.value.trim()) clearError(nameError, nameInput);
+  });
+  phoneInput.addEventListener('input', () => {
+    if (/^[6-9]\d{9}$/.test(phoneInput.value.trim())) clearError(phoneError, phoneInput);
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Honeypot check
+    const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
+    if (honeypot?.value) return;
+
+    let valid = true;
+
+    const nameVal  = nameInput.value.trim();
+    const phoneVal = phoneInput.value.trim();
+
+    if (!nameVal) {
+      showError(nameError, nameInput);
+      valid = false;
+    } else {
+      clearError(nameError, nameInput);
+    }
+
+    if (!phoneVal || !/^[6-9]\d{9}$/.test(phoneVal)) {
+      showError(phoneError, phoneInput);
+      valid = false;
+    } else {
+      clearError(phoneError, phoneInput);
+    }
+
+    if (!valid) {
+      nameInput.focus();
+      return;
+    }
+
+    const serviceVal  = (document.getElementById('contact-service') as HTMLSelectElement).value;
+    const locationVal = (document.getElementById('contact-location') as HTMLInputElement).value.trim();
+    const messageVal  = (document.getElementById('contact-message') as HTMLTextAreaElement).value.trim();
+
+    const parts = [
+      `*New Enquiry — Bright Electrical*`,
+      ``,
+      `*Name:* ${nameVal}`,
+      `*Phone:* ${phoneVal}`,
+      serviceVal  ? `*Service:* ${serviceVal}`   : null,
+      locationVal ? `*Location:* ${locationVal}` : null,
+      messageVal  ? `*Message:* ${messageVal}`   : null,
+      ``,
+      `_Sent from brightwork.in_`,
+    ].filter(Boolean).join('\n');
+
+    const url = `https://wa.me/918304910099?text=${encodeURIComponent(parts)}`;
+
+    submitBtn.textContent = 'Opening WhatsApp…';
+    submitBtn.disabled = true;
+
+    window.open(url, '_blank', 'noopener,noreferrer');
+
+    setTimeout(() => {
+      form.reset();
+      submitBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Send via WhatsApp
+      `;
+      submitBtn.disabled = false;
+    }, 3000);
+  });
+</script>
