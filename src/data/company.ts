@@ -41,7 +41,7 @@ export const company = {
   site: {
     domain:    'brightwork.in',
     url:       'https://brightwork.in',
-    ogImage:   '/images/og-preview.jpg',
+    ogImage:   '/images/og-preview.webp',
   },
 
   poweredBy: {

@@ -26,7 +26,7 @@ export const services: Service[] = [
     longDesc:
       'We design and install complete electrical systems for homes of all sizes — from new construction to full rewiring of existing properties. Our licensed electricians follow Kerala Electricity Board standards ensuring safety, compliance, and energy efficiency.',
     icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
-    image: '/images/services/home-electrical.jpg',
+    image: '/images/services/home-electrical.webp',
     features: [
       'Complete home wiring & rewiring',
       'Distribution board installation',
@@ -47,7 +47,7 @@ export const services: Service[] = [
     longDesc:
       'We handle the full spectrum of industrial electrical work — from heavy machinery wiring to complete power distribution systems. Our experienced team understands industrial safety standards and delivers installations that maximize uptime and efficiency.',
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    image: '/images/services/industrial-power.jpg',
+    image: '/images/services/industrial-power.webp',
     features: [
       'Heavy-duty power distribution',
       'Industrial machine wiring',
@@ -68,7 +68,7 @@ export const services: Service[] = [
     longDesc:
       'Our ATS/AMF solutions provide instantaneous power switchover, protecting your operations from costly downtime. We design, install, and maintain panels to match your specific load requirements and generator capacity.',
     icon: 'M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18',
-    image: '/images/services/ats-panel.jpg',
+    image: '/images/services/ats-panel.webp',
     features: [
       'Automatic Transfer Switch (ATS) installation',
       'AMF panel design & commissioning',
@@ -89,7 +89,7 @@ export const services: Service[] = [
     longDesc:
       'From smart lighting and climate control to full PLC-based industrial automation, we bring intelligent systems to your home or facility. Our automation solutions reduce energy consumption while improving comfort and operational efficiency.',
     icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
-    image: '/images/services/automation.jpg',
+    image: '/images/services/automation.webp',
     features: [
       'Smart home lighting control',
       'HVAC automation & control',
@@ -110,7 +110,7 @@ export const services: Service[] = [
     longDesc:
       'We provide complete structured cabling solutions following TIA/EIA standards, supporting high-speed data transmission for modern business needs. From server room builds to campus-wide network deployments, our installations are built to last.',
     icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
-    image: '/images/services/network-cabling.jpg',
+    image: '/images/services/network-cabling.webp',
     features: [
       'Cat6/Cat6A structured cabling',
       'Fiber optic installation',
@@ -131,7 +131,7 @@ export const services: Service[] = [
     longDesc:
       'We install comprehensive security systems combining IP/HD CCTV cameras, NVR/DVR recording, biometric access control, and integrated alarm systems. Our solutions provide 24/7 monitoring capability with remote access via smartphone.',
     icon: 'M15 10l4.553-2.069A1 1 0 0121 8.845v6.31a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
-    image: '/images/services/cctv.jpg',
+    image: '/images/services/cctv.webp',
     features: [
       'HD/4K IP & Analog CCTV cameras',
       'NVR/DVR recording systems',
@@ -152,7 +152,7 @@ export const services: Service[] = [
     longDesc:
       'Electrical faults can cause costly downtime and safety hazards. Our rapid-response team provides emergency call-outs, systematic fault diagnosis, and preventive maintenance programs that keep your electrical systems running safely year-round.',
     icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
-    image: '/images/services/maintenance.jpg',
+    image: '/images/services/maintenance.webp',
     features: [
       '24/7 emergency electrical repair',
       'Fault detection & diagnosis',
