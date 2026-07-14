@@ -1,5 +1,8 @@
 ---
-// FAQ.astro — Accordion FAQ with JSON-LD schema
+// ============================================================
+// FAQ.astro — Two-column accordion with JSON-LD schema
+// Warm white background • Sticky left header • Right accordion
+// ============================================================
 import { buildFAQSchema } from '@lib/schema';
 
 const faqs = [
@@ -41,7 +44,7 @@ const faqSchema = buildFAQSchema(faqs);
 ---
 
 <section
-  class="section bg-white"
+  class="section bg-warm texture-grid"
   aria-labelledby="faq-heading"
 >
   <!-- Inline FAQ schema -->
@@ -50,33 +53,33 @@ const faqSchema = buildFAQSchema(faqs);
   <div class="container">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-      <!-- Left: Header -->
-      <div class="lg:sticky lg:top-28">
-        <p class="section-label mb-3 reveal">FAQs</p>
+      <!-- Left: Header (sticky on desktop) -->
+      <div class="lg:sticky lg:top-28 reveal">
+        <p class="section-label mb-4">FAQs</p>
         <h2
           id="faq-heading"
-          class="font-display font-800 text-surface-900 mb-4 reveal delay-100"
-          style="font-size: clamp(1.875rem, 3.5vw, 2.75rem); letter-spacing: -0.025em; line-height: 1.12;"
+          class="heading-md mb-5"
         >
-          Common Questions
+          Common<br />Questions
         </h2>
-        <p class="text-surface-500 leading-relaxed mb-8 reveal delay-200">
+        <p class="mb-8" style="font-size: clamp(0.875rem, 1.1vw, 1rem); line-height: 1.75; color: var(--text-muted); max-width: 360px;">
           Can't find the answer you're looking for? We're happy to help — reach out via call or WhatsApp.
         </p>
 
-        <div class="flex flex-col gap-3 reveal delay-300">
-          <a href="/contact/" class="btn btn-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div class="flex flex-col gap-3">
+          <a href="/contact/" class="btn btn-rect btn-primary" style="width: fit-content;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
             </svg>
             Ask a Question
           </a>
           <a
             href="tel:+918304910099"
-            class="btn btn-outline"
+            class="btn btn-rect btn-outline-dark"
             aria-label="Call 83049 10099"
+            style="width: fit-content;"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15z"/>
             </svg>
             Call 83049 10099
@@ -88,11 +91,13 @@ const faqSchema = buildFAQSchema(faqs);
       <div class="space-y-3 reveal delay-100">
         {faqs.map((faq, i) => (
           <div
-            class="border border-surface-200 rounded-xl overflow-hidden transition-all duration-200 hover:border-brand-accent/30"
+            class="faq-item rounded-xl overflow-hidden transition-all duration-200"
+            style="border: 1.5px solid var(--concrete); background: #fff;"
             id={`faq-item-${i}`}
           >
             <button
-              class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-surface-800 text-sm hover:text-brand-primary transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-brand-accent"
+              class="faq-trigger w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-sm transition-colors duration-200"
+              style="color: var(--text-primary);"
               aria-expanded="false"
               aria-controls={`faq-answer-${i}`}
               id={`faq-btn-${i}`}
@@ -100,7 +105,7 @@ const faqSchema = buildFAQSchema(faqs);
             >
               <span>{faq.question}</span>
               <svg
-                id={`faq-icon-${i}`}
+                class="faq-chevron flex-shrink-0 transition-transform duration-300"
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
@@ -110,7 +115,7 @@ const faqSchema = buildFAQSchema(faqs);
                 stroke-width="2.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="flex-shrink-0 text-surface-400 transition-transform duration-300"
+                style="color: var(--text-muted);"
                 aria-hidden="true"
               >
                 <polyline points="6 9 12 15 18 9" />
@@ -120,9 +125,10 @@ const faqSchema = buildFAQSchema(faqs);
               id={`faq-answer-${i}`}
               role="region"
               aria-labelledby={`faq-btn-${i}`}
-              class="overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out"
+              class="faq-panel overflow-hidden"
+              style="max-height: 0; transition: max-height 0.3s ease-in-out;"
             >
-              <p class="px-5 pb-4 text-sm text-surface-500 leading-relaxed">
+              <p class="px-5 pb-4 text-sm leading-relaxed" style="color: var(--text-muted);">
                 {faq.answer}
               </p>
             </div>
@@ -134,34 +140,58 @@ const faqSchema = buildFAQSchema(faqs);
   </div>
 </section>
 
+<style>
+  .faq-item:hover {
+    border-color: rgba(6,182,212,0.3);
+  }
+  .faq-trigger:hover {
+    color: var(--brand-primary);
+  }
+  .faq-item.open {
+    border-color: rgba(6,182,212,0.3);
+    box-shadow: 0 2px 12px rgba(6,182,212,0.06);
+  }
+  .faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+  }
+</style>
+
 <script>
-  const faqButtons = document.querySelectorAll('[id^="faq-btn-"]');
+  function initFAQ() {
+    const items = document.querySelectorAll<HTMLElement>('.faq-item');
 
-  faqButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const index    = btn.id.replace('faq-btn-', '');
-      const answer   = document.getElementById(`faq-answer-${index}`);
-      const icon     = document.getElementById(`faq-icon-${index}`);
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
+    items.forEach((item) => {
+      const btn = item.querySelector('.faq-trigger') as HTMLButtonElement | null;
+      const panel = item.querySelector('.faq-panel') as HTMLElement | null;
+      if (!btn || !panel) return;
 
-      // Close all others
-      faqButtons.forEach((other) => {
-        if (other !== btn) {
-          const otherIndex  = other.id.replace('faq-btn-', '');
-          const otherAnswer = document.getElementById(`faq-answer-${otherIndex}`);
-          const otherIcon   = document.getElementById(`faq-icon-${otherIndex}`);
-          other.setAttribute('aria-expanded', 'false');
-          if (otherAnswer) otherAnswer.style.maxHeight = '0';
-          otherIcon?.classList.remove('rotate-180');
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+        // Close all others
+        items.forEach((other) => {
+          if (other !== item) {
+            const otherBtn = other.querySelector('.faq-trigger') as HTMLButtonElement;
+            const otherPanel = other.querySelector('.faq-panel') as HTMLElement;
+            otherBtn?.setAttribute('aria-expanded', 'false');
+            if (otherPanel) otherPanel.style.maxHeight = '0';
+            other.classList.remove('open');
+          }
+        });
+
+        // Toggle current
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (!expanded) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+          item.classList.add('open');
+        } else {
+          panel.style.maxHeight = '0';
+          item.classList.remove('open');
         }
       });
-
-      // Toggle current
-      btn.setAttribute('aria-expanded', String(!expanded));
-      if (answer) {
-        answer.style.maxHeight = expanded ? '0' : `${answer.scrollHeight}px`;
-      }
-      icon?.classList.toggle('rotate-180', !expanded);
     });
-  });
+  }
+
+  initFAQ();
+  document.addEventListener('astro:page-load', initFAQ);
 </script>
