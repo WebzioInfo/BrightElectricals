@@ -172,20 +172,22 @@ const allSchemas = [
         return;
       }
 
-      // 2. Prevent duplicate initialization
+      // 2. Breakpoint check: ONLY initialize on Desktop (width >= 1024px)
+      const isDesktop = window.innerWidth >= 1024;
+      if (!isDesktop) {
+        destroyLenis();
+        return;
+      }
+
+      // 3. Prevent duplicate initialization
       if (lenisInstance) return;
 
-      // 3. Detect mobile device dynamically
-      const isMobile = window.matchMedia('(max-width: 1023px)').matches;
-
-      // 4. Initialize Lenis with device-specific parameters
+      // 4. Initialize Lenis
       lenisInstance = new Lenis({
-        duration: isMobile ? 0.45 : 0.9,      // Responsive on mobile, smooth on desktop
+        duration: 0.9,      // Premium smooth duration
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        syncTouch: false,                     // Disable synced touch smoothing on mobile to preserve natural momentum inertia
-        touchMultiplier: isMobile ? 2.2 : 1.5, // Faster swipe reaction on mobile gestures
-        wheelMultiplier: 1.0,
+        syncTouch: true,    // Smoothed trackpad/gestures on desktop
       });
 
       // 5. requestAnimationFrame loop
@@ -215,10 +217,39 @@ const allSchemas = [
       }
     }
 
+    // Handle window resize dynamically to enable/disable Lenis at the 1024px boundary
+    let resizeTimeout: any = null;
+    function handleResize() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const isDesktop = window.innerWidth >= 1024;
+        if (isDesktop) {
+          if (!lenisInstance) {
+            initLenis();
+          }
+        } else {
+          if (lenisInstance) {
+            destroyLenis();
+          }
+        }
+      }, 150); // debounce window resize events
+    }
+
     // Bind initialization and cleanup hooks
-    initLenis();
-    document.addEventListener('astro:page-load', initLenis);
-    document.addEventListener('astro:before-swap', destroyLenis);
+    function setup() {
+      initLenis();
+      window.removeEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
+    }
+
+    function cleanup() {
+      destroyLenis();
+      window.removeEventListener('resize', handleResize);
+    }
+
+    setup();
+    document.addEventListener('astro:page-load', setup);
+    document.addEventListener('astro:before-swap', cleanup);
   </script>
 </body>
 </html>
