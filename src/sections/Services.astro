@@ -255,11 +255,11 @@ const editorial = [
       </div>
     </div>
 
-    <!-- Scroll trigger slots -->
+    <!-- Scroll trigger slots (80dvh height for snappier mobile scrolling triggers) -->
     <div class="svc-mobile-triggers relative z-0">
       {services.map((_, i) => (
         <div 
-          class="svc-mob-trigger w-full h-[100dvh]" 
+          class="svc-mob-trigger w-full h-[80dvh]" 
           data-trigger-index={i}
         ></div>
       ))}
@@ -507,9 +507,10 @@ const editorial = [
     const slides = document.querySelectorAll('.svc-mob-slide');
     if (!root || !triggers.length || !slides.length) return;
 
+    // Center active zone using wider margins to guarantee high intersection detection rate on mobile
     const observerOptions = {
       root: null,
-      rootMargin: '-50% 0px -50% 0px', // Trigger index exactly at the vertical center line
+      rootMargin: '-40% 0px -40% 0px', 
       threshold: 0
     };
 

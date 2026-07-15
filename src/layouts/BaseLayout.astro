@@ -175,22 +175,27 @@ const allSchemas = [
       // 2. Prevent duplicate initialization
       if (lenisInstance) return;
 
-      // 3. Initialize Lenis
+      // 3. Detect mobile device dynamically
+      const isMobile = window.matchMedia('(max-width: 1023px)').matches;
+
+      // 4. Initialize Lenis with device-specific parameters
       lenisInstance = new Lenis({
-        duration: 0.9,      // 0.8–1.0 conservative duration
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // natural interpolation
+        duration: isMobile ? 0.45 : 0.9,      // Responsive on mobile, smooth on desktop
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        syncTouch: true,
+        syncTouch: false,                     // Disable synced touch smoothing on mobile to preserve natural momentum inertia
+        touchMultiplier: isMobile ? 2.2 : 1.5, // Faster swipe reaction on mobile gestures
+        wheelMultiplier: 1.0,
       });
 
-      // 4. requestAnimationFrame loop
+      // 5. requestAnimationFrame loop
       function raf(time: number) {
         lenisInstance?.raf(time);
         rafId = requestAnimationFrame(raf);
       }
       rafId = requestAnimationFrame(raf);
 
-      // 5. Connect Lenis scrolling to GSAP ScrollTrigger updates
+      // 6. Connect Lenis scrolling to GSAP ScrollTrigger updates
       lenisInstance.on('scroll', () => {
         const ScrollTrigger = (window as any).ScrollTrigger;
         if (ScrollTrigger) {
