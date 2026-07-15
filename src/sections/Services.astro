@@ -59,7 +59,7 @@ const editorial = [
      SERVICES — SCROLL-DRIVEN STORYTELLING
      ═══════════════════════════════════════════════════════════════ -->
 
-<!-- Desktop: Pinned split-screen -->
+<!-- Desktop & Mobile Wrapper Section -->
 <section
   id="services"
   class="svc-section relative"
@@ -191,84 +191,80 @@ const editorial = [
     </div>
   </div>
 
-  <!-- ── MOBILE EXPERIENCE ──────────────────────────────────── -->
-  <div class="svc-mobile lg:hidden" style="background: var(--deep-navy);">
-
-    <!-- Header -->
-    <div class="container" style="padding-top: clamp(3rem,8vw,5rem); padding-bottom: clamp(2rem,4vw,3rem);">
-      <p class="section-label section-label-light mb-4 reveal">Our Capabilities</p>
-      <h2 class="heading-lg text-white mb-4 reveal delay-100" style="max-width: 320px;">
-        Complete Electrical Solutions
-      </h2>
-    </div>
-
-    <!-- Mobile cards — vertical storytelling -->
-    <div class="svc-mobile-cards">
-      {services.map((svc, i) => {
-        const ed = editorial[i];
-        return (
-          <article
-            class="svc-mobile-card relative overflow-hidden reveal"
-            style={`transition-delay: ${Math.min(i * 60, 300)}ms`}
-          >
-            <!-- Image -->
-            <div class="relative" style="aspect-ratio: 16/10; overflow: hidden;">
-              <img
-                src={svc.image}
-                alt={svc.title}
-                width="800"
-                height="500"
-                class="w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 30%, rgba(12,26,42,0.9) 100%);" aria-hidden="true"></div>
-
-              <!-- Number overlay -->
-              <span
-                class="absolute top-4 left-4 font-display font-800"
-                style="font-size: 0.6875rem; letter-spacing: 0.12em; color: var(--brand-accent-lt);"
-                aria-hidden="true"
-              >
-                {String(i + 1).padStart(2, '0')}
+  <!-- ── MOBILE EXPERIENCE (Stethoscopic scrolling) ────────── -->
+  <div class="svc-mobile lg:hidden relative" style="background: var(--deep-navy);" id="svc-mobile-root">
+    
+    <!-- Sticky viewport containing the focused active card -->
+    <div class="svc-mobile-sticky sticky top-0 left-0 w-full h-[100dvh] flex flex-col justify-center px-6 overflow-hidden z-10">
+      
+      <div class="w-full max-w-sm mx-auto flex flex-col items-center text-center">
+        
+        <!-- Active Slide Card Stack Container -->
+        <div class="relative w-full flex flex-col items-center justify-center min-h-[500px]">
+          {editorial.map((svc, i) => (
+            <div
+              class:list={['svc-mob-slide absolute inset-0 flex flex-col items-center justify-center', i === 0 ? 'active' : '']}
+              data-mob-slide={i}
+            >
+              <!-- Progress Indicator -->
+              <span class="text-xs font-bold tracking-[0.2em] text-teal-400 mb-4 block">
+                {String(i + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
               </span>
 
-              <!-- Title on image -->
-              <div class="absolute bottom-0 left-0 right-0 p-5">
-                <h3 class="font-display font-800 text-white mb-1" style="font-size: clamp(1.25rem, 5vw, 1.5rem); letter-spacing: -0.03em; line-height: 1.1;">
-                  {svc.shortTitle}
-                </h3>
-                <p style="font-size: 0.8125rem; font-weight: 500; color: var(--brand-accent-lt);">
-                  {ed.tagline}
-                </p>
+              <!-- Rounded Image (45% height) -->
+              <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 shadow-xl border border-white/5">
+                <img
+                  src={services[i].image}
+                  alt={services[i].title}
+                  width="600"
+                  height="450"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent"></div>
               </div>
-            </div>
 
-            <!-- Content -->
-            <div style="padding: 1.25rem 1.25rem 1.5rem; background: var(--steel-gray);">
-              <p style="font-size: 0.8125rem; line-height: 1.7; color: #94A3B8; margin-bottom: 1rem;">
-                {ed.copy}
+              <!-- Title -->
+              <h3 class="font-display font-900 text-white text-2xl tracking-tight leading-tight mb-2">
+                {services[i].shortTitle}
+              </h3>
+
+              <!-- Tagline -->
+              <p class="text-teal-400 text-xs font-semibold mb-3">
+                {svc.tagline}
               </p>
+
+              <!-- Description (2-3 lines max) -->
+              <p class="text-slate-400 text-xs leading-relaxed max-w-[280px] mb-6 line-clamp-3">
+                {svc.copy}
+              </p>
+
+              <!-- CTA -->
               <a
-                href={`/contact/?service=${encodeURIComponent(svc.title)}`}
-                class="inline-flex items-center gap-1.5 text-xs font-semibold"
-                style="color: var(--brand-accent-lt); letter-spacing: 0.02em;"
+                href={`/contact/?service=${encodeURIComponent(services[i].title)}`}
+                class="btn btn-rect bg-teal-800 text-white hover:bg-teal-900 shadow-md text-xs font-semibold px-6 py-2.5 rounded-full"
               >
                 Request Quote
-                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
+
             </div>
-          </article>
-        );
-      })}
+          ))}
+        </div>
+        
+      </div>
     </div>
 
-    <!-- View all link -->
-    <div class="container flex justify-center" style="padding-block: clamp(2rem,5vw,3rem);">
-      <a href="/services/" class="btn btn-pill btn-outline-light" style="font-size: 0.8125rem;">
-        View All Services
-      </a>
+    <!-- Scroll trigger slots -->
+    <div class="svc-mobile-triggers relative z-0">
+      {services.map((_, i) => (
+        <div 
+          class="svc-mob-trigger w-full h-[100dvh]" 
+          data-trigger-index={i}
+        ></div>
+      ))}
     </div>
+
   </div>
 
 </section>
@@ -347,24 +343,27 @@ const editorial = [
     background: rgba(148,163,184,0.4);
   }
 
-  /* ── Mobile cards ────────────────────────────────── */
-  .svc-mobile-cards {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.75rem, 2vw, 1rem);
-    padding-inline: clamp(1rem, 4vw, 1.5rem);
+  /* ── Mobile slides transition system ───────────────── */
+  .svc-mob-slide {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0) scale(0.98);
+    transition: opacity 280ms ease-out, transform 280ms ease-out, visibility 280ms ease-out;
+    visibility: hidden;
+    pointer-events: none;
   }
 
-  .svc-mobile-card {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid rgba(148,163,184,0.08);
+  .svc-mob-slide.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    visibility: visible;
+    pointer-events: auto;
   }
 
   /* ── Reduced motion / prefers-reduced-motion ─────── */
   @media (prefers-reduced-motion: reduce) {
     .svc-info { transition: none !important; opacity: 1 !important; transform: none !important; visibility: visible !important; }
     .svc-img-wrap { transition: none !important; opacity: 1 !important; transform: none !important; visibility: visible !important; }
+    .svc-mob-slide { transition: none !important; opacity: 1 !important; transform: none !important; visibility: visible !important; }
   }
 </style>
 
@@ -499,7 +498,40 @@ const editorial = [
     images[0]?.classList.add('active');
   }
 
+  // Mobile scroll triggers setup
+  function initMobileScroll() {
+    if (window.innerWidth >= 1024) return;
+
+    const root = document.getElementById('svc-mobile-root');
+    const triggers = document.querySelectorAll('.svc-mob-trigger');
+    const slides = document.querySelectorAll('.svc-mob-slide');
+    if (!root || !triggers.length || !slides.length) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px', // Trigger index exactly at the vertical center line
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.getAttribute('data-trigger-index') || '0', 10);
+          slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+          });
+        }
+      });
+    }, observerOptions);
+
+    triggers.forEach(trigger => observer.observe(trigger));
+  }
+
   // Run on load and page transition
   initServicesScroll();
-  document.addEventListener('astro:page-load', initServicesScroll);
+  initMobileScroll();
+  document.addEventListener('astro:page-load', () => {
+    initServicesScroll();
+    initMobileScroll();
+  });
 </script>
