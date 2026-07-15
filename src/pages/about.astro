@@ -1,6 +1,7 @@
 ---
 // ============================================================
-// about.astro — About page
+// about.astro — Redesigned About page
+// Premium human/craftsmanship editorial aesthetic (Rivian / ABB style)
 // ============================================================
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ContactCTA from '@sections/ContactCTA.astro';
@@ -13,178 +14,470 @@ const breadcrumb = buildBreadcrumbSchema([
   { name: 'About Us', url: company.site.url + '/about/' },
 ]);
 
-const values = [
+const milestones = [
   {
-    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-    title: 'Safety First',
-    desc: 'Every installation follows Kerala Electricity Board standards. We never cut corners on safety — not for speed, not for cost.',
+    year: '2014',
+    title: 'The Spark',
+    desc: 'Founded in Chungathara, Nilambur to bring licensed, safety-first electrical services to residential developments in Malappuram.',
   },
   {
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    title: 'Quality Workmanship',
-    desc: 'We use only ISI-marked, certified materials. Our team takes pride in clean, precise, lasting installations.',
+    year: '2018',
+    title: 'Industrial Expansion',
+    desc: 'Began commissioning heavy power panels, distribution grids, and machinery setups for factories across Northern Kerala.',
   },
   {
-    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
-    title: 'Client Focused',
-    desc: 'We listen before we act. Every project begins with understanding your specific needs, budget, and timeline.',
+    year: '2022',
+    title: 'Intelligent Systems',
+    desc: 'Integrated smart automation controllers, structured enterprise networking networks, and ATS systems into our capabilities.',
   },
   {
-    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-    title: 'Transparent Pricing',
-    desc: 'Detailed quotations, no hidden charges, no surprises. You always know exactly what you\'re paying for.',
+    year: '2026',
+    title: 'Statewide Infrastructure',
+    desc: 'Surpassed 500 successfully commissioned projects state-wide, trusted by hospitals, apartments, and manufacturing plants.',
+  },
+];
+
+const pillars = [
+  {
+    title: 'Absolute Compliance',
+    desc: 'Every terminal connection, switchboard setup, and earth loop is designed strictly according to KEB and CEA safety mandates.',
+  },
+  {
+    title: 'Component Integrity',
+    desc: 'We never compromise. Every cable and MCC panel component is ISI-marked and sourced directly from premium partners like ABB, Siemens, and Schneider.',
+  },
+  {
+    title: 'Rigorous Testing',
+    desc: 'Systems undergo thermal analysis, earth loop impedance checking, and full diagnostic tests prior to grid connection.',
   },
 ];
 ---
 
 <BaseLayout seo={pageSEO.about} jsonLd={[breadcrumb]}>
-  <!-- Page Hero -->
-  <section class="relative overflow-hidden bg-dark" style="padding-top: clamp(8rem, 16vh, 12rem); padding-bottom: clamp(4rem, 8vh, 6rem);" aria-labelledby="about-hero-heading">
-    <div class="absolute inset-0 texture-blueprint" aria-hidden="true"></div>
-    <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(6,182,212,0.08) 0%, transparent 70%);" aria-hidden="true"></div>
-
+  
+  <!-- HERO SECTION -->
+  <section class="relative bg-warm border-b border-black/5 overflow-hidden" style="padding-top: clamp(8rem, 16vh, 12rem); padding-bottom: clamp(6rem, 12vh, 10rem);" aria-labelledby="about-hero-title">
     <div class="container relative z-10">
+      
       <!-- Breadcrumb -->
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-sm" style="color: #64748B;">
-          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-          <li aria-hidden="true"><span>/</span></li>
-          <li style="color: #F1F5F9;" aria-current="page">About Us</li>
+      <nav aria-label="Breadcrumb" class="mb-8 about-reveal">
+        <ol class="flex items-center gap-3 text-xs tracking-widest uppercase text-slate-500">
+          <li><a href="/" class="hover:text-slate-800 transition-colors">Home</a></li>
+          <li aria-hidden="true" class="text-slate-300">/</li>
+          <li class="text-slate-800 font-semibold" aria-current="page">Our Story</li>
         </ol>
       </nav>
-      <div class="max-w-3xl">
-        <p class="section-label section-label-light mb-4">About Us</p>
-        <h1
-          id="about-hero-heading"
-          class="heading-lg text-white mb-5"
-        >
-          Kerala's Trusted Electrical Engineering Partner
+      
+      <div class="max-w-4xl border-l-[1px] border-slate-900/10 pl-6 md:pl-10">
+        <span class="text-xs uppercase tracking-widest font-bold text-teal-800 block mb-6 about-reveal delay-100">THE BRIGHT ENGINEERING FOUNDATION</span>
+        <h1 id="about-hero-title" class="heading-xl text-slate-900 tracking-tighter mb-8 leading-[1.05] about-reveal delay-150">
+          Crafting the hidden <br/>
+          grids of Kerala.
         </h1>
-        <p style="font-size: clamp(0.9375rem, 1.2vw, 1.0625rem); line-height: 1.8; color: #94A3B8; max-width: 600px;">
-          Founded with a commitment to safety, quality, and client satisfaction, Bright Electrical and Engineering Works has grown into one of Kerala's most trusted electrical contractors — serving residential, commercial, and industrial clients across the state.
+        <p class="text-slate-600 text-lg md:text-xl max-w-2xl leading-relaxed font-body about-reveal delay-200" style="font-weight: 400;">
+          For over twelve years, our team has built, automated, and supported robust electrical infrastructure — merging engineering safety with a master craftsman’s detail.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHO WE ARE SECTION -->
+  <section class="section bg-warm-2 border-b border-black/5" aria-labelledby="who-we-are-title">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        
+        <!-- Left narrative column -->
+        <div class="lg:col-span-6 about-reveal-left">
+          <span class="text-xs uppercase tracking-widest font-bold text-slate-500 block mb-4">WHO WE ARE</span>
+          <h2 id="who-we-are-title" class="heading-lg text-slate-900 mb-6 font-display">
+            A Legacy Built on Professional Trust
+          </h2>
+          <div class="prose-custom space-y-6 text-slate-600">
+            <p>
+              Bright Electrical and Engineering Works was established in Chungathara, Nilambur, with a simple, uncompromising objective: to provide safe, highly-engineered electrical systems that residential and industrial sectors could depend upon.
+            </p>
+            <p>
+              From custom villas to large-scale production facilities, our work is defined by precision. Every distribution box is neatly dressed, every load is precisely balanced, and every installation undergoes exhaustive safety checking.
+            </p>
+            <p>
+              Under the leadership of KEB-certified engineers, our technicians continue to deliver clean, code-compliant, and future-ready installations across the length and breadth of Kerala.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right asymmetrical overlapping composition -->
+        <div class="lg:col-span-6 relative flex justify-center items-center py-8 about-reveal-right delay-200">
+          <!-- Main Image -->
+          <div class="relative w-full max-w-[480px] aspect-[4/3] rounded-lg overflow-hidden border border-slate-900/10 shadow-xl z-10 hover:scale-[1.01] transition-transform duration-500">
+            <img 
+              src="/images/about-work.webp" 
+              alt="Bright Electrical engineering team during installation" 
+              class="w-full h-full object-cover filter brightness-[0.94] contrast-[1.03]"
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          
+          <!-- Decorative Floating Card -->
+          <div class="absolute -bottom-4 -left-4 md:-left-8 bg-slate-900 text-white p-6 rounded-lg border border-slate-800 shadow-2xl z-20 max-w-[200px]" aria-label="Company scale">
+            <p class="font-display font-900 text-4xl text-teal-400" style="letter-spacing: -0.04em;">500<span class="text-white">+</span></p>
+            <p class="text-[10px] tracking-wider uppercase text-white/60 font-semibold mt-1">Infrastructure deployments across Kerala</p>
+          </div>
+          
+          <!-- Outer border decorative outline -->
+          <div class="absolute -inset-2 border border-dashed border-slate-900/10 rounded-lg -z-0 pointer-events-none" aria-hidden="true"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR PHILOSOPHY (Pull Quote Section) -->
+  <section class="section bg-slate-900 border-b border-white/5 relative overflow-hidden" aria-labelledby="philosophy-quote">
+    <!-- Gradient Lighting Glow -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);" aria-hidden="true"></div>
+    
+    <div class="container relative z-10 text-center py-12 md:py-20">
+      <div class="max-w-4xl mx-auto about-reveal">
+        <span class="text-xs uppercase tracking-widest font-bold text-teal-400 block mb-8">OUR ENGINEERING PHILOSOPHY</span>
+        
+        <blockquote id="philosophy-quote" class="font-display text-2xl md:text-4xl text-white italic leading-relaxed tracking-tight mb-8">
+          "We believe in the beauty of structured, code-compliant systems. A neatly labeled distribution box, an optimal load pathway, a perfectly stable backup system — this is how we craft safety."
+        </blockquote>
+        
+        <cite class="text-xs uppercase tracking-widest font-semibold text-white/50 not-italic block">— BRIGHT ELECTRICAL CORE PRINCIPLE</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR JOURNEY (Timeline Section) -->
+  <section class="section bg-dark blueprint-bg border-b border-white/5 relative overflow-hidden" aria-labelledby="journey-title">
+    <!-- Grid overlay texture -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 50% 50%, rgba(13, 79, 92, 0.15) 0%, transparent 70%);" aria-hidden="true"></div>
+    
+    <div class="container relative z-10">
+      <div class="text-center max-w-2xl mx-auto mb-16 md:mb-24 about-reveal">
+        <span class="text-xs uppercase tracking-widest font-bold text-teal-400 block mb-4">OUR CHRONOLOGY</span>
+        <h2 id="journey-title" class="heading-lg text-white font-display">Our Decadelong Development</h2>
+      </div>
+
+      <!-- Asymmetrical Journey Timeline -->
+      <div class="relative border-l border-white/10 ml-4 md:ml-12 space-y-16">
+        {milestones.map((item, index) => (
+          <div class="relative pl-8 md:pl-16 about-reveal" style={`transition-delay: ${index * 150}ms`}>
+            <!-- Dot -->
+            <div class="absolute -left-[5px] top-1.5 w-[9px] h-[9px] rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)] border border-slate-900" aria-hidden="true"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+              <!-- Left: Year -->
+              <div class="md:col-span-2">
+                <span class="font-display font-900 text-3xl md:text-4xl text-teal-400 tracking-tight block leading-none">{item.year}</span>
+              </div>
+              <!-- Right: Content -->
+              <div class="md:col-span-10">
+                <h4 class="text-white font-bold text-lg mb-2">{item.title}</h4>
+                <p class="text-white/60 text-sm md:text-base leading-relaxed max-w-3xl">{item.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING STANDARDS (Wide photo overlay section) -->
+  <section class="relative bg-slate-950 overflow-hidden border-b border-white/5 py-32 md:py-48" aria-labelledby="standards-title">
+    <!-- Full-width cinematic background photo -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/hero-cinematic.webp" 
+        alt="High-voltage power substation infrastructure" 
+        class="w-full h-full object-cover filter brightness-[0.3] contrast-[1.05] about-parallax-img"
+        loading="lazy"
+        decoding="async"
+      />
+      <!-- Soft blue lighting shader -->
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent pointer-events-none" aria-hidden="true"></div>
+    </div>
+
+    <div class="container relative z-10">
+      <div class="max-w-3xl border-l-[1px] border-white/20 pl-6 md:pl-10 about-reveal">
+        <span class="text-xs uppercase tracking-widest font-bold text-teal-400 block mb-6">REGULATORY & SAFETY DIRECTIVES</span>
+        <h2 id="standards-title" class="heading-lg text-white mb-6 font-display">
+          Built to Legrand, Siemens, & CEA Standards
+        </h2>
+        <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl">
+          We maintain regulatory clearances and follow Kerala Electricity Board (KEB) guidelines. Our design methodologies emphasize clean cabling runs, clear thermal profiles, and structured switchgear setups that prevent grid failures.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Story Section -->
-  <section class="section bg-warm" aria-labelledby="story-heading">
+  <!-- HOW WE WORK (Step-by-step layout) -->
+  <section class="section bg-warm border-b border-black/5" aria-labelledby="how-we-work-title">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="reveal">
-          <p class="section-label mb-4">Our Story</p>
-          <h2
-            id="story-heading"
-            class="heading-md mb-5"
-          >
-            Built on a Foundation of Expertise and Trust
-          </h2>
-          <div class="prose-custom space-y-4">
-            <p>
-              Bright Electrical and Engineering Works was established with a clear vision: to provide safe, high-quality electrical services that Kerala's homes, businesses, and industries could rely on. Based in Chungathara, Nilambur, in the heart of Malappuram district, we serve clients across the length and breadth of Kerala.
-            </p>
-            <p>
-              Over the years, we have completed over 500 projects ranging from simple domestic wiring to complex industrial power installations. Every project, regardless of size, receives the same level of care, attention, and professionalism that defines our work.
-            </p>
-            <p>
-              Our team of licensed, KEB-certified electricians stays updated with the latest safety standards, technologies, and best practices in electrical engineering — ensuring every installation is built to last and fully compliant.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative reveal delay-200">
-          <div class="rounded-2xl overflow-hidden" style="aspect-ratio: 16/10; box-shadow: var(--shadow-xl);">
-            <img
-              src="/images/about-work.webp"
-              alt="Bright Electrical team working on a professional installation"
-              width="700"
-              height="394"
-              loading="lazy"
-              decoding="async"
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <div class="absolute -bottom-5 -left-5 rounded-xl p-5" style="background: var(--brand-primary); box-shadow: var(--shadow-lg);" aria-label="12+ years of experience">
-            <p class="font-display font-900 text-3xl text-white" style="letter-spacing: -0.04em;">12<span style="color: var(--brand-accent-lt);">+</span></p>
-            <p style="font-size: 0.6875rem; color: rgba(255,255,255,0.6); margin-top: 2px; font-weight: 500;">Years Experience</p>
-          </div>
-        </div>
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 md:mb-24 about-reveal">
+        <span class="text-xs uppercase tracking-widest font-bold text-slate-500 block mb-4">OUR SERVICE PROTOCOL</span>
+        <h2 id="how-we-work-title" class="heading-lg text-slate-900 font-display">Methodical Execution Steps</h2>
       </div>
-    </div>
-  </section>
 
-  <!-- Values -->
-  <section class="section bg-warm-2 texture-grid" aria-labelledby="values-heading">
-    <div class="container relative z-10">
-      <div class="text-center max-w-xl mx-auto" style="margin-bottom: clamp(2.5rem, 5vw, 4rem);">
-        <p class="section-label mb-4 reveal">Our Values</p>
-        <h2
-          id="values-heading"
-          class="heading-md reveal delay-100"
-        >
-          What Drives Everything We Do
-        </h2>
-      </div>
-      <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style="gap: clamp(0.75rem, 1.5vw, 1.25rem);">
-        {values.map((val, i) => (
-          <div class="card-light p-6 reveal" style={`transition-delay: ${i * 100}ms`}>
-            <dt>
-              <div class="icon-box icon-box-light mb-4" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d={val.icon} />
-                </svg>
-              </div>
-              <span class="font-display font-700 text-base block mb-2" style="color: var(--text-primary);">{val.title}</span>
-            </dt>
-            <dd style="font-size: 0.8125rem; line-height: 1.7; color: var(--text-muted);">{val.desc}</dd>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        {pillars.map((pillar, i) => (
+          <div class="bg-white border border-slate-900/10 rounded-lg p-8 shadow-sm flex flex-col justify-between about-reveal" style={`transition-delay: ${i * 150}ms`}>
+            <div>
+              <span class="font-display font-900 text-3xl text-teal-800/20 block mb-6">0{i + 1} //</span>
+              <h4 class="text-slate-900 font-bold text-lg mb-3">{pillar.title}</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">{pillar.desc}</p>
+            </div>
+            <div class="w-8 h-[1px] bg-slate-900/10 mt-8" aria-hidden="true"></div>
           </div>
         ))}
-      </dl>
+      </div>
+
     </div>
   </section>
 
-  <!-- Contact Info -->
-  <section class="section bg-warm" aria-labelledby="contact-info-heading">
+  <!-- WHY CLIENTS TRUST US -->
+  <section class="section bg-warm-2 border-b border-black/5" aria-labelledby="trust-heading">
     <div class="container">
-      <div class="max-w-2xl mx-auto text-center">
-        <h2
-          id="contact-info-heading"
-          class="heading-md mb-8 reveal"
-        >
-          Get In Touch
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8 text-sm">
-          <div class="flex flex-col items-center gap-2 reveal">
-            <div class="icon-box icon-box-light" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15z"/>
-              </svg>
-            </div>
-            <p class="font-semibold" style="color: var(--text-primary);">Phone</p>
-            <a href={`tel:${company.phone}`} style="color: var(--brand-primary);" class="hover:text-brand-accent transition-colors">{company.phoneDisplay}</a>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        
+        <!-- Left: Asymmetrical Grid of Trust details -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch order-last lg:order-first">
+          
+          <div class="bg-white border border-slate-900/10 rounded-lg p-6 shadow-sm about-reveal">
+            <h4 class="text-slate-900 font-bold text-base mb-2">Zero-Downtime Mentality</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">We design redundancy directly into commercial systems, implementing automated AMF switchovers that protect your operations.</p>
           </div>
-          <div class="flex flex-col items-center gap-2 reveal delay-100">
-            <div class="icon-box icon-box-light" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-            <p class="font-semibold" style="color: var(--text-primary);">Address</p>
-            <address class="not-italic text-center" style="color: var(--text-muted);">{company.address.full}</address>
+          
+          <div class="bg-white border border-slate-900/10 rounded-lg p-6 shadow-sm about-reveal delay-100">
+            <h4 class="text-slate-900 font-bold text-base mb-2">Transparent Quotations</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">No estimated padding. Every invoice details components, labor hours, and cable lengths for full price clarity.</p>
           </div>
-          <div class="flex flex-col items-center gap-2 reveal delay-200">
-            <div class="icon-box icon-box-light" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-              </svg>
-            </div>
-            <p class="font-semibold" style="color: var(--text-primary);">Hours</p>
-            <p style="color: var(--text-muted);" class="text-center">Mon–Sat: 8AM–7PM<br />Sun: 9AM–5PM<br /><span class="text-green-600 font-medium">24/7 Emergency</span></p>
+          
+          <div class="bg-white border border-slate-900/10 rounded-lg p-6 shadow-sm about-reveal delay-200">
+            <h4 class="text-slate-900 font-bold text-base mb-2">KEB-Certified Technicians</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Our execution staff are fully certified, ensuring that installations comply with state electricity rules.</p>
           </div>
+          
+          <div class="bg-white border border-slate-900/10 rounded-lg p-6 shadow-sm about-reveal delay-300">
+            <h4 class="text-slate-900 font-bold text-base mb-2">Rapid AMC Support</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">We guarantee scheduled visits and provide immediate 24/7 priority dispatch response times for critical contracts.</p>
+          </div>
+
         </div>
+
+        <!-- Right: Editorial Header -->
+        <div class="lg:col-span-5 about-reveal-right">
+          <span class="text-xs uppercase tracking-widest font-bold text-slate-500 block mb-4">THE TRUST GRID</span>
+          <h2 id="trust-heading" class="heading-lg text-slate-900 mb-6 font-display">
+            Why Kerala’s Enterprises Rely On Us
+          </h2>
+          <p class="text-slate-600 text-base leading-relaxed mb-8">
+            Electrical engineering is not just about running cables; it is about risk mitigation. We build protective layers into every deployment so that your operations run uninterrupted.
+          </p>
+          <a 
+            href="/contact/" 
+            class="text-sm text-teal-800 hover:text-teal-900 font-bold flex items-center gap-1 group"
+            aria-label="View contact information"
+          >
+            Review Our Certifications
+            <span class="group-hover:translate-x-1 transition-transform inline-block" aria-hidden="true">→</span>
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
 
+  <!-- NUMBERS THAT MATTER -->
+  <section class="section bg-slate-950 border-b border-white/5 relative overflow-hidden" aria-labelledby="metrics-title">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      
+      <div class="border-b border-white/10 pb-10 mb-16 text-center max-w-xl mx-auto about-reveal">
+        <span class="text-xs uppercase tracking-widest font-bold text-teal-400 block mb-3">KEY PERFORMANCE METRICS</span>
+        <h2 id="metrics-title" class="text-white text-2xl font-bold font-display">Engineering Deliverables</h2>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 text-center">
+        
+        <div class="about-reveal">
+          <p class="font-display font-900 text-5xl lg:text-6xl text-white tracking-tight leading-none mb-2">500<span class="text-teal-400">+</span></p>
+          <p class="text-white/40 text-xs uppercase tracking-widest font-semibold">Projects Completed</p>
+        </div>
+        
+        <div class="about-reveal delay-100">
+          <p class="font-display font-900 text-5xl lg:text-6xl text-white tracking-tight leading-none mb-2">12<span class="text-teal-400">+</span></p>
+          <p class="text-white/40 text-xs uppercase tracking-widest font-semibold">Years Experience</p>
+        </div>
+        
+        <div class="about-reveal delay-200">
+          <p class="font-display font-900 text-5xl lg:text-6xl text-white tracking-tight leading-none mb-2">100<span class="text-teal-400">%</span></p>
+          <p class="text-white/40 text-xs uppercase tracking-widest font-semibold">KEB Compliance</p>
+        </div>
+        
+        <div class="about-reveal delay-300">
+          <p class="font-display font-900 text-5xl lg:text-6xl text-white tracking-tight leading-none mb-2">2<span class="text-teal-400">Hr</span></p>
+          <p class="text-white/40 text-xs uppercase tracking-widest font-semibold">Emergency Dispatch SLA</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Final CTA section -->
   <ContactCTA />
+
+  <!-- Custom Organic Scroll reveal triggers -->
+  <script>
+    function initAboutScroll() {
+      const els = document.querySelectorAll('.about-reveal, .about-reveal-left, .about-reveal-right, .about-parallax-img');
+      if (els.length === 0) return;
+
+      const hasNativeSDA = CSS.supports('animation-timeline', 'view()');
+
+      if (hasNativeSDA) {
+        els.forEach(el => el.classList.add('native-sda'));
+        return;
+      }
+
+      // Fallback: Custom IntersectionObserver that removes class when element leaves bottom (reverses when scrolling back up)
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+            } else {
+              const rect = entry.boundingClientRect;
+              if (rect.top > window.innerHeight) {
+                entry.target.classList.remove('revealed');
+              }
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+      );
+
+      els.forEach((el) => observer.observe(el));
+    }
+
+    // Bind to page load and view transitions
+    initAboutScroll();
+    document.addEventListener('astro:page-load', initAboutScroll);
+  </script>
+
 </BaseLayout>
+
+<style>
+  /* ─── Premium Redesign Scoped Styles ─── */
+  
+  /* Blueprint Grid background texture for About journey chapter */
+  .blueprint-bg {
+    background-color: #0C1A2A;
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center;
+  }
+
+  /* ─── Native Scroll-Driven Animations Timeline ─── */
+  @keyframes about-reveal-native {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  @keyframes about-reveal-left-native {
+    0% {
+      opacity: 0;
+      transform: translateX(-40px) rotate(-0.5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+  @keyframes about-reveal-right-native {
+    0% {
+      opacity: 0;
+      transform: translateX(40px) rotate(0.5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+  @keyframes about-parallax-native {
+    0% {
+      transform: translateY(30px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  /* Apply scroll-driven animations natively if supported */
+  .about-reveal.native-sda {
+    animation: about-reveal-native linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 25%;
+  }
+  .about-reveal-left.native-sda {
+    animation: about-reveal-left-native linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 25%;
+  }
+  .about-reveal-right.native-sda {
+    animation: about-reveal-right-native linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 25%;
+  }
+  .about-parallax-img.native-sda {
+    animation: about-parallax-native linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+  }
+
+  /* ─── Fallback triggers toggled by IntersectionObserver ─── */
+  .about-reveal:not(.native-sda),
+  .about-reveal-left:not(.native-sda),
+  .about-reveal-right:not(.native-sda),
+  .about-parallax-img:not(.native-sda) {
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+                transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: transform, opacity;
+  }
+  .about-reveal:not(.native-sda) {
+    transform: translateY(40px) scale(0.98);
+  }
+  .about-reveal-left:not(.native-sda) {
+    transform: translateX(-40px) rotate(-0.5deg);
+  }
+  .about-reveal-right:not(.native-sda) {
+    transform: translateX(40px) rotate(0.5deg);
+  }
+  .about-parallax-img:not(.native-sda) {
+    transform: translateY(30px);
+  }
+
+  /* Active states for JS fallback */
+  .about-reveal.revealed:not(.native-sda),
+  .about-reveal-left.revealed:not(.native-sda),
+  .about-reveal-right.revealed:not(.native-sda),
+  .about-parallax-img.revealed:not(.native-sda) {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+  }
+</style>

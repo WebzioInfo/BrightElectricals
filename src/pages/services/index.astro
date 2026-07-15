@@ -1,6 +1,7 @@
 ---
 // ============================================================
-// services/index.astro — Services listing page
+// services/index.astro — Redesigned Services listing page
+// Premium Editorial / Industrial aesthetic (ABB, Siemens style)
 // ============================================================
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ContactCTA from '@sections/ContactCTA.astro';
@@ -13,122 +14,784 @@ const breadcrumb = buildBreadcrumbSchema([
   { name: 'Home', url: company.site.url + '/' },
   { name: 'Services', url: company.site.url + '/services/' },
 ]);
+
+// Map individual services for explicit custom layouts
+const homeElectrical = services.find(s => s.id === 'home-electrical')!;
+const industrialPower = services.find(s => s.id === 'industrial-power')!;
+const atsPanels = services.find(s => s.id === 'ats-amf-panels')!;
+const automation = services.find(s => s.id === 'automation-smart-control')!;
+const cabling = services.find(s => s.id === 'structured-cabling')!;
+const security = services.find(s => s.id === 'cctv-security')!;
+const maintenance = services.find(s => s.id === 'repair-maintenance')!;
 ---
 
 <BaseLayout seo={pageSEO.services} jsonLd={[breadcrumb]}>
-
-  <!-- Hero -->
-  <section class="relative pt-36 pb-20 lg:pt-44 lg:pb-28 bg-brand-primary overflow-hidden" aria-labelledby="services-page-heading">
-    <div class="absolute inset-0" aria-hidden="true">
-      <div class="absolute inset-0 bg-grid opacity-10" />
-      <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-    </div>
-    <div class="container relative z-10">
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-sm text-white/50">
+  
+  <!-- HERO SECTION -->
+  <section class="hero-section relative overflow-hidden bg-dark blueprint-bg flex items-center justify-center border-b border-white/5" aria-labelledby="services-hero-title">
+    <div class="absolute inset-0 radial-glow pointer-events-none" aria-hidden="none"></div>
+    <div class="absolute inset-0 radial-glow-teal pointer-events-none" aria-hidden="none"></div>
+    
+    <div class="container relative z-10 text-center py-24 md:py-36 lg:py-48">
+      <nav aria-label="Breadcrumb" class="mb-8 flex justify-center scroll-active-trigger reveal-in">
+        <ol class="flex items-center gap-3 text-xs tracking-widest uppercase text-white/40">
           <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-          <li aria-hidden="true"><span>/</span></li>
-          <li class="text-white/90" aria-current="page">Services</li>
+          <li aria-hidden="true" class="text-white/20">/</li>
+          <li class="text-white/80" aria-current="page">Services</li>
         </ol>
       </nav>
-      <div class="max-w-2xl">
-        <p class="section-label text-brand-accent mb-3">What We Offer</p>
-        <h1
-          id="services-page-heading"
-          class="font-display font-900 text-white mb-4"
-          style="font-size: clamp(2.25rem, 5vw, 3.75rem); letter-spacing: -0.03em; line-height: 1.08;"
-        >
-          Complete Electrical Services in Kerala
-        </h1>
-        <p class="text-white/70 text-lg leading-relaxed">
-          From domestic wiring to industrial power systems — all your electrical needs under one roof, delivered by licensed professionals.
+      
+      <p class="section-label section-label-light mb-6 scroll-active-trigger reveal-in delay-100">Engineering Solutions</p>
+      
+      <h1 id="services-hero-title" class="heading-xl text-white tracking-tighter mb-8 max-w-4xl mx-auto scroll-active-trigger reveal-scale delay-150">
+        Industrial Grade. <br/>
+        <span class="text-white/60">Architectural Precision.</span>
+      </h1>
+      
+      <p class="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-12 scroll-active-trigger reveal-in delay-200">
+        From domestic infrastructure upgrades to heavy-duty industrial installations — we build, automate, and secure complete power systems.
+      </p>
+      
+      <!-- Scroll indicator -->
+      <div class="flex justify-center mt-6 scroll-active-trigger reveal-in delay-300" aria-hidden="true">
+        <a href="#home-solutions" class="group flex flex-col items-center gap-3 text-xs tracking-widest uppercase text-white/30 hover:text-white transition-colors">
+          Explore Chapters
+          <div class="w-[1px] h-12 bg-white/20 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-white group-hover:translate-y-full transition-transform duration-1000 ease-in-out"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 1: HOME ELECTRICAL SOLUTIONS -->
+  <section id="home-solutions" class="section bg-warm border-b border-black/5" aria-labelledby="chapter-1-title">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        
+        <!-- Left Side: Editorial Content -->
+        <div class="lg:col-span-6 scroll-active-trigger reveal-left">
+          <span class="chapter-indicator text-xs tracking-widest text-teal-800 font-bold block mb-4">01 // DOMESTIC INFRASTRUCTURE</span>
+          <h2 id="chapter-1-title" class="heading-lg text-slate-900 mb-6 font-display font-800">
+            {homeElectrical.title}
+          </h2>
+          <p class="text-slate-600 text-base md:text-lg leading-relaxed mb-8">
+            {homeElectrical.longDesc}
+          </p>
+          
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8" aria-label="Domestic services features">
+            {homeElectrical.features.map((feat) => (
+              <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-teal-50 text-teal-700 flex-shrink-0 mt-0.5" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                {feat}
+              </li>
+            ))}
+          </ul>
+          
+          <div class="flex flex-wrap gap-2 mb-8">
+            {homeElectrical.industries.map((ind) => (
+              <span class="px-3.5 py-1 text-[10px] tracking-wider font-semibold uppercase rounded bg-slate-100 text-slate-600 border border-slate-200/50">{ind}</span>
+            ))}
+          </div>
+
+          <a 
+            href={`/contact/?service=${encodeURIComponent(homeElectrical.title)}`} 
+            class="btn btn-rect bg-teal-800 text-white hover:bg-teal-900 shadow-md inline-flex items-center"
+            aria-label={`Enquire about ${homeElectrical.title}`}
+          >
+            Request Engineering Quote
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Right Side: Architectural Overlapping Image -->
+        <div class="lg:col-span-6 relative scroll-active-trigger reveal-right delay-100">
+          <div class="relative z-10 rounded-lg overflow-hidden border border-slate-900/10 shadow-2xl scale-95 lg:scale-100 transition-transform duration-500 hover:scale-[1.02]">
+            <img 
+              src={homeElectrical.image} 
+              alt="High-end domestic electrical install" 
+              class="w-full object-cover aspect-[4/3] filter brightness-[0.93] contrast-[1.05]"
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <!-- Decorative wireframe blueprint backing -->
+          <div class="absolute -inset-4 border border-dashed border-teal-800/20 rounded-lg -z-0 pointer-events-none" aria-hidden="true"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 2: INDUSTRIAL POWER SYSTEMS -->
+  <section id="industrial-solutions" class="section bg-dark blueprint-bg border-b border-white/5" aria-labelledby="chapter-2-title">
+    <div class="absolute inset-0 radial-glow pointer-events-none" aria-hidden="none"></div>
+    <div class="container relative z-10">
+      
+      <!-- Typography Header -->
+      <div class="mb-16 max-w-3xl scroll-active-trigger reveal-in">
+        <span class="chapter-indicator text-xs tracking-widest text-teal-400 font-bold block mb-4">02 // HEAVY INDUSTRY</span>
+        <h2 id="chapter-2-title" class="heading-lg text-white mb-6">
+          {industrialPower.title}
+        </h2>
+        <p class="text-white/60 text-base md:text-lg">
+          {industrialPower.longDesc}
         </p>
       </div>
-    </div>
-  </section>
 
-  <!-- Services list -->
-  <section class="section bg-surface-50" aria-label="All services">
-    <div class="container">
-      <div class="space-y-8">
-        {services.map((service, i) => {
-          const isEven = i % 2 === 0;
-          return (
-            <article
-              id={service.id}
-              class={`card overflow-hidden grid grid-cols-1 lg:grid-cols-2 reveal scroll-mt-24`}
-              aria-labelledby={`service-${service.id}-title`}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
+        
+        <!-- Left Column: Heavy spec listings & stats -->
+        <div class="lg:col-span-5 flex flex-col justify-between scroll-active-trigger reveal-left">
+          <div class="space-y-6">
+            <h3 class="text-xs uppercase tracking-widest font-bold text-white/50 border-b border-white/10 pb-3">Engineering Specifications</h3>
+            
+            <div class="grid grid-cols-2 gap-6 text-sm">
+              <div>
+                <p class="text-white/40 mb-1">Max Load Capacity</p>
+                <p class="text-white font-bold text-lg">Up to 11KV Systems</p>
+              </div>
+              <div>
+                <p class="text-white/40 mb-1">Compliance Standards</p>
+                <p class="text-white font-bold text-lg">CEA & KEB Standards</p>
+              </div>
+              <div>
+                <p class="text-white/40 mb-1">Panel Capability</p>
+                <p class="text-white font-bold text-lg">MCC, PCC Boards</p>
+              </div>
+              <div>
+                <p class="text-white/40 mb-1">Testing Cycle</p>
+                <p class="text-white font-bold text-lg">Comprehensive (FLIR)</p>
+              </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-6">
+              <h4 class="text-xs uppercase tracking-widest font-bold text-white/50 mb-4">Included Solutions</h4>
+              <ul class="space-y-3" aria-label="Industrial systems solutions list">
+                {industrialPower.features.map(feat => (
+                  <li class="flex items-center gap-3 text-sm text-white/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" aria-hidden="true"></span>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-10 lg:mt-0 pt-6">
+            <a 
+              href={`/contact/?service=${encodeURIComponent(industrialPower.title)}`} 
+              class="btn btn-rect bg-white text-slate-900 hover:bg-slate-100 shadow-xl inline-flex items-center w-fit"
+              aria-label={`Inquire about ${industrialPower.title}`}
             >
-              <!-- Image -->
-              <div class={`relative h-64 lg:h-auto min-h-[280px] bg-surface-100 ${!isEven ? 'lg:order-last' : ''}`}>
-                <img
-                  src={service.image}
-                  alt={`${service.title} — Bright Electrical Kerala`}
-                  width="600"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
-                  class="w-full h-full object-cover"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-brand-dark/40 to-transparent" aria-hidden="true" />
+              Request Infrastructure Proposal
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Full-width feeling architectural crop -->
+        <div class="lg:col-span-7 flex items-center scroll-active-trigger reveal-right delay-150">
+          <div class="relative w-full h-full min-h-[350px] rounded-lg overflow-hidden border border-white/10 group">
+            <img 
+              src={industrialPower.image} 
+              alt="Industrial electrical panels" 
+              class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.1] transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+            
+            <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+              <div>
+                <p class="text-[10px] tracking-widest text-teal-400 font-bold uppercase mb-1">Live Deployment</p>
+                <h4 class="text-white text-sm font-semibold tracking-tight">Industrial Plant Distribution</h4>
               </div>
-
-              <!-- Content -->
-              <div class="p-8 lg:p-10 flex flex-col justify-center">
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="icon-box" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d={service.icon} />
-                    </svg>
-                  </div>
-                  <span class="section-label">{service.shortTitle}</span>
-                </div>
-
-                <h2
-                  id={`service-${service.id}-title`}
-                  class="font-display font-800 text-surface-900 mb-3"
-                  style="font-size: clamp(1.5rem, 2.5vw, 2rem); letter-spacing: -0.025em; line-height: 1.15;"
-                >
-                  {service.title}
-                </h2>
-                <p class="text-surface-500 leading-relaxed mb-6">{service.longDesc}</p>
-
-                <!-- Features -->
-                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6" aria-label={`${service.title} features`}>
-                  {service.features.map(feat => (
-                    <li class="flex items-start gap-2 text-sm text-surface-600">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-brand-accent mt-0.5 flex-shrink-0" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      {feat}
-                    </li>
-                  ))}
-                </ul>
-
-                <!-- Industries badge list -->
-                <div class="flex flex-wrap gap-2 mb-6">
-                  {service.industries.map(ind => (
-                    <span class="badge badge-primary">{ind}</span>
-                  ))}
-                </div>
-
-                <a
-                  href={`/contact/?service=${encodeURIComponent(service.title)}`}
-                  class="btn btn-primary w-fit"
-                  aria-label={`Enquire about ${service.title}`}
-                >
-                  Get a Quote
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
+              <div class="flex gap-2">
+                {industrialPower.industries.slice(0, 2).map(ind => (
+                  <span class="px-2 py-0.5 text-[9px] tracking-wider uppercase bg-white/10 border border-white/20 text-white/90 rounded">{ind}</span>
+                ))}
               </div>
-            </article>
-          );
-        })}
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
+  <!-- CHAPTER 3: ATS & AMF PANEL SETUP -->
+  <section id="backup-solutions" class="section bg-warm-2 border-b border-black/5" aria-labelledby="chapter-3-title">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+        
+        <!-- Left Side: Editorial / Context -->
+        <div class="lg:col-span-5 scroll-active-trigger reveal-left">
+          <span class="chapter-indicator text-xs tracking-widest text-slate-800 font-bold block mb-4">03 // POWER BACKUP SYSTEMS</span>
+          <h2 id="chapter-3-title" class="heading-lg text-slate-900 mb-6">
+            {atsPanels.title}
+          </h2>
+          <p class="text-slate-600 text-base md:text-lg leading-relaxed mb-8">
+            {atsPanels.longDesc}
+          </p>
+          
+          <div class="bg-white/50 border border-slate-950/5 rounded-lg p-6 mb-8">
+            <h4 class="text-xs uppercase tracking-widest font-bold text-slate-700 mb-3">Critical Target Sectors</h4>
+            <div class="flex flex-wrap gap-2">
+              {atsPanels.industries.map(ind => (
+                <span class="px-3 py-1 text-[10px] tracking-wider font-semibold uppercase rounded bg-teal-50 text-teal-800 border border-teal-100">{ind}</span>
+              ))}
+            </div>
+          </div>
+
+          <a 
+            href={`/contact/?service=${encodeURIComponent(atsPanels.title)}`} 
+            class="btn btn-rect bg-slate-900 text-white hover:bg-slate-800 shadow-md inline-flex items-center"
+            aria-label={`Enquire about ${atsPanels.title}`}
+          >
+            Design Backup System
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Right Side: Clean Minimal Spec Sheet -->
+        <div class="lg:col-span-7 scroll-active-trigger reveal-right delay-150">
+          <div class="bg-white border border-slate-900/10 rounded-lg shadow-xl overflow-hidden">
+            <div class="px-6 py-4 bg-slate-900 text-white flex justify-between items-center border-b border-slate-800">
+              <span class="text-xs uppercase tracking-widest font-bold text-white/70">ATS-AMF Specifications</span>
+              <span class="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-wider text-teal-400 bg-teal-950/40 border border-teal-900/50 px-2 py-0.5 rounded">
+                <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" aria-hidden="true"></span> ACTIVE CERTIFIED
+              </span>
+            </div>
+            
+            <div class="divide-y divide-slate-100">
+              
+              <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Transfer Time</span>
+                <span class="sm:col-span-2 text-sm text-slate-800 font-bold">Standard: &lt; 100ms switchover latency</span>
+              </div>
+              
+              <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Gen-Set Sync</span>
+                <span class="sm:col-span-2 text-sm text-slate-800">Auto-start command line with pre-heat delay controller</span>
+              </div>
+              
+              <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Phase Monitoring</span>
+                <span class="sm:col-span-2 text-sm text-slate-800">Over/Under voltage and phase-sequence mismatch cut-off</span>
+              </div>
+
+              <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Diagnostics</span>
+                <span class="sm:col-span-2 text-sm text-slate-800">Integrated LED display for live phase telemetry & fault history</span>
+              </div>
+              
+            </div>
+
+            <div class="p-6 bg-slate-50 border-t border-slate-100">
+              <h4 class="text-xs uppercase tracking-widest font-bold text-slate-500 mb-3">Setup Includes</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {atsPanels.features.map(feat => (
+                  <span class="text-xs text-slate-700 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5 text-teal-800 flex-shrink-0" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                    </svg>
+                    {feat}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 4: AUTOMATION & SMART CONTROL -->
+  <section id="automation-solutions" class="section bg-slate-950 border-b border-white/5" aria-labelledby="chapter-4-title">
+    <div class="absolute inset-0 radial-glow pointer-events-none" aria-hidden="none"></div>
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        
+        <!-- Left Side: Interactive System Flowchart SVG -->
+        <div class="lg:col-span-6 scroll-active-trigger reveal-left">
+          <div class="border border-white/10 rounded-lg p-6 bg-slate-900/60 backdrop-blur-md relative overflow-hidden">
+            <h4 class="text-xs uppercase tracking-widest font-bold text-teal-400 mb-6">Automation Process Architecture</h4>
+            
+            <!-- Flow Diagram -->
+            <div class="space-y-6 relative z-10">
+              <div class="flex items-center justify-between p-3 bg-white/5 rounded border border-white/5">
+                <span class="text-xs text-white/50 uppercase">Inputs</span>
+                <span class="text-xs font-semibold text-white">Sensors / Voice / Mobile Trigger</span>
+              </div>
+              <div class="flex justify-center" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-teal-400 animate-bounce">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-teal-950/40 rounded border border-teal-900/50">
+                <span class="text-xs text-teal-400/80 uppercase font-semibold">Central Processor</span>
+                <span class="text-xs font-bold text-white">PLC / IoT Gateway Hub</span>
+              </div>
+              <div class="flex justify-center" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-teal-400 animate-bounce">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-white/5 rounded border border-white/5">
+                <span class="text-xs text-white/50 uppercase">Outputs</span>
+                <span class="text-xs font-semibold text-white">Lighting / HVAC / Machine Relay</span>
+              </div>
+            </div>
+
+            <!-- Absolute decorative light source -->
+            <div class="absolute -right-16 -top-16 w-32 h-32 bg-blue-600/10 rounded-full blur-2xl" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Right Side: Narrative -->
+        <div class="lg:col-span-6 scroll-active-trigger reveal-right delay-100">
+          <span class="chapter-indicator text-xs tracking-widest text-teal-400 font-bold block mb-4">04 // SMART SYSTEM LOGIC</span>
+          <h2 id="chapter-4-title" class="heading-lg text-white mb-6">
+            {automation.title}
+          </h2>
+          <p class="text-white/60 text-base md:text-lg leading-relaxed mb-8">
+            {automation.longDesc}
+          </p>
+          
+          <ul class="space-y-4 mb-8" aria-label="Smart automation features">
+            {automation.features.map(feat => (
+              <li class="flex items-center gap-3 text-sm text-white/80 font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                </svg>
+                {feat}
+              </li>
+            ))}
+          </ul>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            {automation.industries.map(ind => (
+              <span class="px-2.5 py-1 text-[9px] font-semibold tracking-wider uppercase rounded bg-white/5 border border-white/10 text-white/70">{ind}</span>
+            ))}
+          </div>
+
+          <a 
+            href={`/contact/?service=${encodeURIComponent(automation.title)}`} 
+            class="btn btn-rect bg-teal-700 text-white hover:bg-teal-600 shadow-md inline-flex items-center"
+            aria-label={`Enquire about ${automation.title}`}
+          >
+            Design Intelligent Control System
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 5: STRUCTURED CABLING & NETWORKS -->
+  <section id="network-solutions" class="section bg-warm border-b border-black/5" aria-labelledby="chapter-5-title">
+    <div class="container">
+      
+      <!-- Asymmetrical Title Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-end scroll-active-trigger reveal-in">
+        <div class="lg:col-span-7">
+          <span class="chapter-indicator text-xs tracking-widest text-slate-800 font-bold block mb-4">05 // DATA INFRASTRUCTURE</span>
+          <h2 id="chapter-5-title" class="heading-lg text-slate-900 font-display font-800">
+            {cabling.title}
+          </h2>
+        </div>
+        <div class="lg:col-span-5">
+          <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+            {cabling.longDesc}
+          </p>
+        </div>
+      </div>
+
+      <!-- Asymmetrical Grid layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left large panel: Structured cabling spec card -->
+        <div class="lg:col-span-7 bg-white border border-slate-900/10 rounded-lg p-8 shadow-lg flex flex-col justify-between scroll-active-trigger reveal-left">
+          <div>
+            <span class="text-[10px] tracking-widest uppercase font-bold text-teal-800 mb-4 block">Compliance & Topology</span>
+            <h4 class="text-slate-900 font-bold text-xl mb-6">TIA/EIA Compliant Network Architecture</h4>
+            
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-1.5 h-1.5 rounded-full bg-teal-800 mt-2 flex-shrink-0" aria-hidden="true"></div>
+                <div>
+                  <h5 class="text-sm font-bold text-slate-800">Cat6 / Cat6A Certified Cabling</h5>
+                  <p class="text-xs text-slate-500 mt-1">Certified for gigabit speed and high-load transmission lanes with minimum cross-talk.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-1.5 h-1.5 rounded-full bg-teal-800 mt-2 flex-shrink-0" aria-hidden="true"></div>
+                <div>
+                  <h5 class="text-sm font-bold text-slate-800">Fiber Optic Integration</h5>
+                  <p class="text-xs text-slate-500 mt-1">Multi-mode and single-mode backbones for campus-wide connectivity.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-1.5 h-1.5 rounded-full bg-teal-800 mt-2 flex-shrink-0" aria-hidden="true"></div>
+                <div>
+                  <h5 class="text-sm font-bold text-slate-800">Rack & Cabinet Management</h5>
+                  <p class="text-xs text-slate-500 mt-1">Neat layout, patch panel configuration, logical labeling, and Fluke network certification reports.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100 flex flex-wrap gap-4 items-center justify-between">
+            <div class="flex gap-2">
+              {cabling.industries.slice(0, 3).map(ind => (
+                <span class="px-2 py-0.5 text-[9px] uppercase tracking-wider font-semibold rounded bg-slate-100 text-slate-600">{ind}</span>
+              ))}
+            </div>
+            <a 
+              href={`/contact/?service=${encodeURIComponent(cabling.title)}`} 
+              class="text-xs text-teal-800 hover:text-teal-900 font-bold flex items-center gap-1 group"
+              aria-label={`Configure network cabling layout for ${cabling.title}`}
+            >
+              Get Cabling Layout Proposal
+              <span class="group-hover:translate-x-1 transition-transform inline-block" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right image panel -->
+        <div class="lg:col-span-5 scroll-active-trigger reveal-right delay-150">
+          <div class="relative h-full min-h-[300px] rounded-lg overflow-hidden border border-slate-900/10">
+            <img 
+              src={cabling.image} 
+              alt="Structured network cables cabling server room" 
+              class="w-full h-full object-cover filter brightness-[0.9] contrast-[1.05]"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent pointer-events-none" aria-hidden="true"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 6: SURVEILLANCE & SECURITY SYSTEMS -->
+  <section id="security-solutions" class="section bg-slate-900 border-b border-white/5" aria-labelledby="chapter-6-title">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        
+        <!-- Left Side: Detail & Features -->
+        <div class="lg:col-span-6 scroll-active-trigger reveal-left">
+          <span class="chapter-indicator text-xs tracking-widest text-teal-400 font-bold block mb-4">06 // INTEGRATED SECURITY</span>
+          <h2 id="chapter-6-title" class="heading-lg text-white mb-6">
+            {security.title}
+          </h2>
+          <p class="text-white/60 text-base md:text-lg leading-relaxed mb-8">
+            {security.longDesc}
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8" aria-label="Security system integrations">
+            {security.features.map(feat => (
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" aria-hidden="true"></span>
+                <span class="text-sm text-white/80">{feat}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            {security.industries.map(ind => (
+              <span class="px-2.5 py-1 text-[9px] tracking-wider uppercase font-semibold rounded bg-white/5 border border-white/10 text-white/70">{ind}</span>
+            ))}
+          </div>
+
+          <a 
+            href={`/contact/?service=${encodeURIComponent(security.title)}`} 
+            class="btn btn-rect bg-white text-slate-900 hover:bg-slate-100 shadow-md inline-flex items-center"
+            aria-label={`Enquire about ${security.title}`}
+          >
+            Design Surveillance Grid
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right Side: Overlapping Photographic cards with Neon Accent -->
+        <div class="lg:col-span-6 relative flex justify-end scroll-active-trigger reveal-right delay-150">
+          <div class="relative w-full max-w-[450px] aspect-[4/3] rounded-lg overflow-hidden border border-white/10 shadow-2xl z-10">
+            <img 
+              src={security.image} 
+              alt="CCTV security system deployment" 
+              class="w-full h-full object-cover filter brightness-[0.8] contrast-[1.1]"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+          </div>
+          
+          <!-- Overlapping Mini Metric Box -->
+          <div class="absolute bottom-6 left-0 bg-slate-950/90 border border-white/10 p-5 rounded-lg backdrop-blur shadow-2xl z-20 max-w-[200px]" aria-label="System status">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.9)] animate-pulse" aria-hidden="true"></span>
+              <span class="text-[9px] uppercase tracking-widest text-white/50 font-bold">SECURE CHANNEL</span>
+            </div>
+            <p class="text-white text-xs font-bold leading-normal">Remote 4K Live Camera Feeds with Mobile Access</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 7: REPAIR & MAINTENANCE -->
+  <section id="maintenance-solutions" class="section bg-warm border-b border-black/5" aria-labelledby="chapter-7-title">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        
+        <!-- Left Side: Table of Response SLAs -->
+        <div class="lg:col-span-7 scroll-active-trigger reveal-left">
+          <div class="bg-white border border-slate-900/10 rounded-lg shadow-xl overflow-hidden">
+            <div class="px-6 py-4 bg-slate-950 text-white flex justify-between items-center border-b border-slate-800">
+              <span class="text-xs uppercase tracking-widest font-bold text-white/70">Maintenance SLA Matrix</span>
+              <span class="text-[10px] tracking-wider uppercase bg-teal-950 text-teal-400 font-bold border border-teal-900 px-2 py-0.5 rounded">24/7 Priority Support</span>
+            </div>
+            
+            <div class="divide-y divide-slate-100">
+              <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="text-xs uppercase tracking-wider font-bold text-teal-800">Emergency SLA</span>
+                <span class="sm:col-span-2 text-sm font-bold text-slate-900">&lt; 2 Hours Response Time (Kerala region)</span>
+              </div>
+              <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="text-xs uppercase tracking-wider font-semibold text-slate-500">General Faults</span>
+                <span class="sm:col-span-2 text-sm text-slate-700">Same-day diagnostic and system rectifications</span>
+              </div>
+              <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="text-xs uppercase tracking-wider font-semibold text-slate-500">Preventive AMC</span>
+                <span class="sm:col-span-2 text-sm text-slate-700">Monthly/Quarterly thermography and switchgear checks</span>
+              </div>
+            </div>
+            
+            <div class="p-6 bg-slate-50 border-t border-slate-100">
+              <h4 class="text-xs uppercase tracking-widest font-bold text-slate-500 mb-3">Included Coverage</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {maintenance.features.map(feat => (
+                  <span class="text-xs text-slate-700 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5 text-teal-800 flex-shrink-0" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                    </svg>
+                    {feat}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Context narrative -->
+        <div class="lg:col-span-5 scroll-active-trigger reveal-right delay-100">
+          <span class="chapter-indicator text-xs tracking-widest text-slate-800 font-bold block mb-4">07 // SYSTEM VIGILANCE</span>
+          <h2 id="chapter-7-title" class="heading-lg text-slate-900 mb-6">
+            {maintenance.title}
+          </h2>
+          <p class="text-slate-600 text-base md:text-lg leading-relaxed mb-8">
+            {maintenance.longDesc}
+          </p>
+
+          <a 
+            href={`/contact/?service=${encodeURIComponent(maintenance.title)}`} 
+            class="btn btn-rect bg-teal-800 text-white hover:bg-teal-900 shadow-md inline-flex items-center"
+            aria-label={`Enquire about ${maintenance.title}`}
+          >
+            Setup Maintenance Plan
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA section -->
   <ContactCTA />
+
+  <!-- Scroll anim setup -->
+  <script>
+    function setupScrollAnimations() {
+      const targets = document.querySelectorAll('.scroll-active-trigger');
+      if (targets.length === 0) return;
+
+      const hasNativeSDA = CSS.supports('animation-timeline', 'view()');
+
+      if (hasNativeSDA) {
+        targets.forEach(t => t.classList.add('native-sda'));
+        return;
+      }
+
+      // Fallback: Toggle scroll-active based on viewport intersection
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('scroll-active');
+          } else {
+            // Reset when leaving from the bottom
+            const rect = entry.boundingClientRect;
+            if (rect.top > window.innerHeight) {
+              entry.target.classList.remove('scroll-active');
+            }
+          }
+        });
+      }, {
+        threshold: 0.05,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      targets.forEach(t => observer.observe(t));
+    }
+
+    // Run on initial load and after view transitions
+    setupScrollAnimations();
+    document.addEventListener('astro:page-load', setupScrollAnimations);
+  </script>
+
 </BaseLayout>
+
+<style>
+  /* ─── Premium Redesign Styles & Blueprint Textures ─── */
+  
+  /* Blueprint Grid background texture */
+  .blueprint-bg {
+    background-color: #0C1A2A;
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: center;
+  }
+
+  /* Radial ambient glow lighting */
+  .radial-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+  }
+  .radial-glow-teal {
+    background: radial-gradient(circle at 10% 20%, rgba(13, 79, 92, 0.12) 0%, transparent 70%);
+  }
+
+  /* ─── Animation Timelines (Native Scroll-Driven Animations) ─── */
+  @keyframes reveal-in-native {
+    0% {
+      opacity: 0;
+      transform: translateY(60px) scale(0.97);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  @keyframes reveal-left-native {
+    0% {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes reveal-right-native {
+    0% {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes reveal-scale-native {
+    0% {
+      opacity: 0;
+      transform: scale(0.93);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Apply scroll-driven animations natively if supported */
+  .scroll-active-trigger.native-sda.reveal-in {
+    animation: reveal-in-native linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+  .scroll-active-trigger.native-sda.reveal-left {
+    animation: reveal-left-native linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+  .scroll-active-trigger.native-sda.reveal-right {
+    animation: reveal-right-native linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+  .scroll-active-trigger.native-sda.reveal-scale {
+    animation: reveal-scale-native linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+
+  /* ─── Fallback styles for older browsers without CSS Animation Timelines ─── */
+  .scroll-active-trigger:not(.native-sda) {
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+  .scroll-active-trigger.reveal-in:not(.native-sda) {
+    transform: translateY(50px);
+  }
+  .scroll-active-trigger.reveal-left:not(.native-sda) {
+    transform: translateX(-50px);
+  }
+  .scroll-active-trigger.reveal-right:not(.native-sda) {
+    transform: translateX(50px);
+  }
+  .scroll-active-trigger.reveal-scale:not(.native-sda) {
+    transform: scale(0.95);
+  }
+
+  /* Active class toggled by JS IntersectionObserver */
+  .scroll-active-trigger.scroll-active:not(.native-sda) {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+</style>

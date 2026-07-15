@@ -1,154 +1,220 @@
 ---
 // ============================================================
 // Hero.astro — Cinematic full-bleed industrial hero
-// Full background photography with overlaid editorial typography
+// Centered layout, left-gradient shadow, technical grids, vignette & bloom
+// Full-width White Trust Bar below the Hero
 // ============================================================
 import { company } from '@data/company';
 ---
 
 <section
   id="hero"
-  class="hero-root relative w-full overflow-hidden"
-  aria-label="Hero section"
+  class="hero-root relative w-full min-h-[100svh] flex flex-col justify-center bg-[#0C1A2A]"
+  aria-label="Home Hero section"
 >
 
-  <!-- ── BACKGROUND LAYER ──────────────────────────────────────── -->
-  <div class="absolute inset-0 z-0" aria-hidden="true">
-    <!-- Cinematic photograph -->
+  <!-- ── FULL-BLEED BACKGROUND IMAGE & TECHNICAL GRADIENTS ────── -->
+  <div class="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none" aria-hidden="true">
     <img
       src="/images/hero-cinematic.webp"
-      alt=""
+      alt="Industrial electrical installation engineering works background"
       width="1920"
       height="1080"
-      class="hero-bg-img w-full h-full object-cover object-center"
+      class="hero-bg-img w-full h-full object-cover object-center filter brightness-[0.55] contrast-[1.02]"
       loading="eager"
       decoding="async"
       fetchpriority="high"
     />
-    <!-- Deep gradient overlay — keeps image visible but gives text contrast -->
-    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(12,26,42,0.92) 0%, rgba(12,26,42,0.75) 40%, rgba(12,26,42,0.55) 70%, rgba(12,26,42,0.70) 100%);" />
-    <!-- Bottom fade to next section -->
-    <div class="absolute bottom-0 left-0 right-0" style="height: 30%; background: linear-gradient(to top, var(--deep-navy) 0%, transparent 100%);" />
-    <!-- Noise texture -->
-    <div class="absolute inset-0 texture-noise" style="pointer-events: none;" />
-    <!-- Blueprint grid -->
-    <div class="absolute inset-0" style="background-image: linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);" />
+    
+    <!-- Dark blue gradient from LEFT only (40-60%), right side image remains visible -->
+    <div class="absolute inset-0" style="background-image: linear-gradient(to right, #0C1A2A 0%, rgba(12,26,42,0.98) 35%, rgba(12,26,42,0.85) 50%, rgba(12,26,42,0.3) 65%, rgba(12,26,42,0) 100%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0C1A2A] to-transparent"></div>
+    
+    <!-- Vignette & Technical Overlays -->
+    <div class="absolute inset-0 hero-vignette"></div>
+    <div class="absolute inset-0 blueprint-grid opacity-[0.035]"></div>
+    <div class="absolute inset-0 noise-overlay opacity-[0.025]"></div>
+    
+    <!-- Light Bloom behind text -->
+    <div class="absolute left-[10%] top-[30%] w-[450px] h-[450px] bg-teal-800/10 rounded-full blur-[100px] hero-light-radial"></div>
   </div>
 
-  <!-- ── CONTENT ───────────────────────────────────────────────── -->
-  <div
-    class="hero-content relative z-10 container flex flex-col justify-end"
-    style="min-height: 100svh; padding-top: clamp(7rem, 14vh, 10rem); padding-bottom: clamp(4rem, 8vh, 6rem);"
-  >
+  <!-- ── CONTENT CONTAINER (Centered Vertically and Horizontally) ── -->
+  <div class="container relative z-10 w-full max-w-4xl mx-auto px-6 flex flex-col justify-center flex-grow pt-28 pb-28 md:pt-32 md:pb-32">
+    <div class="flex flex-col items-center text-center hero-content-box">
+      
+      <!-- Headline -->
+      <h1 class="font-display font-900 text-white leading-[1.03] tracking-tighter mb-6 max-w-3xl hero-headline hero-anim-item text-center">
+        Engineering <br/>
+        You Can Trust.
+      </h1>
 
-    <!-- Eyebrow -->
-    <div class="hero-eyebrow mb-6 opacity-0">
-      <span class="section-label section-label-light">
-        Electrical Engineering · Kerala
-      </span>
+      <!-- 2-line Description -->
+      <p class="text-white/60 text-base md:text-lg max-w-xl leading-relaxed mb-10 hero-anim-item text-center mx-auto">
+        Kerala's licensed electrical contractors delivering KEB-compliant installations, heavy-duty industrial switchgear, and 24/7 priority emergency support.
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-6 hero-anim-item mx-auto">
+        <a
+          href="/contact/"
+          class="btn btn-rect bg-teal-800 text-white hover:bg-teal-900 shadow-lg text-sm font-semibold animate-glow"
+          aria-label="Request engineering consultation"
+        >
+          Request Consultation
+        </a>
+        <a
+          href="/services/"
+          class="text-xs uppercase tracking-widest font-bold text-white/60 hover:text-white transition-colors flex items-center gap-1.5 group"
+          aria-label="Explore services"
+        >
+          Explore Services
+          <span class="group-hover:translate-x-1 transition-transform inline-block" aria-hidden="true">→</span>
+        </a>
+      </div>
+
     </div>
-
-    <!-- Headline — massive editorial -->
-    <h1 class="hero-headline font-display font-900 text-white mb-8" style="letter-spacing: -0.045em; line-height: 0.95;">
-      <span class="h-line block overflow-hidden">
-        <span class="h-word block">Precision.</span>
-      </span>
-      <span class="h-line block overflow-hidden">
-        <span class="h-word block">Engineering.</span>
-      </span>
-      <span class="h-line block overflow-hidden">
-        <span class="h-word block" style="-webkit-text-fill-color: transparent; background: linear-gradient(90deg, #06B6D4 0%, #22D3EE 100%); -webkit-background-clip: text; background-clip: text;">For every space.</span>
-      </span>
-    </h1>
-
-    <!-- Descriptor -->
-    <p class="hero-desc max-w-lg mb-10 opacity-0" style="font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); line-height: 1.8; color: #94A3B8;">
-      Electrical solutions designed for modern homes, commercial facilities,
-      and industrial environments — crafted with precision and delivered by
-      certified professionals across Kerala.
-    </p>
-
-    <!-- CTAs -->
-    <div class="hero-ctas flex flex-wrap items-center gap-3 mb-12 opacity-0">
-      <a
-        href="/contact/"
-        class="btn btn-rect btn-accent"
-        id="hero-cta-primary"
-      >
-        Request a Consultation
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a
-        href="/services/"
-        class="btn btn-rect btn-outline-light"
-        id="hero-cta-secondary"
-      >
-        Our Capabilities
-      </a>
-    </div>
-
-    <!-- Trust line -->
-    <div class="hero-trust flex flex-wrap items-center gap-x-6 gap-y-2 opacity-0" style="font-size: 0.75rem; font-weight: 600; color: #64748B; letter-spacing: 0.02em;">
-      <span class="flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" aria-hidden="true"></span>
-        Certified Professionals
-      </span>
-      <span class="flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" aria-hidden="true"></span>
-        500+ Projects Delivered
-      </span>
-      <span class="flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" aria-hidden="true"></span>
-        Serving Kerala Since 2012
-      </span>
-    </div>
-
   </div>
 
-  <!-- ── SCROLL INDICATOR ──────────────────────────────────────── -->
-  <div class="scroll-ind absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 opacity-0" aria-hidden="true">
-    <span style="font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #475569;">Scroll</span>
-    <div style="width: 1px; height: 36px; background: rgba(100,116,139,0.3); border-radius: 99px; position: relative; overflow: hidden;">
-      <div class="scroll-dot" style="position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 6px; border-radius: 99px; background: var(--brand-accent);"></div>
+  <!-- ── SCROLL DOWN PROMPT ────────────────────────────────────── -->
+  <div class="scroll-ind absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 select-none pointer-events-none opacity-0" aria-hidden="true" id="hero-scroll-ind">
+    <span style="font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35);">Scroll</span>
+    <div style="width: 1px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 99px; position: relative; overflow: hidden;">
+      <div class="scroll-dot" style="position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 2.5px; height: 6px; border-radius: 99px; background: var(--brand-accent);"></div>
     </div>
   </div>
 
 </section>
 
+<!-- ── PREMIUM FULL-WIDTH TRUST BAR ─────────────────────────── -->
+<section class="trust-bar-section w-full bg-white border-t border-b border-slate-900/5 py-6">
+  <div class="trust-bar-container mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    
+    <!-- Item 1 -->
+    <div class="trust-col">
+      <div class="w-11 h-11 rounded-full bg-teal-800/10 text-teal-800 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <span class="text-sm md:text-base font-bold tracking-tight text-slate-800 whitespace-nowrap">Licensed KEB Engineers</span>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="trust-col">
+      <div class="w-11 h-11 rounded-full bg-teal-800/10 text-teal-800 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <span class="text-sm md:text-base font-bold tracking-tight text-slate-800 whitespace-nowrap">12+ Years Experience</span>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="trust-col">
+      <div class="w-11 h-11 rounded-full bg-teal-800/10 text-teal-800 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <span class="text-sm md:text-base font-bold tracking-tight text-slate-800 whitespace-nowrap">500+ Projects Completed</span>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="trust-col">
+      <div class="w-11 h-11 rounded-full bg-teal-800/10 text-teal-800 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15z"/>
+        </svg>
+      </div>
+      <span class="text-sm md:text-base font-bold tracking-tight text-slate-800 whitespace-nowrap">24/7 Emergency Support</span>
+    </div>
+
+  </div>
+</section>
+
 <!-- ── STYLES ─────────────────────────────────────────────────────── -->
 <style>
-  /* Hero height */
   .hero-root {
     min-height: 100svh;
-    background: var(--deep-navy);
+    background: #0C1A2A;
   }
 
-  /* Headline fluid size */
   .hero-headline {
-    font-size: clamp(3rem, 8vw + 0.5rem, 7rem);
+    font-size: clamp(2.5rem, 6.5vw + 0.5rem, 5rem);
   }
 
-  /* Line reveal */
-  .h-word {
-    transform: translateY(110%);
-    opacity: 0;
-    will-change: transform, opacity;
-    transition:
-      transform 1s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity   0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Blueprint Grid overlay */
+  .blueprint-grid {
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center;
+    mask-image: radial-gradient(ellipse 80% 75% at 50% 50%, black 40%, transparent 100%);
   }
-  .hero-animate .h-word {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  .h-line:nth-child(1) .h-word { transition-delay: 0.0s; }
-  .h-line:nth-child(2) .h-word { transition-delay: 0.15s; }
-  .h-line:nth-child(3) .h-word { transition-delay: 0.30s; }
 
-  /* Background parallax target */
+  /* Soft Vignette */
+  .hero-vignette {
+    background: radial-gradient(circle, transparent 50%, rgba(12,26,42,0.4) 100%);
+  }
+
+  /* Fine noise overlay */
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* GPU accelerated slow zoom background animation */
+  @keyframes slow-zoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.025); }
+  }
   .hero-bg-img {
     will-change: transform;
-    transition: transform 0.1s linear;
+    animation: slow-zoom 15s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+  }
+
+  /* Bloom light breath */
+  @keyframes bloom-breathe {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.04); }
+  }
+  .hero-light-radial {
+    animation: bloom-breathe 8s ease-in-out infinite alternate;
+  }
+
+  /* Content entrance animations using keyframes to guarantee no-JS fallback visibility */
+  @keyframes fade-up-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 14px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .hero-anim-item {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fade-up-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .hero-anim-item:nth-child(1) { animation-delay: 0.1s; }
+  .hero-anim-item:nth-child(2) { animation-delay: 0.25s; }
+  .hero-anim-item:nth-child(3) { animation-delay: 0.4s; }
+
+  /* Scroll indicator fade-in after 1s */
+  @keyframes scroll-fade-in {
+    to { opacity: 1; }
+  }
+  .scroll-ind {
+    opacity: 0;
+    animation: scroll-fade-in 0.6s ease-out forwards;
+    animation-delay: 0.9s;
   }
 
   /* Scroll indicator dot animation */
@@ -162,20 +228,65 @@ import { company } from '@data/company';
     100% { top: 100%; opacity: 0; }
   }
 
-  /* Responsive */
+  /* ── TRUST BAR STYLES ─────────────────────────────────────── */
+  .trust-bar-section {
+    box-shadow: 0 4px 30px rgba(15, 23, 42, 0.02);
+  }
+
+  .trust-bar-container {
+    padding-left: clamp(24px, 6vw, 120px);
+    padding-right: clamp(24px, 6vw, 120px);
+  }
+
+  .trust-col {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-right: 1.5rem;
+    border-right: 1px solid rgba(15, 23, 42, 0.06);
+  }
+
+  @media (min-width: 1024px) {
+    .trust-col:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .trust-col:nth-child(2n) {
+      border-right: none;
+      padding-right: 0;
+    }
+  }
+
   @media (max-width: 639px) {
-    .hero-content {
-      justify-content: center !important;
+    .trust-col {
+      border-right: none;
+      padding-right: 0;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+      padding-bottom: 1.25rem;
+    }
+    .trust-col:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .h-word {
-      transition-duration: 0.1s !important;
+    .hero-anim-item {
+      animation: none !important;
+      opacity: 1 !important;
       transform: none !important;
+    }
+    .scroll-ind {
+      animation: none !important;
       opacity: 1 !important;
     }
     .scroll-dot {
+      animation: none !important;
+    }
+    .hero-bg-img {
       animation: none !important;
     }
   }
@@ -183,70 +294,23 @@ import { company } from '@data/company';
 
 <!-- ── SCRIPT ─────────────────────────────────────────────────────── -->
 <script>
-(function () {
-  'use strict';
-  const section   = document.getElementById('hero');
-  if (!section) return;
+  function initHeroReveal() {
+    const hero = document.getElementById('hero');
+    const scrollInd = document.getElementById('hero-scroll-ind');
+    if (!hero) return;
 
-  const eyebrow   = section.querySelector('.hero-eyebrow') as HTMLElement | null;
-  const desc      = section.querySelector('.hero-desc') as HTMLElement | null;
-  const ctas      = section.querySelector('.hero-ctas') as HTMLElement | null;
-  const trust     = section.querySelector('.hero-trust') as HTMLElement | null;
-  const scrollInd = section.querySelector('.scroll-ind') as HTMLElement | null;
-  const bgImg     = section.querySelector('.hero-bg-img') as HTMLElement | null;
+    // Trigger animations
+    void hero.offsetHeight; // force reflow
+    hero.classList.add('loaded');
 
-  const ease = 'cubic-bezier(0.22,1,0.36,1)';
-  const ease2 = 'cubic-bezier(0.4,0,0.2,1)';
-
-  function entrance() {
-    // Reset
-    section.classList.remove('hero-animate');
-    [eyebrow, desc, ctas, trust, scrollInd].forEach(el => {
-      if (el) { el.style.opacity = '0'; el.style.transform = 'translateY(14px)'; el.style.transition = 'none'; }
-    });
-
-    // Force reflow
-    void section.offsetHeight;
-
-    // Sequence
-    setTimeout(() => {
-      if (eyebrow) { eyebrow.style.transition = `opacity 0.6s ${ease}, transform 0.6s ${ease}`; eyebrow.style.opacity = '1'; eyebrow.style.transform = 'translateY(0)'; }
-    }, 50);
-
-    setTimeout(() => section.classList.add('hero-animate'), 120);
-
-    setTimeout(() => {
-      if (desc) { desc.style.transition = `opacity 0.7s ${ease2}, transform 0.7s ${ease2}`; desc.style.opacity = '1'; desc.style.transform = 'translateY(0)'; }
-    }, 500);
-
-    setTimeout(() => {
-      if (ctas) { ctas.style.transition = `opacity 0.6s ${ease2}, transform 0.6s ${ease2}`; ctas.style.opacity = '1'; ctas.style.transform = 'translateY(0)'; }
-    }, 650);
-
-    setTimeout(() => {
-      if (trust) { trust.style.transition = `opacity 0.6s ${ease2}`; trust.style.opacity = '1'; trust.style.transform = 'translateY(0)'; }
-    }, 800);
-
-    setTimeout(() => {
-      if (scrollInd) { scrollInd.style.transition = `opacity 0.8s ${ease2}`; scrollInd.style.opacity = '1'; scrollInd.style.transform = 'translateY(0)'; }
-    }, 950);
+    if (scrollInd) {
+      setTimeout(() => {
+        scrollInd.style.transition = 'opacity 0.6s ease-out';
+        scrollInd.style.opacity = '1';
+      }, 900);
+    }
   }
 
-  entrance();
-  document.addEventListener('astro:page-load', entrance);
-
-  // Subtle parallax on background image
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      if (y < section.offsetHeight && bgImg) {
-        bgImg.style.transform = `scale(1.04) translateY(${y * 0.08}px)`;
-      }
-      ticking = false;
-    });
-  }, { passive: true });
-})();
+  initHeroReveal();
+  document.addEventListener('astro:page-load', initHeroReveal);
 </script>
