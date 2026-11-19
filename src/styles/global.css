@@ -3,7 +3,7 @@
    Premium visual direction: ABB / Schneider / Siemens meets editorial design
    ============================================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,15 +11,21 @@
 
 /* ─── Design Tokens ───────────────────────────────────────────────────────── */
 :root {
-  /* Brand */
+  /* Brand & Hero Editorial System */
+  --midnight-navy:    #071827;
+  --deep-charcoal:    #101A22;
+  --engineering-teal: #00A6A6;
+  --engineering-teal-glow: rgba(0, 166, 166, 0.4);
+  --soft-gray:        #D9E0E5;
+
   --brand-primary:    #0D4F5C;
-  --brand-accent:     #06B6D4;
+  --brand-accent:     #00A6A6;
   --brand-accent-lt:  #22D3EE;
 
   /* Dark surfaces */
-  --deep-navy:        #0C1A2A;
+  --deep-navy:        #071827;
   --steel-gray:       #1E293B;
-  --dark-surface:     #111827;
+  --dark-surface:     #101A22;
 
   /* Light surfaces */
   --warm-white:       #F7F6F3;
@@ -31,12 +37,13 @@
   --text-primary:     #0F172A;
   --text-secondary:   #475569;
   --text-muted:       #64748B;
-  --text-inverse:     #F1F5F9;
-  --text-inverse-m:   #94A3B8;
+  --text-inverse:     #FFFFFF;
+  --text-inverse-m:   #D9E0E5;
 
   /* Typography */
-  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-body:      'Inter', system-ui, -apple-system, sans-serif;
+  --font-display:   'Manrope', 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-editorial: 'Manrope', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
   /* Fluid spacing */
   --space-section:  clamp(4rem, 8vw, 8rem);
@@ -144,10 +151,10 @@
     color: var(--brand-primary);
   }
 
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: var(--deep-navy); }
-  ::-webkit-scrollbar-thumb { background: var(--brand-accent); border-radius: var(--radius-full); }
-  ::-webkit-scrollbar-thumb:hover { background: var(--brand-primary); }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0, 166, 166, 0.4); border-radius: var(--radius-full); }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(0, 166, 166, 0.8); }
 }
 
 /* ─── Component Layer ─────────────────────────────────────────────────────── */

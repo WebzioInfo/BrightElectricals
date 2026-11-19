@@ -1,6 +1,6 @@
 ---
 // ============================================================
-// Services.astro — Sectors We Power (Concept 1: Core Engineering Divisions)
+// Services.astro — Sectors We Power (Clean Human Engineering)
 // Replaces redundant 7-service catalogue with high-impact client sectors
 // Directs detailed inquiries to the dedicated /services/ page
 // 100% responsive, ultra-fast, zero-scroll-jacking
@@ -8,92 +8,62 @@
 
 const sectors = [
   {
-    number: '01',
-    category: 'HIGH-VOLTAGE & HEAVY DUTY',
     title: 'Industrial Plants & Substations',
-    target: 'Manufacturing • Factories • Processing Units • Mills',
-    summary: 'Turnkey high-capacity electrical distribution, 11kV substation erection, HT/LT transformers, custom motor control centers (MCC), and APFC panels engineered for continuous 24/7 industrial uptime.',
-    capabilities: [
-      '11kV Substations & Transformers',
-      'Custom HT/LT Switchgear & MCC',
-      'Plant Earthing & Lightning Protection',
-      'Statutory KEB Inspection Clearance',
-    ],
+    subtitle: 'Manufacturing plants, mills, factories & processing units',
+    summary: 'Turnkey 11kV substation erection, high-voltage transformers, custom motor control centers (MCC), and plant earthing systems engineered for continuous 24/7 uptime.',
+    tags: ['11kV Substations', 'HT/LT Switchgear', 'Plant Earthing', 'KEB Compliance'],
     image: '/images/services/industrial-power.webp',
     href: '/services/#industrial-power',
-    cta: 'Explore Industrial Solutions',
+    cta: 'View Industrial Solutions',
   },
   {
-    number: '02',
-    category: '99.99% CONTINUITY & LIFE-SAFETY',
     title: 'Commercial & Healthcare Facilities',
-    target: 'Hospitals • IT Parks • Commercial Centers • Campuses',
-    summary: 'Mission-critical power resilience where downtime is not an option. Automated generator synchronization, structured fiber networks, smart energy metering, and integrated life-safety ecosystems.',
-    capabilities: [
-      'Automatic Transfer Switches (ATS / AMF)',
-      'Integrated CCTV & Access Security',
-      'Structured Fiber & Data Cabling',
-      'Harmonic Filters & Power Audits',
-    ],
+    subtitle: 'Hospitals, IT parks, commercial centers & campuses',
+    summary: 'Mission-critical power resilience with automated generator synchronization (ATS/AMF), structured data cabling, energy metering, and integrated life-safety systems.',
+    tags: ['Automatic Transfer Switches', 'Structured Data Cabling', 'CCTV & Security', 'Power Audits'],
     image: '/images/services/ats-panel.webp',
     href: '/services/#ats-amf-panels',
-    cta: 'Explore Commercial Solutions',
+    cta: 'View Commercial Solutions',
   },
   {
-    number: '03',
-    category: 'ZERO HAZARD & ARCHITECTURAL PRECISION',
-    title: 'Luxury Residences & Estates',
-    target: 'Luxury Villas • Multi-Storey Living • Gated Communities',
-    summary: 'Engineered safety and modern architectural comfort. Concealed fire-retardant wiring, high-sensitivity RCCB shock protection, smart lighting automation, and aesthetic distribution design.',
-    capabilities: [
-      'Concealed Safe Conduit Wiring',
-      'Smart Home Lighting & Automation',
-      'High-Sensitivity ELCB/RCCB Protection',
-      'Surge Protection & Clean Distribution',
-    ],
+    title: 'Residential & Villa Estates',
+    subtitle: 'Luxury villas, residential complexes & gated communities',
+    summary: 'Concealed fire-retardant wiring, high-sensitivity RCCB shock protection, smart lighting automation, and clean distribution board design for modern living.',
+    tags: ['Concealed Conduit Wiring', 'Smart Automation', 'RCCB Shock Protection', 'Lighting Design'],
     image: '/images/services/home-electrical.webp',
     href: '/services/#home-electrical',
-    cta: 'Explore Residential Solutions',
+    cta: 'View Residential Solutions',
   },
 ];
 ---
 
 <section
   id="services"
-  class="relative w-full py-16 sm:py-20 lg:py-28 bg-[#07131D] text-white border-t border-white/[0.06] overflow-hidden"
+  class="relative w-full pt-20 sm:pt-28 pb-16 sm:pb-24 bg-[#07131D] text-white border-t border-white/10 overflow-hidden"
   aria-labelledby="sectors-heading"
 >
-  <!-- Background ambient glow -->
-  <div class="absolute -top-40 right-0 w-[500px] h-[500px] bg-[#00A6A6]/10 rounded-full blur-[140px] pointer-events-none" aria-hidden="true"></div>
-  <div class="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-[#072538]/30 rounded-full blur-[140px] pointer-events-none" aria-hidden="true"></div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
     
     <!-- ── SECTION HEADER ────────────────────────────────────── -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12 sm:mb-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10 sm:mb-14">
       <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-white/90 text-xs font-medium tracking-wide mb-3">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#00A6A6] shadow-[0_0_8px_#00A6A6]"></span>
-          <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-[#00A6A6] font-bold">WHO WE SERVE</span>
-          <span class="text-white/40">|</span>
-          <span class="text-white/80">Engineering Divisions</span>
-        </div>
+        <span class="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#00A6A6] block mb-2">Our Engineering Divisions</span>
         
-        <h2 id="sectors-heading" class="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight leading-tight">
+        <h2 id="sectors-heading" class="font-display text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-tight leading-tight">
           Targeted Power Solutions. <br/>
           <span class="font-semibold text-white">Engineered for Every Sector.</span>
         </h2>
-        <p class="text-sm sm:text-base text-[#D9E0E5]/75 font-light leading-relaxed mt-3 max-w-xl">
-          We don't do one-size-fits-all wiring. Every division receives specialized engineering, statutory KEB compliance, and certified hardware tailored to its operational scale.
+        <p class="text-sm sm:text-base text-[#D9E0E5]/75 font-normal leading-relaxed mt-3 max-w-xl">
+          Every project receives specialized engineering, statutory KEB compliance, and certified hardware tailored to its operational scale.
         </p>
       </div>
 
       <div class="flex items-center gap-4 flex-shrink-0">
         <a
           href="/services/"
-          class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#00A6A6] hover:text-[#22D3EE] transition-colors group"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[#00A6A6] hover:text-[#22D3EE] transition-colors group"
         >
-          <span>View Detailed 7 Services Catalog</span>
+          <span>View All Services</span>
           <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -101,105 +71,72 @@ const sectors = [
       </div>
     </div>
 
-    <!-- ── 3 SECTOR CARDS (Responsive: 1-col on mobile, 3-col on desktop) ── -->
+    <!-- ── 3 SECTOR CARDS (Clean, Human, Non-AI) ── -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 sm:mb-16">
       {sectors.map((sector) => (
-        <article class="group relative flex flex-col justify-between rounded-2xl bg-[#0B1A28] border border-white/[0.08] hover:border-[#00A6A6]/50 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.36)] hover:shadow-[0_12px_40px_rgba(0,166,166,0.14)] overflow-hidden">
+        <article class="group flex flex-col justify-between rounded-2xl bg-[#0B1A28] border border-white/10 hover:border-[#00A6A6]/60 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
           
-          <!-- Image Header with Dark Gradient Scrim -->
+          <!-- Clean Image Header (No badges on photo) -->
           <div class="relative w-full aspect-[16/10] overflow-hidden">
             <img
               src={sector.image}
               alt={sector.title}
               width="640"
               height="400"
-              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.92]"
+              class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               loading="lazy"
               decoding="async"
             />
-            <!-- Dark gradient overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0B1A28] via-[#0B1A28]/40 to-transparent"></div>
-            
-            <!-- Category Badge -->
-            <div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/10 text-[0.625rem] font-mono text-[#00A6A6] font-bold tracking-wider">
-              {sector.number} • {sector.category}
-            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0B1A28] via-[#0B1A28]/30 to-transparent"></div>
           </div>
 
           <!-- Body Content -->
-          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+          <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <!-- Target clients label -->
-              <p class="text-[0.6875rem] font-medium text-[#00A6A6] tracking-wide uppercase mb-1.5 font-mono">
-                {sector.target}
-              </p>
-
-              <!-- Title -->
-              <h3 class="font-display text-lg sm:text-xl font-semibold text-white tracking-tight mb-2.5 group-hover:text-white transition-colors">
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-white tracking-tight mb-1.5">
                 {sector.title}
               </h3>
-
-              <!-- Summary -->
-              <p class="text-xs sm:text-[0.8125rem] text-[#D9E0E5]/75 font-light leading-relaxed mb-5">
+              <p class="text-xs text-[#00A6A6] font-medium mb-3">
+                {sector.subtitle}
+              </p>
+              <p class="text-sm text-[#D9E0E5]/80 font-normal leading-relaxed mb-5">
                 {sector.summary}
               </p>
 
-              <!-- Key Capabilities Pills -->
-              <div class="mb-6">
-                <p class="text-[0.625rem] font-bold uppercase tracking-widest text-white/40 mb-2">Key Engineering Scope</p>
-                <ul class="space-y-1.5" role="list">
-                  {sector.capabilities.map((cap) => (
-                    <li class="flex items-center gap-2 text-xs text-white/85">
-                      <span class="w-1.5 h-1.5 rounded-full bg-[#00A6A6] flex-shrink-0"></span>
-                      <span>{cap}</span>
-                    </li>
-                  ))}
-                </ul>
+              <!-- Clean Feature Tags -->
+              <div class="flex flex-wrap gap-2 mb-6 pt-4 border-t border-white/10">
+                {sector.tags.map((tag) => (
+                  <span class="inline-block px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-white/80 text-xs font-normal">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between gap-3">
-              <a
-                href={sector.href}
-                class="inline-flex items-center gap-1.5 text-xs font-semibold text-white group-hover:text-[#00A6A6] transition-colors"
-              >
-                <span>{sector.cta}</span>
-                <span class="transition-transform group-hover:translate-x-1">→</span>
-              </a>
-
-              <a
-                href={`/contact/?sector=${encodeURIComponent(sector.title)}`}
-                class="px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-[#00A6A6] hover:text-white text-white/80 text-xs font-medium border border-white/10 hover:border-[#00A6A6] transition-all"
-                aria-label={`Get quote for ${sector.title}`}
-              >
-                Request Quote
-              </a>
-            </div>
-
+            <!-- Single Clear Action Link -->
+            <a
+              href={sector.href}
+              class="inline-flex items-center justify-between w-full px-5 py-3 rounded-xl bg-white/10 hover:bg-[#00A6A6] text-white text-sm font-semibold tracking-wide transition-all duration-200 group/btn"
+            >
+              <span>{sector.cta}</span>
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
           </div>
-
-          <!-- Interactive bottom border glow -->
-          <div class="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-[#00A6A6]/0 to-transparent group-hover:via-[#00A6A6]/60 transition-all duration-500"></div>
         </article>
       ))}
     </div>
 
-    <!-- ── BOTTOM BRIDGE: LINK TO DETAILED 7 SERVICES PAGE ─────── -->
-    <div class="relative rounded-2xl bg-gradient-to-r from-[#0C1E2F] via-[#0B1A28] to-[#071827] border border-white/[0.1] p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden">
-      <!-- Ambient light bloom -->
-      <div class="absolute top-0 right-0 w-80 h-80 bg-[#00A6A6]/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
-
+    <!-- ── BOTTOM BRIDGE: LINK TO DETAILED SERVICES PAGE ─────── -->
+    <div class="relative rounded-2xl bg-[#0B1A28] border border-white/10 p-6 sm:p-8 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden">
       <div class="relative z-10 max-w-2xl">
-        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white/[0.06] text-white/90 text-[0.6875rem] font-mono font-semibold tracking-wide mb-2.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#00A6A6]"></span>
-          <span>COMPREHENSIVE TECHNICAL SCOPE</span>
-        </div>
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#00A6A6] block mb-2">Technical Services & Compliance</span>
         <h3 class="font-display text-lg sm:text-xl font-semibold text-white tracking-tight mb-1.5">
-          Looking for specific technical specifications?
+          Looking for specific technical requirements?
         </h3>
-        <p class="text-xs sm:text-sm text-[#D9E0E5]/75 font-light leading-relaxed">
-          From single-line diagrams (SLD) and custom ATS switchgear to structured Cat6 networking, CCTV ecosystems, and 24/7 priority maintenance — explore our complete 7-discipline catalog.
+        <p class="text-xs sm:text-sm text-[#D9E0E5]/75 font-normal leading-relaxed">
+          From single-line diagrams (SLD) and custom ATS switchgear to structured data cabling, CCTV security, and 24/7 priority maintenance — explore our complete engineering services.
         </p>
       </div>
 
@@ -208,7 +145,7 @@ const sectors = [
           href="/services/"
           class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#00A6A6] hover:bg-[#008E8E] text-white font-semibold text-xs sm:text-sm tracking-wide transition-all shadow-md hover:shadow-[#00A6A6]/25 w-full sm:w-auto text-center"
         >
-          <span>Explore 7-Service Catalog</span>
+          <span>View All Services</span>
           <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -218,7 +155,7 @@ const sectors = [
           href="/contact/"
           class="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-white/90 hover:text-white border border-white/15 hover:border-white/30 text-xs sm:text-sm font-medium transition-all w-full sm:w-auto text-center"
         >
-          <span>Consult an Engineer</span>
+          <span>Contact an Engineer</span>
         </a>
       </div>
     </div>

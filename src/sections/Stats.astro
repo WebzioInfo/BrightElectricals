@@ -7,55 +7,40 @@
 ---
 
 <section
-  class="section bg-warm-2 texture-blueprint relative overflow-hidden"
+  class="section bg-warm-2 relative overflow-hidden"
   style="border-top: 1px solid var(--concrete); border-bottom: 1px solid var(--concrete);"
   aria-label="Engineering performance and statistics"
 >
-  <!-- Decorative Technical Accents -->
-  <div class="absolute inset-0 pointer-events-none opacity-40 select-none" aria-hidden="true">
-    <!-- Fine corner crosshairs (architectural blueprint details) -->
-    <div class="absolute top-8 left-8 w-4 h-4 border-t border-l border-concrete-dark"></div>
-    <div class="absolute top-8 right-8 w-4 h-4 border-t border-r border-concrete-dark"></div>
-    <div class="absolute bottom-8 left-8 w-4 h-4 border-b border-l border-concrete-dark"></div>
-    <div class="absolute bottom-8 right-8 w-4 h-4 border-b border-r border-concrete-dark"></div>
-    <!-- Technical coordinate labels -->
-    <span class="absolute top-4 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-widest text-concrete-dark">SYS.COORD / 11.23.09</span>
-  </div>
-
   <div class="container relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
       <!-- Left Column: Editorial Statement -->
       <div class="lg:col-span-5 reveal">
-        <span class="section-label mb-4" style="color: var(--brand-primary); font-size: 0.6875rem; letter-spacing: 0.14em;">Performance Metrics</span>
+        <span class="section-label mb-3" style="color: var(--brand-primary); font-size: 0.75rem; letter-spacing: 0.12em;">Performance Metrics</span>
         <h2
-          class="heading-md mb-6"
-          style="color: var(--text-primary); line-height: 1.1; letter-spacing: -0.03em;"
+          class="heading-md mb-5"
+          style="color: var(--text-primary); line-height: 1.15; letter-spacing: -0.03em;"
         >
           Precision Engineering,<br />
-          <span class="gradient-text">Quantified.</span>
+          <span class="gradient-text">Proven by Numbers.</span>
         </h2>
         <p style="font-size: clamp(0.875rem, 1.1vw, 1rem); line-height: 1.75; color: var(--text-secondary); max-width: 420px; margin-bottom: 2rem;">
-          Our legacy is built on measurable standards. From voltage regulation to emergency response times, we track every parameter to guarantee absolute safety and performance.
+          Our reputation is built on measurable standards. From high-voltage industrial substations to commercial switchgear, we track every parameter to guarantee safety and performance.
         </p>
-        <!-- Subtle schematic accent line -->
-        <div class="hidden lg:block w-32 h-[1px] bg-concrete-dark relative">
-          <div class="absolute right-0 -top-[2px] w-1.5 h-1.5 rounded-full bg-brand-accent"></div>
-        </div>
       </div>
 
-      <!-- Right Column: Asymmetrical Architectural Blueprint Cards -->
+      <!-- Right Column: Clean Metric Cards -->
       <div class="lg:col-span-7">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5" role="list">
           
           <!-- Stat Card 1 -->
           <div
             class="stat-bp-card card-light p-6 lg:p-8 flex flex-col justify-between reveal"
-            style="min-height: 180px; border-left: 3px solid var(--brand-primary);"
+            style="min-height: 170px; border-left: 3px solid var(--brand-primary);"
             role="listitem"
           >
             <div>
-              <span class="stat-bp-tag">REF.01 / VOLTS</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Completed Projects</span>
               <h3 class="stat-bp-num mt-2">
                 <span data-counter="500">0</span><span class="stat-bp-suf">+</span>
               </h3>
@@ -66,13 +51,13 @@
           <!-- Stat Card 2 -->
           <div
             class="stat-bp-card card-light p-6 lg:p-8 flex flex-col justify-between reveal delay-100"
-            style="min-height: 180px; border-left: 3px solid var(--brand-accent);"
+            style="min-height: 170px; border-left: 3px solid var(--brand-accent);"
             role="listitem"
           >
             <div>
-              <span class="stat-bp-tag">REF.02 / DURATION</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Experience</span>
               <h3 class="stat-bp-num mt-2">
-                <span data-counter="30">0</span><span class="stat-bp-suf">+</span>
+                <span data-counter="15">0</span><span class="stat-bp-suf">+</span>
               </h3>
             </div>
             <p class="stat-bp-lbl">Years of Certified Engineering Excellence</p>
@@ -81,11 +66,11 @@
           <!-- Stat Card 3 -->
           <div
             class="stat-bp-card card-light p-6 lg:p-8 flex flex-col justify-between reveal delay-150"
-            style="min-height: 180px; border-left: 3px solid #22C55E;"
+            style="min-height: 170px; border-left: 3px solid #22C55E;"
             role="listitem"
           >
             <div>
-              <span class="stat-bp-tag">REF.03 / SLA</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Availability</span>
               <h3 class="stat-bp-num mt-2">
                 <span>24</span><span class="stat-bp-suf">/7</span>
               </h3>
@@ -96,16 +81,16 @@
           <!-- Stat Card 4 -->
           <div
             class="stat-bp-card card-light p-6 lg:p-8 flex flex-col justify-between reveal delay-200"
-            style="min-height: 180px; border-left: 3px solid #EAB308;"
+            style="min-height: 170px; border-left: 3px solid #EAB308;"
             role="listitem"
           >
             <div>
-              <span class="stat-bp-tag">REF.04 / AUDIT</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Compliance</span>
               <h3 class="stat-bp-num mt-2">
                 <span>100</span><span class="stat-bp-suf">%</span>
               </h3>
             </div>
-            <p class="stat-bp-lbl">Compliance Rating in Safety Audits</p>
+            <p class="stat-bp-lbl">Kerala Electricity Board (KEB) Standard Compliance</p>
           </div>
 
         </div>

@@ -29,14 +29,13 @@ const currentPath = Astro.url.pathname;
 >
   <header
     id="nav-island"
-    class="nav-island pointer-events-auto w-full"
-    style="max-width: 1320px; margin: 0 1.25rem;"
+    class="nav-island pointer-events-auto w-full mx-3 sm:mx-5 lg:mx-auto"
+    style="max-width: 1320px;"
     role="banner"
   >
     <nav
-      class="nav-inner flex items-center justify-between px-4 lg:px-6"
+      class="nav-inner flex items-center justify-between px-3 sm:px-4 lg:px-6"
       aria-label="Main navigation"
-      style="height: 72px;"
     >
 
       <!-- ── LOGO ─────────────────────────────────────────────── -->
@@ -94,7 +93,7 @@ const currentPath = Astro.url.pathname;
                 {link.label}
                 {isActive && (
                   <span
-                    class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-accent"
+                    class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#00A6A6]"
                     aria-hidden="true"
                   />
                 )}
@@ -109,43 +108,56 @@ const currentPath = Astro.url.pathname;
         <!-- Get Quote CTA -->
         <a
           href="/contact/"
-          class="nav-cta flex items-center gap-1.5 px-4.5 py-2 rounded-full text-[0.8125rem] font-semibold text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 whitespace-nowrap"
+          class="nav-cta flex items-center gap-2 px-5 py-2.5 rounded-full text-[0.8125rem] font-semibold text-white bg-[#00A6A6] hover:bg-[#008E8E] shadow-sm hover:shadow-md hover:shadow-[#00A6A6]/25 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6A6] focus-visible:ring-offset-2 whitespace-nowrap group"
           id="nav-cta"
-          style="background: linear-gradient(135deg, #0D4F5C 0%, #06B6D4 100%);"
         >
-          Get Quote
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <span>Get Quote</span>
+          <svg class="group-hover:translate-x-0.5 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </a>
       </div>
 
-      <!-- ── MOBILE HAMBURGER ───────────────────────────────────── -->
-      <button
-        id="mob-open"
-        class="lg:hidden flex items-center justify-center w-10 h-10 rounded-full text-surface-700 hover:bg-surface-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent flex-shrink-0"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="mob-drawer"
-        type="button"
-      >
-        <!-- Hamburger icon -->
-        <svg
-          id="mob-open-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
+      <!-- ── MOBILE ACTIONS (Quick Call + Hamburger) ─────────── -->
+      <div class="lg:hidden flex items-center gap-2">
+        <!-- Direct Mobile Call Button -->
+        <a
+          href={`tel:${company.phone}`}
+          class="flex items-center justify-center w-9 h-9 rounded-full bg-[#00A6A6] text-white shadow-sm hover:bg-[#008E8E] transition-transform duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6A6]"
+          aria-label={`Call Bright Electrical at ${company.phoneDisplay}`}
         >
-          <path d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </a>
+
+        <!-- Hamburger button -->
+        <button
+          id="mob-open"
+          class="flex items-center justify-center w-9 h-9 rounded-full text-surface-700 hover:bg-surface-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent flex-shrink-0"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mob-drawer"
+          type="button"
+        >
+          <!-- Hamburger icon -->
+          <svg
+            id="mob-open-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
 
     </nav>
   </header>
@@ -314,8 +326,8 @@ const currentPath = Astro.url.pathname;
     <!-- Get Quote — primary -->
     <a
       href="/contact/"
-      class="mob-link flex items-center justify-center gap-2 w-full rounded-2xl text-[0.9375rem] font-semibold text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
-      style="height: 56px; background: linear-gradient(135deg, #0D4F5C 0%, #06B6D4 100%);"
+      class="mob-link flex items-center justify-center gap-2 w-full rounded-2xl text-[0.9375rem] font-semibold text-white bg-[#00A6A6] hover:bg-[#008E8E] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6A6] focus-visible:ring-offset-2"
+      style="height: 56px;"
       aria-label="Get a free quote"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -370,18 +382,36 @@ const currentPath = Astro.url.pathname;
 
   /* ── Shrink on scroll ────────────────────────────── */
   #navbar-root {
-    transition: padding-top 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), padding-top 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #navbar-root.nav-hidden {
+    transform: translateY(-130%);
   }
   #navbar-root.scrolled {
-    padding-top: 12px;
+    padding-top: 10px;
   }
-  #navbar-root.scrolled .nav-inner {
-    height: 60px !important;
+  @media (min-width: 640px) {
+    #navbar-root.scrolled {
+      padding-top: 14px;
+    }
   }
 
-  /* Smooth height transition on nav-inner */
   .nav-inner {
+    height: 56px;
     transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media (min-width: 640px) {
+    .nav-inner {
+      height: 72px;
+    }
+  }
+  #navbar-root.scrolled .nav-inner {
+    height: 52px;
+  }
+  @media (min-width: 640px) {
+    #navbar-root.scrolled .nav-inner {
+      height: 60px;
+    }
   }
 
   /* ── Get Quote CTA hover ─────────────────────────── */
@@ -389,7 +419,7 @@ const currentPath = Astro.url.pathname;
     transition: box-shadow 220ms ease, transform 220ms ease, filter 220ms ease;
   }
   #nav-cta:hover {
-    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 166, 166, 0.35);
     transform: translateY(-1px);
     filter: brightness(1.05);
   }
@@ -433,14 +463,30 @@ const currentPath = Astro.url.pathname;
 
     if (!navRoot || !mobOpen || !mobScrim || !mobDrawer) return;
 
-    // ── Scroll: shrink island on scroll ──────────────────
+    // ── Scroll: shrink island & auto-hide on mobile scroll-down ──────
     let ticking = false;
+    let lastScrollY = window.scrollY;
+
     const onScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          const scrolled = window.scrollY > 24;
+          const currentScrollY = window.scrollY;
+          const scrolled = currentScrollY > 20;
           navRoot.classList.toggle('scrolled', scrolled);
           navIsland?.classList.toggle('scrolled', scrolled);
+
+          // Auto-hide navbar on mobile when scrolling down, reveal when scrolling up
+          if (window.innerWidth < 1024) {
+            if (currentScrollY > 90 && currentScrollY > lastScrollY && !document.body.classList.contains('mob-drawer-open')) {
+              navRoot.classList.add('nav-hidden');
+            } else {
+              navRoot.classList.remove('nav-hidden');
+            }
+          } else {
+            navRoot.classList.remove('nav-hidden');
+          }
+
+          lastScrollY = Math.max(0, currentScrollY);
           ticking = false;
         });
         ticking = true;

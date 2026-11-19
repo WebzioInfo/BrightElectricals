@@ -1,134 +1,258 @@
 ---
 // ============================================================
-// Hero.astro — Cinematic full-bleed industrial hero
-// Centered layout, left-gradient shadow, technical grids, vignette & bloom
-// Full-width White Trust Bar below the Hero
+// Hero.astro — Clean, High-Impact Industrial Engineering Hero
+// Bright Electrical & Engineering Works
+// Responsive across Mobile, Tablet, and Desktop
 // ============================================================
 import { company } from '@data/company';
+
+const infoBlocks = [
+  {
+    number: '01',
+    category: 'Contracting',
+    title: 'Electrical Contracting',
+    detail: 'HT & LT Power Infrastructure',
+    href: '/services/#industrial-power',
+  },
+  {
+    number: '02',
+    category: 'Switchgear',
+    title: 'Industrial Switchgear',
+    detail: 'Custom Panels & Auto-Sync ATS',
+    href: '/services/#ats-amf-panels',
+  },
+  {
+    number: '03',
+    category: 'Consulting',
+    title: 'Engineering Solutions',
+    detail: 'Turnkey Consulting & 24/7 Support',
+    href: '/services/#home-electrical',
+  },
+];
 ---
 
 <section
   id="hero"
-  class="hero-root relative w-full min-h-[100svh] flex flex-col justify-center bg-[#0C1A2A]"
-  aria-label="Home Hero section"
+  class="hero-root relative w-full min-h-[100svh] flex flex-col justify-between bg-[#071827] overflow-hidden"
+  aria-label="Bright Electrical & Engineering Works Hero"
 >
 
-  <!-- ── FULL-BLEED BACKGROUND IMAGE & TECHNICAL GRADIENTS ────── -->
-  <div class="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none" aria-hidden="true">
-    <img
-      src="/images/hero-cinematic.webp"
-      alt="Industrial electrical installation engineering works background"
-      width="1920"
-      height="1080"
-      class="hero-bg-img w-full h-full object-cover object-center filter brightness-[0.55] contrast-[1.02]"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-    />
-    
-    <!-- Dark blue gradient from LEFT only (40-60%), right side image remains visible -->
-    <div class="absolute inset-0" style="background-image: linear-gradient(to right, #0C1A2A 0%, rgba(12,26,42,0.98) 35%, rgba(12,26,42,0.85) 50%, rgba(12,26,42,0.3) 65%, rgba(12,26,42,0) 100%);"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0C1A2A] to-transparent"></div>
-    
-    <!-- Vignette & Technical Overlays -->
-    <div class="absolute inset-0 hero-vignette"></div>
-    <div class="absolute inset-0 blueprint-grid opacity-[0.035]"></div>
-    <div class="absolute inset-0 noise-overlay opacity-[0.025]"></div>
-    
-    <!-- Light Bloom behind text -->
-    <div class="absolute left-[10%] top-[30%] w-[450px] h-[450px] bg-teal-800/10 rounded-full blur-[100px] hero-light-radial"></div>
+  <!-- ── 1. FULL-BLEED PHOTOGRAPHY & DIRECTIONAL GRADIENTS ── -->
+  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
+    <picture>
+      <source srcset="/images/bright-electrical-hero.webp" type="image/webp" />
+      <img
+        src="/images/bright-electrical-hero.png"
+        alt="Modern industrial electrical substation, high-voltage transformers, and distribution switchgear in Kerala"
+        width="1920"
+        height="1080"
+        class="hero-bg-img w-full h-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-[64%_center]"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
+
+    <!-- Top dark vignette for crisp navbar contrast -->
+    <div
+      class="absolute top-0 left-0 right-0 h-28 sm:h-36 pointer-events-none"
+      style="background: linear-gradient(180deg, rgba(7, 24, 39, 0.75) 0%, rgba(7, 24, 39, 0.35) 60%, transparent 100%);"
+    ></div>
+
+    <!-- Mobile gradient scrim: ensures 100% text readability without artificial frosted boxes -->
+    <div
+      class="lg:hidden absolute inset-0 pointer-events-none"
+      style="background: linear-gradient(180deg, rgba(7, 24, 39, 0.60) 0%, rgba(7, 24, 39, 0.45) 40%, rgba(7, 24, 39, 0.70) 80%, rgba(7, 24, 39, 0.95) 100%);"
+    ></div>
+
+    <!-- Desktop directional gradient: subtle left-side shading keeping photography vibrant -->
+    <div
+      class="hidden lg:block absolute inset-0 pointer-events-none"
+      style="background: linear-gradient(90deg, rgba(7, 24, 39, 0.88) 0%, rgba(7, 24, 39, 0.65) 42%, rgba(7, 24, 39, 0.20) 70%, transparent 100%);"
+    ></div>
+
+    <!-- Bottom transition to next section -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-24 sm:h-36 pointer-events-none"
+      style="background: linear-gradient(0deg, #071827 0%, rgba(7, 24, 39, 0.6) 50%, transparent 100%);"
+    ></div>
   </div>
 
-  <!-- ── CONTENT CONTAINER (Centered Vertically and Horizontally) ── -->
-  <div class="container relative z-10 w-full max-w-4xl mx-auto px-6 flex flex-col justify-center flex-grow pt-28 pb-28 md:pt-32 md:pb-32">
-    <div class="flex flex-col items-center text-center hero-content-box">
-      
-      <!-- Headline -->
-      <h1 class="font-display font-900 text-white leading-[1.03] tracking-tighter mb-6 max-w-3xl hero-headline hero-anim-item text-center">
-        Engineering <br/>
-        You Can Trust.
+  <!-- ── 2. HERO CONTENT (Clean, Human, High Contrast) ── -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 sm:pt-36 lg:pt-40 pb-8 sm:pb-12 flex-1 flex flex-col justify-center">
+    <div class="max-w-2xl lg:max-w-3xl">
+
+      <!-- Headline: Clear, bold, readable -->
+      <h1 class="hero-headline hero-anim hero-delay-1 font-display text-white tracking-tight leading-[1.12] mb-3 sm:mb-4 font-normal">
+        Powering Progress. <br/>
+        <span class="font-bold text-white">Engineering Excellence.</span>
       </h1>
 
-      <!-- 2-line Description -->
-      <p class="text-white/60 text-base md:text-lg max-w-xl leading-relaxed mb-10 hero-anim-item text-center mx-auto">
-        Kerala's licensed electrical contractors delivering KEB-compliant installations, heavy-duty industrial switchgear, and 24/7 priority emergency support.
+      <!-- Supporting Paragraph: Complete, concise, human -->
+      <p class="hero-anim hero-delay-2 text-[#D9E0E5] text-sm sm:text-base lg:text-lg font-normal leading-relaxed max-w-xl mb-6 sm:mb-8 drop-shadow-sm">
+        Reliable electrical contracting, industrial switchgear installations, and certified power infrastructure engineered for continuous safety across Kerala.
       </p>
 
-      <!-- Buttons -->
-      <div class="flex flex-wrap items-center justify-center gap-6 hero-anim-item mx-auto">
-        <a
-          href="/contact/"
-          class="btn btn-rect bg-teal-800 text-white hover:bg-teal-900 shadow-lg text-sm font-semibold animate-glow"
-          aria-label="Request engineering consultation"
-        >
-          Request Consultation
-        </a>
+      <!-- CTA Buttons: Touch-friendly, high contrast -->
+      <div class="hero-anim hero-delay-3 flex flex-wrap items-center gap-3 sm:gap-4">
+        <!-- 1. Explore Services — Primary Teal Filled -->
         <a
           href="/services/"
-          class="text-xs uppercase tracking-widest font-bold text-white/60 hover:text-white transition-colors flex items-center gap-1.5 group"
-          aria-label="Explore services"
+          class="btn-primary-teal group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 rounded-full text-white font-semibold text-sm tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6A6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071827] shadow-lg"
+          aria-label="Explore electrical engineering services"
         >
-          Explore Services
-          <span class="group-hover:translate-x-1 transition-transform inline-block" aria-hidden="true">→</span>
+          <span>Explore Services</span>
+          <svg
+            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+
+        <!-- 2. Get in Touch — High-Contrast Frosted Glass Button -->
+        <a
+          href="/contact/"
+          class="btn-secondary-minimal group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 rounded-full text-white font-semibold text-sm tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 shadow-md shrink-0"
+          aria-label="Get in touch with Bright Electrical"
+        >
+          <span>Get in Touch</span>
+          <svg
+            class="w-4 h-4 text-[#00A6A6] transition-transform duration-200 group-hover:translate-x-1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </a>
       </div>
 
     </div>
   </div>
 
-  <!-- ── SCROLL DOWN PROMPT ────────────────────────────────────── -->
-  <div class="scroll-ind absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 select-none pointer-events-none opacity-0" aria-hidden="true" id="hero-scroll-ind">
-    <span style="font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35);">Scroll</span>
-    <div style="width: 1px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 99px; position: relative; overflow: hidden;">
-      <div class="scroll-dot" style="position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 2.5px; height: 6px; border-radius: 99px; background: var(--brand-accent);"></div>
+  <!-- ── 3. DESKTOP HIGHLIGHT PANELS (Hidden on mobile to eliminate clutter) ── -->
+  <div class="hidden lg:block relative z-10 w-full max-w-7xl mx-auto px-8 lg:px-12 pb-8 pt-2">
+    <div class="grid grid-cols-3 gap-4 mb-4">
+      {infoBlocks.map((block) => (
+        <a
+          href={block.href}
+          class="info-card group relative flex items-center justify-between p-4 rounded-xl bg-[#071827]/80 backdrop-blur-md border border-white/10 hover:border-[#00A6A6]/60 hover:bg-[#0C1E2F]/90 transition-all duration-200 shadow-md"
+        >
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:border-[#00A6A6]/40 group-hover:bg-[#00A6A6]/10 transition-colors">
+              <span class="text-xs font-bold text-[#00A6A6] font-mono">{block.number}</span>
+            </div>
+            <div class="min-w-0">
+              <span class="block text-[0.625rem] font-bold tracking-wider uppercase text-[#00A6A6]">
+                {block.category}
+              </span>
+              <h2 class="text-white text-sm font-semibold tracking-tight truncate group-hover:text-white transition-colors">
+                {block.title}
+              </h2>
+              <p class="text-xs text-[#D9E0E5]/70 truncate group-hover:text-[#D9E0E5]/90 transition-colors">
+                {block.detail}
+              </p>
+            </div>
+          </div>
+          <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-white/40 group-hover:text-[#00A6A6] group-hover:translate-x-0.5 transition-all duration-200">
+            <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Scroll Indicator (Desktop only) -->
+    <div class="flex items-center justify-between text-white/40 text-xs pt-2 border-t border-white/10" aria-hidden="true">
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#00A6A6]"></span>
+        <span class="tracking-wider uppercase text-white/50 text-[0.6875rem]">
+          Electrical Contracting & Engineering Works
+        </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="tracking-widest uppercase text-white/40 text-[0.625rem]">Scroll</span>
+        <div class="w-3.5 h-5 rounded-full border border-white/25 relative flex justify-center p-0.5">
+          <div class="w-1 h-1 rounded-full bg-[#00A6A6] animate-bounce"></div>
+        </div>
+      </div>
     </div>
   </div>
 
 </section>
 
-<!-- ── PREMIUM FULL-WIDTH TRUST BAR ─────────────────────────── -->
-<section class="trust-bar-section w-full bg-white border-t border-b border-slate-900/5 py-6">
-  <div class="trust-bar-container mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+<!-- ── 4. VERIFIED TRUST CREDENTIALS BAR ───────────────────── -->
+<section class="trust-bar-section w-full bg-[#07131D] border-t border-white/10 border-b border-white/5 py-5 sm:py-6">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
     
     <!-- Item 1 -->
-    <div class="trust-col">
-      <div class="w-11 h-11 rounded-full bg-teal-800/10 text-teal-800 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <div class="trust-col flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#00A6A6]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="m9 12 2 2 4-4"/>
         </svg>
       </div>
-      <span class="text-sm md:text-base font-bold tracking-tight text-slate-800 whitespace-nowrap">Licensed KEB Engineers</span>
+      <div class="min-w-0">
+        <p class="text-white font-semibold text-sm sm:text-base tracking-tight font-display truncate">15+ Years</p>
+        <p class="text-xs text-white/60 truncate">Kerala Engineering</p>
+      </div>
     </div>
 
     <!-- Item 2 -->
-    <div class="trust-col">
-      <div class="w-11 h-11 rounded-full bg-teal-800/10 text-teal-800 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <div class="trust-col flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#00A6A6]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="min-w-0">
+        <p class="text-white font-semibold text-sm sm:text-base tracking-tight font-display truncate">100% KEB</p>
+        <p class="text-xs text-white/60 truncate">Code Compliant</p>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="trust-col flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#00A6A6]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+        </svg>
+      </div>
+      <div class="min-w-0">
+        <p class="text-white font-semibold text-sm sm:text-base tracking-tight font-display truncate">Industrial & Domestic</p>
+        <p class="text-xs text-white/60 truncate">Electrical Contracting</p>
+      </div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="trust-col flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#00A6A6]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"/>
           <polyline points="12 6 12 12 16 14"/>
         </svg>
       </div>
-      <span class="text-sm md:text-base font-bold tracking-tight text-slate-800 whitespace-nowrap">30+ Years Experience</span>
-    </div>
-
-    <!-- Item 3 -->
-    <div class="trust-col">
-      <div class="w-11 h-11 rounded-full bg-teal-800/10 text-teal-800 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
+      <div class="min-w-0">
+        <p class="text-white font-semibold text-sm sm:text-base tracking-tight font-display truncate">24/7 Priority</p>
+        <p class="text-xs text-white/60 truncate">Emergency Support</p>
       </div>
-      <span class="text-sm md:text-base font-bold tracking-tight text-slate-800 whitespace-nowrap">500+ Projects Completed</span>
-    </div>
-
-    <!-- Item 4 -->
-    <div class="trust-col">
-      <div class="w-11 h-11 rounded-full bg-teal-800/10 text-teal-800 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15z"/>
-        </svg>
-      </div>
-      <span class="text-sm md:text-base font-bold tracking-tight text-slate-800 whitespace-nowrap">24/7 Emergency Support</span>
     </div>
 
   </div>
@@ -138,57 +262,50 @@ import { company } from '@data/company';
 <style>
   .hero-root {
     min-height: 100svh;
-    background: #0C1A2A;
   }
 
+  /* Fluid typography for headline */
   .hero-headline {
-    font-size: clamp(2.5rem, 6.5vw + 0.5rem, 5rem);
+    font-size: clamp(2rem, 5vw + 0.5rem, 4.75rem);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
   }
 
-  /* Blueprint Grid overlay */
-  .blueprint-grid {
-    background-image: 
-      linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
-    background-size: 64px 64px;
-    background-position: center;
-    mask-image: radial-gradient(ellipse 80% 75% at 50% 50%, black 40%, transparent 100%);
+  /* Primary Button styling */
+  .btn-primary-teal {
+    background-color: #00A6A6;
+    box-shadow: 0 4px 18px rgba(0, 166, 166, 0.35);
+  }
+  .btn-primary-teal:hover {
+    background-color: #008E8E;
+    box-shadow: 0 6px 24px rgba(0, 166, 166, 0.5);
+    transform: translateY(-2px);
   }
 
-  /* Soft Vignette */
-  .hero-vignette {
-    background: radial-gradient(circle, transparent 50%, rgba(12,26,42,0.4) 100%);
+  /* Secondary Button styling */
+  .btn-secondary-minimal {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #ffffff !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+  .btn-secondary-minimal span {
+    color: #ffffff !important;
+  }
+  .btn-secondary-minimal:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
 
-  /* Fine noise overlay */
-  .noise-overlay {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* GPU accelerated slow zoom background animation */
-  @keyframes slow-zoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.025); }
-  }
-  .hero-bg-img {
-    will-change: transform;
-    animation: slow-zoom 15s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
-  }
-
-  /* Bloom light breath */
-  @keyframes bloom-breathe {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.04); }
-  }
-  .hero-light-radial {
-    animation: bloom-breathe 8s ease-in-out infinite alternate;
-  }
-
-  /* Content entrance animations using keyframes to guarantee no-JS fallback visibility */
-  @keyframes fade-up-in {
+  /* Entrance animations */
+  @keyframes hero-fade-up {
     from {
       opacity: 0;
-      transform: translate3d(0, 14px, 0);
+      transform: translate3d(0, 10px, 0);
     }
     to {
       opacity: 1;
@@ -196,121 +313,21 @@ import { company } from '@data/company';
     }
   }
 
-  .hero-anim-item {
-    opacity: 0;
-    transform: translateY(14px);
-    animation: fade-up-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    will-change: transform, opacity;
+  .hero-anim {
+    animation: hero-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  .hero-anim-item:nth-child(1) { animation-delay: 0.1s; }
-  .hero-anim-item:nth-child(2) { animation-delay: 0.25s; }
-  .hero-anim-item:nth-child(3) { animation-delay: 0.4s; }
-
-  /* Scroll indicator fade-in after 1s */
-  @keyframes scroll-fade-in {
-    to { opacity: 1; }
-  }
-  .scroll-ind {
-    opacity: 0;
-    animation: scroll-fade-in 0.6s ease-out forwards;
-    animation-delay: 0.9s;
-  }
-
-  /* Scroll indicator dot animation */
-  .scroll-dot {
-    animation: scroll-fall 2.4s ease-in-out infinite;
-  }
-  @keyframes scroll-fall {
-    0%   { top: -6px; opacity: 0; }
-    15%  { opacity: 1; }
-    80%  { opacity: 0.5; }
-    100% { top: 100%; opacity: 0; }
-  }
-
-  /* ── TRUST BAR STYLES ─────────────────────────────────────── */
-  .trust-bar-section {
-    box-shadow: 0 4px 30px rgba(15, 23, 42, 0.02);
-  }
-
-  .trust-bar-container {
-    padding-left: clamp(24px, 6vw, 120px);
-    padding-right: clamp(24px, 6vw, 120px);
-  }
-
-  .trust-col {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-right: 1.5rem;
-    border-right: 1px solid rgba(15, 23, 42, 0.06);
-  }
-
-  @media (min-width: 1024px) {
-    .trust-col:last-child {
-      border-right: none;
-      padding-right: 0;
-    }
-  }
-
-  @media (min-width: 640px) and (max-width: 1023px) {
-    .trust-col:nth-child(2n) {
-      border-right: none;
-      padding-right: 0;
-    }
-  }
-
-  @media (max-width: 639px) {
-    .trust-col {
-      border-right: none;
-      padding-right: 0;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.04);
-      padding-bottom: 1.25rem;
-    }
-    .trust-col:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-  }
+  .hero-delay-1 { animation-delay: 0.05s; }
+  .hero-delay-2 { animation-delay: 0.1s; }
+  .hero-delay-3 { animation-delay: 0.15s; }
+  .hero-delay-4 { animation-delay: 0.2s; }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-anim-item {
+    .hero-anim,
+    .hero-bg-img {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;
     }
-    .scroll-ind {
-      animation: none !important;
-      opacity: 1 !important;
-    }
-    .scroll-dot {
-      animation: none !important;
-    }
-    .hero-bg-img {
-      animation: none !important;
-    }
   }
 </style>
-
-<!-- ── SCRIPT ─────────────────────────────────────────────────────── -->
-<script>
-  function initHeroReveal() {
-    const hero = document.getElementById('hero');
-    const scrollInd = document.getElementById('hero-scroll-ind');
-    if (!hero) return;
-
-    // Trigger animations
-    void hero.offsetHeight; // force reflow
-    hero.classList.add('loaded');
-
-    if (scrollInd) {
-      setTimeout(() => {
-        scrollInd.style.transition = 'opacity 0.6s ease-out';
-        scrollInd.style.opacity = '1';
-      }, 900);
-    }
-  }
-
-  initHeroReveal();
-  document.addEventListener('astro:page-load', initHeroReveal);
-</script>

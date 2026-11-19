@@ -4,19 +4,35 @@ export default {
   theme: {
     extend: {
       colors: {
+        midnight: {
+          DEFAULT: '#071827',
+          deep:    '#05111C',
+          light:   '#0C2438',
+        },
+        charcoal: {
+          DEFAULT: '#101A22',
+          deep:    '#0B1218',
+        },
+        teal: {
+          DEFAULT: '#00A6A6',
+          engineering: '#00A6A6',
+          hover:   '#008E8E',
+          glow:    'rgba(0, 166, 166, 0.35)',
+        },
         brand: {
           primary:      '#0D4F5C',
           secondary:    '#1B3A47',
-          accent:       '#06B6D4',
+          accent:       '#00A6A6',
           'accent-lt':  '#22D3EE',
           dark:         '#0A2E38',
         },
         navy: {
-          deep:     '#0C1A2A',
-          DEFAULT:  '#111827',
+          deep:     '#071827',
+          DEFAULT:  '#101A22',
           steel:    '#1E293B',
           light:    '#334155',
         },
+        softgray: '#D9E0E5',
         surface: {
           50:  '#F7F6F3',
           100: '#F0EEEA',
@@ -35,8 +51,9 @@ export default {
         },
       },
       fontFamily: {
-        sans:    ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'system-ui', 'sans-serif'],
+        sans:    ['Inter', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        display: ['Manrope', 'Outfit', 'Inter', 'system-ui', 'sans-serif'],
+        editorial: ['Manrope', 'Outfit', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         '2xs':  ['0.625rem', { lineHeight: '0.875rem' }],
