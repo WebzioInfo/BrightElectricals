@@ -5,6 +5,8 @@
 // ============================================================
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ContactCTA from '@sections/ContactCTA.astro';
+import WhyChooseUs from '@sections/WhyChooseUs.astro';
+import Testimonials from '@sections/Testimonials.astro';
 import { company } from '@data/company';
 import { pageSEO } from '@data/seo';
 import { buildBreadcrumbSchema } from '@lib/schema';
@@ -330,6 +332,12 @@ const pillars = [
 
     </div>
   </section>
+
+  <!-- Why Choose Us / Engineering Compliance -->
+  <WhyChooseUs />
+
+  <!-- Client Testimonials & Proven Track Record -->
+  <Testimonials />
 
   <!-- Final CTA section -->
   <ContactCTA />

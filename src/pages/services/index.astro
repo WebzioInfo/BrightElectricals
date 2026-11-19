@@ -5,6 +5,8 @@
 // ============================================================
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ContactCTA from '@sections/ContactCTA.astro';
+import Process from '@sections/Process.astro';
+import FAQ from '@sections/FAQ.astro';
 import { services } from '@data/services';
 import { company } from '@data/company';
 import { pageSEO } from '@data/seo';
@@ -639,6 +641,12 @@ const maintenance = services.find(s => s.id === 'repair-maintenance')!;
       </div>
     </div>
   </section>
+
+  <!-- Engineering Process Workflow -->
+  <Process />
+
+  <!-- Frequently Asked Questions -->
+  <FAQ />
 
   <!-- CTA section -->
   <ContactCTA />

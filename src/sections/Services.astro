@@ -1,538 +1,227 @@
 ---
 // ============================================================
-// Services.astro — Pinned Split-Screen Scroll Storytelling
-// GSAP ScrollTrigger driven • Cinematic image reveals
-// Left: pinned info panel that morphs per service
-// Right: stacked images that reveal on scroll
-// Mobile: vertical card storytelling
+// Services.astro — Sectors We Power (Concept 1: Core Engineering Divisions)
+// Replaces redundant 7-service catalogue with high-impact client sectors
+// Directs detailed inquiries to the dedicated /services/ page
+// 100% responsive, ultra-fast, zero-scroll-jacking
 // ============================================================
-import { services } from '@data/services';
 
-// Curated copy for each service — more editorial than the data file
-const editorial = [
+const sectors = [
   {
-    headline: 'Home Electrical\nSolutions',
-    tagline: 'Where safety meets comfort.',
-    copy: 'Complete residential electrical systems engineered for modern living. From precision wiring to intelligent lighting — every circuit designed to last decades.',
-    features: ['Full-home wiring & rewiring', 'Distribution board installation', 'Earth leakage protection', 'LED lighting systems'],
+    number: '01',
+    category: 'HIGH-VOLTAGE & HEAVY DUTY',
+    title: 'Industrial Plants & Substations',
+    target: 'Manufacturing • Factories • Processing Units • Mills',
+    summary: 'Turnkey high-capacity electrical distribution, 11kV substation erection, HT/LT transformers, custom motor control centers (MCC), and APFC panels engineered for continuous 24/7 industrial uptime.',
+    capabilities: [
+      '11kV Substations & Transformers',
+      'Custom HT/LT Switchgear & MCC',
+      'Plant Earthing & Lightning Protection',
+      'Statutory KEB Inspection Clearance',
+    ],
+    image: '/images/services/industrial-power.webp',
+    href: '/services/#industrial-power',
+    cta: 'Explore Industrial Solutions',
   },
   {
-    headline: 'Industrial Power\nSystems',
-    tagline: 'Engineered for uptime.',
-    copy: 'High-capacity power distribution for manufacturing, warehousing, and heavy industry. Built to Kerala Electricity Board standards with zero compromise on safety.',
-    features: ['Heavy-duty power distribution', 'Machine wiring & commissioning', 'MCC & PCC panels', 'Annual maintenance contracts'],
+    number: '02',
+    category: '99.99% CONTINUITY & LIFE-SAFETY',
+    title: 'Commercial & Healthcare Facilities',
+    target: 'Hospitals • IT Parks • Commercial Centers • Campuses',
+    summary: 'Mission-critical power resilience where downtime is not an option. Automated generator synchronization, structured fiber networks, smart energy metering, and integrated life-safety ecosystems.',
+    capabilities: [
+      'Automatic Transfer Switches (ATS / AMF)',
+      'Integrated CCTV & Access Security',
+      'Structured Fiber & Data Cabling',
+      'Harmonic Filters & Power Audits',
+    ],
+    image: '/images/services/ats-panel.webp',
+    href: '/services/#ats-amf-panels',
+    cta: 'Explore Commercial Solutions',
   },
   {
-    headline: 'ATS & AMF\nPanel Setup',
-    tagline: 'Power that never stops.',
-    copy: 'Automatic Transfer Switch and Mains Failure panels ensuring instantaneous switchover. Your operations stay protected — even when the grid doesn\'t.',
-    features: ['Automatic Transfer Switches', 'AMF panel commissioning', 'Generator synchronization', 'Remote monitoring integration'],
-  },
-  {
-    headline: 'Automation &\nSmart Control',
-    tagline: 'Intelligence, built in.',
-    copy: 'From smart lighting to PLC-based industrial automation — intelligent systems that reduce energy consumption while maximizing control and comfort.',
-    features: ['Smart home systems', 'Industrial PLC automation', 'IoT sensor integration', 'Energy monitoring dashboards'],
-  },
-  {
-    headline: 'Structured Cabling\n& Networks',
-    tagline: 'Infrastructure that scales.',
-    copy: 'Enterprise-grade structured cabling following TIA/EIA standards. Server room builds, campus networks, and fiber optic deployments — built for tomorrow\'s bandwidth.',
-    features: ['Cat6/Cat6A cabling', 'Fiber optic installation', 'Server room builds', 'Testing & Fluke certification'],
-  },
-  {
-    headline: 'Surveillance &\nSecurity Systems',
-    tagline: 'Total visibility. Total control.',
-    copy: 'Comprehensive security ecosystems combining HD/4K CCTV, biometric access, and integrated alarms — with 24/7 remote monitoring from your smartphone.',
-    features: ['HD/4K IP camera systems', 'NVR/DVR recording', 'Biometric access control', 'Smart alarm integration'],
-  },
-  {
-    headline: 'Repair &\nMaintenance',
-    tagline: 'We never rest.',
-    copy: 'Emergency response. Fault diagnosis. Preventive maintenance. Our rapid-response team is available around the clock — because electrical problems never wait.',
-    features: ['24/7 emergency response', 'Fault detection & diagnosis', 'Preventive maintenance', 'Safety audits & compliance'],
+    number: '03',
+    category: 'ZERO HAZARD & ARCHITECTURAL PRECISION',
+    title: 'Luxury Residences & Estates',
+    target: 'Luxury Villas • Multi-Storey Living • Gated Communities',
+    summary: 'Engineered safety and modern architectural comfort. Concealed fire-retardant wiring, high-sensitivity RCCB shock protection, smart lighting automation, and aesthetic distribution design.',
+    capabilities: [
+      'Concealed Safe Conduit Wiring',
+      'Smart Home Lighting & Automation',
+      'High-Sensitivity ELCB/RCCB Protection',
+      'Surge Protection & Clean Distribution',
+    ],
+    image: '/images/services/home-electrical.webp',
+    href: '/services/#home-electrical',
+    cta: 'Explore Residential Solutions',
   },
 ];
 ---
 
-<!-- ═══════════════════════════════════════════════════════════════
-     SERVICES — SCROLL-DRIVEN STORYTELLING
-     ═══════════════════════════════════════════════════════════════ -->
-
-<!-- Desktop & Mobile Wrapper Section -->
 <section
   id="services"
-  class="svc-section relative"
-  aria-labelledby="svc-heading"
+  class="relative w-full py-16 sm:py-20 lg:py-28 bg-[#07131D] text-white border-t border-white/[0.06] overflow-hidden"
+  aria-labelledby="sectors-heading"
 >
-  <!-- Screen-reader-only heading -->
-  <h2 id="svc-heading" class="sr-only">Our Services</h2>
+  <!-- Background ambient glow -->
+  <div class="absolute -top-40 right-0 w-[500px] h-[500px] bg-[#00A6A6]/10 rounded-full blur-[140px] pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-[#072538]/30 rounded-full blur-[140px] pointer-events-none" aria-hidden="true"></div>
 
-  <!-- ── DESKTOP EXPERIENCE (hidden on mobile) ──────────────── -->
-  <div class="svc-desktop hidden lg:block">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    
+    <!-- ── SECTION HEADER ────────────────────────────────────── -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12 sm:mb-16">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-white/90 text-xs font-medium tracking-wide mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#00A6A6] shadow-[0_0_8px_#00A6A6]"></span>
+          <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-[#00A6A6] font-bold">WHO WE SERVE</span>
+          <span class="text-white/40">|</span>
+          <span class="text-white/80">Engineering Divisions</span>
+        </div>
+        
+        <h2 id="sectors-heading" class="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight leading-tight">
+          Targeted Power Solutions. <br/>
+          <span class="font-semibold text-white">Engineered for Every Sector.</span>
+        </h2>
+        <p class="text-sm sm:text-base text-[#D9E0E5]/75 font-light leading-relaxed mt-3 max-w-xl">
+          We don't do one-size-fits-all wiring. Every division receives specialized engineering, statutory KEB compliance, and certified hardware tailored to its operational scale.
+        </p>
+      </div>
 
-    <!-- This wrapper is tall — GSAP pins .svc-pin inside it -->
-    <div class="svc-scroll-wrapper relative" style={`height: ${services.length * 100}vh;`}>
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <a
+          href="/services/"
+          class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#00A6A6] hover:text-[#22D3EE] transition-colors group"
+        >
+          <span>View Detailed 7 Services Catalog</span>
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
 
-      <!-- Pinned viewport -->
-      <div class="svc-pin w-full h-screen flex overflow-hidden" style="background: var(--deep-navy);">
+    <!-- ── 3 SECTOR CARDS (Responsive: 1-col on mobile, 3-col on desktop) ── -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 sm:mb-16">
+      {sectors.map((sector) => (
+        <article class="group relative flex flex-col justify-between rounded-2xl bg-[#0B1A28] border border-white/[0.08] hover:border-[#00A6A6]/50 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.36)] hover:shadow-[0_12px_40px_rgba(0,166,166,0.14)] overflow-hidden">
+          
+          <!-- Image Header with Dark Gradient Scrim -->
+          <div class="relative w-full aspect-[16/10] overflow-hidden">
+            <img
+              src={sector.image}
+              alt={sector.title}
+              width="640"
+              height="400"
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.92]"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- Dark gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0B1A28] via-[#0B1A28]/40 to-transparent"></div>
+            
+            <!-- Category Badge -->
+            <div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/10 text-[0.625rem] font-mono text-[#00A6A6] font-bold tracking-wider">
+              {sector.number} • {sector.category}
+            </div>
+          </div>
 
-        <!-- LEFT PANEL — info that morphs -->
-        <div class="svc-left relative flex flex-col justify-center" style="width: 42%; padding: clamp(3rem,5vw,6rem);">
+          <!-- Body Content -->
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <!-- Target clients label -->
+              <p class="text-[0.6875rem] font-medium text-[#00A6A6] tracking-wide uppercase mb-1.5 font-mono">
+                {sector.target}
+              </p>
 
-          <!-- Background texture -->
-          <div class="absolute inset-0 texture-blueprint" aria-hidden="true"></div>
+              <!-- Title -->
+              <h3 class="font-display text-lg sm:text-xl font-semibold text-white tracking-tight mb-2.5 group-hover:text-white transition-colors">
+                {sector.title}
+              </h3>
 
-          <!-- Service info container — all 7 stacked, only one visible -->
-          <div class="svc-info-stack relative z-10" style="min-height: 480px;">
-            {editorial.map((svc, i) => (
-              <div
-                class:list={['svc-info absolute inset-0 flex flex-col justify-center', i === 0 ? 'active' : '']}
-                data-svc-index={i}
-              >
-                <!-- Label / Spacing hierarchy -->
-                <div class="flex flex-col gap-2 mb-6">
-                  <span class="text-xs font-bold tracking-[0.2em] text-teal-400">
-                    {String(i + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
-                  </span>
-                  <span class="text-[10px] font-bold tracking-[0.25em] uppercase text-white/40">
-                    Our Capabilities
-                  </span>
-                </div>
+              <!-- Summary -->
+              <p class="text-xs sm:text-[0.8125rem] text-[#D9E0E5]/75 font-light leading-relaxed mb-5">
+                {sector.summary}
+              </p>
 
-                <!-- Headline -->
-                <h3 class="font-display font-900 text-white tracking-[-0.03em] leading-[0.98] mb-6 max-w-md" style="font-size: clamp(2.25rem, 3.5vw, 3.5rem); white-space: pre-line;">
-                  {svc.headline}
-                </h3>
-
-                <!-- Accent sentence (cyan tagline) -->
-                <p class="text-teal-400 font-medium tracking-tight mt-6 mb-6 leading-relaxed" style="font-size: clamp(0.95rem, 1.2vw, 1.1rem);">
-                  {svc.tagline}
-                </p>
-
-                <!-- Paragraph (body copy with max-width and line-height) -->
-                <p class="text-slate-400 text-sm md:text-base leading-[1.75] max-w-[580px] mb-8">
-                  {svc.copy}
-                </p>
-
-                <!-- Features -->
-                <ul class="grid grid-cols-2 gap-x-8 gap-y-3.5 mb-10" role="list">
-                  {svc.features.map(f => (
-                    <li class="flex items-start gap-2.5 text-xs font-semibold text-slate-500 leading-tight">
-                      <svg class="w-3.5 h-3.5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <polyline points="20 6 9 17 4 12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
-                      </svg>
-                      <span class="align-middle">{f}</span>
+              <!-- Key Capabilities Pills -->
+              <div class="mb-6">
+                <p class="text-[0.625rem] font-bold uppercase tracking-widest text-white/40 mb-2">Key Engineering Scope</p>
+                <ul class="space-y-1.5" role="list">
+                  {sector.capabilities.map((cap) => (
+                    <li class="flex items-center gap-2 text-xs text-white/85">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[#00A6A6] flex-shrink-0"></span>
+                      <span>{cap}</span>
                     </li>
                   ))}
                 </ul>
-
-                <!-- CTA -->
-                <div class="svc-cta mt-2">
-                  <a
-                    href={`/contact/?service=${encodeURIComponent(services[i].title)}`}
-                    class="btn btn-pill btn-accent text-xs font-bold"
-                  >
-                    Request Quote
-                    <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
               </div>
-            ))}
-          </div>
-
-          <!-- Progress dots -->
-          <div class="svc-dots relative z-10 flex items-center gap-2 mt-8" aria-hidden="true">
-            {services.map((_, i) => (
-              <button
-                class:list={['svc-dot', i === 0 ? 'active' : '']}
-                data-dot={i}
-                aria-label={`Go to service ${i + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        <!-- RIGHT PANEL — cinematic images -->
-        <div class="svc-right relative w-full lg:w-[58%] overflow-hidden">
-
-          <!-- Image stack -->
-          {services.map((svc, i) => (
-            <div
-              class:list={['svc-img-wrap absolute inset-0', i === 0 ? 'active' : '']}
-              data-img-index={i}
-            >
-              <img
-                src={svc.image}
-                alt={svc.title}
-                width="1200"
-                height="800"
-                class="svc-img w-full h-full object-cover"
-                loading={i === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-              />
-              <!-- Dark gradient overlay -->
-              <div class="absolute inset-0" style="background: linear-gradient(90deg, var(--deep-navy) 0%, rgba(12,26,42,0.25) 30%, rgba(12,26,42,0.05) 60%, rgba(12,26,42,0.2) 100%);" aria-hidden="true"></div>
-              <!-- Bottom/top vignette -->
-              <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(12,26,42,0.3) 0%, transparent 20%, transparent 80%, rgba(12,26,42,0.4) 100%);" aria-hidden="true"></div>
             </div>
-          ))}
 
-          <!-- Large ghosted number overlay -->
-          <div class="svc-ghost-num absolute z-10 pointer-events-none" style="bottom: clamp(2rem,4vw,4rem); right: clamp(2rem,4vw,4rem);">
-            <span class="font-display font-900" style="font-size: clamp(8rem, 15vw, 14rem); line-height: 0.85; letter-spacing: -0.06em; color: rgba(255,255,255,0.04);">
-              <span class="svc-ghost-text">01</span>
-            </span>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ── MOBILE EXPERIENCE (Stethoscopic scrolling) ────────── -->
-  <div class="svc-mobile lg:hidden relative" style="background: var(--deep-navy);" id="svc-mobile-root">
-    
-    <!-- Sticky viewport containing the focused active card -->
-    <div class="svc-mobile-sticky sticky top-0 left-0 w-full h-[100dvh] flex flex-col justify-center px-6 overflow-hidden z-10">
-      
-      <div class="w-full max-w-sm mx-auto flex flex-col items-center text-center">
-        
-        <!-- Active Slide Card Stack Container -->
-        <div class="relative w-full flex flex-col items-center justify-center min-h-[500px]">
-          {editorial.map((svc, i) => (
-            <div
-              class:list={['svc-mob-slide absolute inset-0 flex flex-col items-center justify-center', i === 0 ? 'active' : '']}
-              data-mob-slide={i}
-            >
-              <!-- Progress Indicator -->
-              <span class="text-xs font-bold tracking-[0.2em] text-teal-400 mb-4 block">
-                {String(i + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
-              </span>
-
-              <!-- Rounded Image (45% height) -->
-              <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 shadow-xl border border-white/5">
-                <img
-                  src={services[i].image}
-                  alt={services[i].title}
-                  width="600"
-                  height="450"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent"></div>
-              </div>
-
-              <!-- Title -->
-              <h3 class="font-display font-900 text-white text-2xl tracking-tight leading-tight mb-2">
-                {services[i].shortTitle}
-              </h3>
-
-              <!-- Tagline -->
-              <p class="text-teal-400 text-xs font-semibold mb-3">
-                {svc.tagline}
-              </p>
-
-              <!-- Description (2-3 lines max) -->
-              <p class="text-slate-400 text-xs leading-relaxed max-w-[280px] mb-6 line-clamp-3">
-                {svc.copy}
-              </p>
-
-              <!-- CTA -->
+            <!-- Action Buttons -->
+            <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between gap-3">
               <a
-                href={`/contact/?service=${encodeURIComponent(services[i].title)}`}
-                class="btn btn-rect bg-teal-800 text-white hover:bg-teal-900 shadow-md text-xs font-semibold px-6 py-2.5 rounded-full"
+                href={sector.href}
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-white group-hover:text-[#00A6A6] transition-colors"
+              >
+                <span>{sector.cta}</span>
+                <span class="transition-transform group-hover:translate-x-1">→</span>
+              </a>
+
+              <a
+                href={`/contact/?sector=${encodeURIComponent(sector.title)}`}
+                class="px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-[#00A6A6] hover:text-white text-white/80 text-xs font-medium border border-white/10 hover:border-[#00A6A6] transition-all"
+                aria-label={`Get quote for ${sector.title}`}
               >
                 Request Quote
               </a>
-
             </div>
-          ))}
-        </div>
-        
-      </div>
-    </div>
 
-    <!-- Scroll trigger slots (80dvh height for snappier mobile scrolling triggers) -->
-    <div class="svc-mobile-triggers relative z-0">
-      {services.map((_, i) => (
-        <div 
-          class="svc-mob-trigger w-full h-[80dvh]" 
-          data-trigger-index={i}
-        ></div>
+          </div>
+
+          <!-- Interactive bottom border glow -->
+          <div class="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-[#00A6A6]/0 to-transparent group-hover:via-[#00A6A6]/60 transition-all duration-500"></div>
+        </article>
       ))}
     </div>
 
+    <!-- ── BOTTOM BRIDGE: LINK TO DETAILED 7 SERVICES PAGE ─────── -->
+    <div class="relative rounded-2xl bg-gradient-to-r from-[#0C1E2F] via-[#0B1A28] to-[#071827] border border-white/[0.1] p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden">
+      <!-- Ambient light bloom -->
+      <div class="absolute top-0 right-0 w-80 h-80 bg-[#00A6A6]/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white/[0.06] text-white/90 text-[0.6875rem] font-mono font-semibold tracking-wide mb-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#00A6A6]"></span>
+          <span>COMPREHENSIVE TECHNICAL SCOPE</span>
+        </div>
+        <h3 class="font-display text-lg sm:text-xl font-semibold text-white tracking-tight mb-1.5">
+          Looking for specific technical specifications?
+        </h3>
+        <p class="text-xs sm:text-sm text-[#D9E0E5]/75 font-light leading-relaxed">
+          From single-line diagrams (SLD) and custom ATS switchgear to structured Cat6 networking, CCTV ecosystems, and 24/7 priority maintenance — explore our complete 7-discipline catalog.
+        </p>
+      </div>
+
+      <div class="relative z-10 flex flex-wrap items-center gap-3 w-full sm:w-auto flex-shrink-0">
+        <a
+          href="/services/"
+          class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#00A6A6] hover:bg-[#008E8E] text-white font-semibold text-xs sm:text-sm tracking-wide transition-all shadow-md hover:shadow-[#00A6A6]/25 w-full sm:w-auto text-center"
+        >
+          <span>Explore 7-Service Catalog</span>
+          <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+
+        <a
+          href="/contact/"
+          class="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-white/90 hover:text-white border border-white/15 hover:border-white/30 text-xs sm:text-sm font-medium transition-all w-full sm:w-auto text-center"
+        >
+          <span>Consult an Engineer</span>
+        </a>
+      </div>
+    </div>
+
   </div>
-
 </section>
-
-<!-- ═══════════════════════════════════════════════════════════════
-     STYLES
-     ═══════════════════════════════════════════════════════════════ -->
-<style>
-  /* ── Desktop pinned section ──────────────────────── */
-  .svc-section {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Info slides with lightweight, high-performance transitions */
-  .svc-info {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(12px);
-    transition: opacity 260ms ease-out, transform 260ms ease-out;
-    visibility: hidden;
-  }
-
-  .svc-info.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    visibility: visible;
-  }
-
-  /* Image slides with simple opacity + translateY reveal */
-  .svc-img-wrap {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(12px);
-    transition: opacity 260ms ease-out, transform 260ms ease-out;
-    z-index: 1;
-    visibility: hidden;
-  }
-  
-  .svc-img-wrap.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    z-index: 2;
-    visibility: visible;
-  }
-
-  .svc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* Progress dots */
-  .svc-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(148,163,184,0.2);
-    border: none;
-    cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
-    padding: 0;
-  }
-  .svc-dot.active {
-    width: 28px;
-    border-radius: 99px;
-    background: var(--brand-accent);
-  }
-  .svc-dot:hover:not(.active) {
-    background: rgba(148,163,184,0.4);
-  }
-
-  /* ── Mobile slides transition system ───────────────── */
-  .svc-mob-slide {
-    opacity: 0;
-    transform: translate3d(0, 20px, 0) scale(0.98);
-    transition: opacity 280ms ease-out, transform 280ms ease-out, visibility 280ms ease-out;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .svc-mob-slide.active {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  /* ── Reduced motion / prefers-reduced-motion ─────── */
-  @media (prefers-reduced-motion: reduce) {
-    .svc-info { transition: none !important; opacity: 1 !important; transform: none !important; visibility: visible !important; }
-    .svc-img-wrap { transition: none !important; opacity: 1 !important; transform: none !important; visibility: visible !important; }
-    .svc-mob-slide { transition: none !important; opacity: 1 !important; transform: none !important; visibility: visible !important; }
-  }
-</style>
-
-<!-- ── SCRIPTS ─────────────────────────────────────────────────────── -->
-<script>
-  // Dynamically load GSAP + ScrollTrigger without race conditions
-  function loadScript(src: string, globalVar: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      if ((window as any)[globalVar]) { resolve(); return; }
-      
-      const existing = document.querySelector(`script[src="${src}"]`) as HTMLScriptElement | null;
-      if (existing) {
-        if ((window as any)[globalVar]) {
-          resolve();
-        } else {
-          existing.addEventListener('load', () => resolve());
-          existing.addEventListener('error', reject);
-        }
-        return;
-      }
-      
-      const s = document.createElement('script');
-      s.src = src;
-      s.onload = () => resolve();
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
-  }
-
-  async function initServicesScroll() {
-    // Only run on desktop
-    if (window.innerWidth < 1024) return;
-
-    const wrapper = document.querySelector('.svc-scroll-wrapper') as HTMLElement | null;
-    const pin     = document.querySelector('.svc-pin') as HTMLElement | null;
-    if (!wrapper || !pin) return;
-
-    // Load GSAP and ScrollTrigger robustly
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', 'gsap');
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', 'ScrollTrigger');
-
-    const gsap = (window as any).gsap;
-    const ScrollTrigger = (window as any).ScrollTrigger;
-    if (!gsap || !ScrollTrigger) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Clean up existing ScrollTrigger on this ID to avoid duplicate bindings during View Transitions
-    const existingTrigger = ScrollTrigger.getById('services-trigger');
-    if (existingTrigger) {
-      existingTrigger.kill();
-    }
-
-    // Cache DOM nodes once at setup to prevent querySelector overhead during scroll
-    const infos    = Array.from(pin.querySelectorAll<HTMLElement>('.svc-info'));
-    const images   = Array.from(pin.querySelectorAll<HTMLElement>('.svc-img-wrap'));
-    const dots     = Array.from(pin.querySelectorAll<HTMLElement>('.svc-dot'));
-    const ghostTxt = pin.querySelector('.svc-ghost-text') as HTMLElement | null;
-    const total    = infos.length;
-    let currentIdx = 0;
-
-    let requestedFrame = false;
-    let nextIdx = 0;
-
-    // Throttle DOM writes using requestAnimationFrame to ensure smooth 60fps rendering
-    function updateDOM() {
-      requestedFrame = false;
-      currentIdx = nextIdx;
-
-      infos.forEach((el, i) => {
-        const isActive = i === currentIdx;
-        el.classList.toggle('active', isActive);
-        if (isActive) {
-          el.style.willChange = 'transform, opacity';
-        } else {
-          el.style.willChange = 'auto';
-        }
-      });
-
-      images.forEach((el, i) => {
-        const isActive = i === currentIdx;
-        el.classList.toggle('active', isActive);
-        if (isActive) {
-          el.style.willChange = 'transform, opacity';
-        } else {
-          el.style.willChange = 'auto';
-        }
-      });
-
-      dots.forEach((d, i) => d.classList.toggle('active', i === currentIdx));
-
-      if (ghostTxt) ghostTxt.textContent = String(currentIdx + 1).padStart(2, '0');
-    }
-
-    function goTo(index: number) {
-      if (index === currentIdx) return;
-      nextIdx = index;
-
-      if (!requestedFrame) {
-        requestedFrame = true;
-        requestAnimationFrame(updateDOM);
-      }
-    }
-
-    // Pin the section and scrub through services (pinSpacing: true ensures page length is correctly calculated)
-    ScrollTrigger.create({
-      id: 'services-trigger',
-      trigger: wrapper,
-      start: 'top top',
-      end: 'bottom bottom',
-      pin: pin,
-      pinSpacing: true,
-      onUpdate: (self: any) => {
-        const progress = self.progress; // 0 → 1
-        const idx = Math.min(Math.floor(progress * total), total - 1);
-        goTo(idx);
-      },
-    });
-
-    // Dot clicks
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        const wrapperRect = wrapper.getBoundingClientRect();
-        const wrapperTop = window.scrollY + wrapperRect.top;
-        const scrollTarget = wrapperTop + (i / total) * wrapper.offsetHeight + 10;
-        window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
-      });
-    });
-
-    // Initialize first slide state
-    infos[0]?.classList.add('active');
-    images[0]?.classList.add('active');
-  }
-
-  // Mobile scroll triggers setup
-  function initMobileScroll() {
-    if (window.innerWidth >= 1024) return;
-
-    const root = document.getElementById('svc-mobile-root');
-    const triggers = document.querySelectorAll('.svc-mob-trigger');
-    const slides = document.querySelectorAll('.svc-mob-slide');
-    if (!root || !triggers.length || !slides.length) return;
-
-    // Center active zone using wider margins to guarantee high intersection detection rate on mobile
-    const observerOptions = {
-      root: null,
-      rootMargin: '-40% 0px -40% 0px', 
-      threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = parseInt(entry.target.getAttribute('data-trigger-index') || '0', 10);
-          slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-          });
-        }
-      });
-    }, observerOptions);
-
-    triggers.forEach(trigger => observer.observe(trigger));
-  }
-
-  // Run on load and page transition
-  initServicesScroll();
-  initMobileScroll();
-  document.addEventListener('astro:page-load', () => {
-    initServicesScroll();
-    initMobileScroll();
-  });
-</script>
