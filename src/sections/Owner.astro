@@ -1,7 +1,7 @@
 ---
 // ============================================================
 // Owner.astro — Authentic Leadership & Direct Accountability
-// Highlights the owner/founder with real photography before the footer
+// Clean portrait presentation without artificial floating badges
 // ============================================================
 import { company } from '@data/company';
 ---
@@ -14,90 +14,93 @@ import { company } from '@data/company';
   <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
       
-      <!-- Left: Real Photo of the Owner -->
-      <div class="lg:col-span-5 flex justify-center lg:justify-start">
-        <div class="relative w-full max-w-[380px] sm:max-w-[420px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-[#0B1A28] group">
+      <!-- Left: Real Photo of the Owner (Clean, natural frame) -->
+      <div class="lg:col-span-5 flex flex-col items-center lg:items-start">
+        <div class="w-full max-w-[360px] sm:max-w-[400px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-[#0B1A28]">
           <picture>
             <source srcset="/images/owner.webp" type="image/webp" />
             <img
               src="/images/owner.jpeg"
-              alt="Lead Electrical Engineer and Founder of Bright Electrical"
+              alt="Founder and Lead Electrical Engineer of Bright Electrical"
               width="1086"
               height="1448"
-              class="w-full h-auto aspect-[3/4] object-cover object-center filter brightness-[0.98] transition-transform duration-500 group-hover:scale-[1.02]"
+              class="w-full h-auto aspect-[3/4] object-cover object-center filter brightness-[0.98]"
               loading="lazy"
               decoding="async"
             />
           </picture>
-          
-          <!-- Subtle bottom gradient -->
-          <div class="absolute inset-0 bg-gradient-to-t from-[#071827]/90 via-transparent to-transparent pointer-events-none"></div>
+        </div>
 
-          <!-- Role Card on Image -->
-          <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-[#071827]/90 backdrop-blur-md border border-white/10 shadow-lg">
-            <p class="text-white font-semibold text-base sm:text-lg tracking-tight font-display">
-              Lead Electrical Engineer
-            </p>
-            <p class="text-xs text-[#00A6A6] font-medium mt-0.5">
-              Founder • Bright Electrical & Engineering Works
-            </p>
-          </div>
+        <!-- Clean caption beneath photo (No floating frosted card) -->
+        <div class="mt-4 text-center lg:text-left w-full max-w-[360px] sm:max-w-[400px]">
+          <p class="text-white font-semibold text-lg tracking-tight font-display">
+            Founder & Lead Engineer
+          </p>
+          <p class="text-xs text-[#00A6A6] font-medium mt-1">
+            Bright Electrical & Engineering Works • Chungathara, Nilambur
+          </p>
         </div>
       </div>
 
-      <!-- Right: Direct Accountability & Craftsmanship Guarantee -->
+      <!-- Right: Direct Accountability & Engineering Standards -->
       <div class="lg:col-span-7">
-        <span class="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#00A6A6] block mb-3">
-          Direct Leadership & Accountability
+        <span class="text-xs font-semibold tracking-wider uppercase text-[#00A6A6] block mb-3">
+          Direct Accountability
         </span>
 
         <h2 id="leadership-heading" class="font-display text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-tight leading-tight mb-5">
-          "Every Project Receives Direct Engineer Oversight."
+          Personal Responsibility on Every Project
         </h2>
 
-        <div class="space-y-4 text-sm sm:text-base text-[#D9E0E5]/80 font-normal leading-relaxed mb-8 max-w-2xl">
+        <div class="space-y-4 text-sm sm:text-base text-[#D9E0E5]/85 font-normal leading-relaxed mb-8 max-w-2xl">
           <p>
-            When you hire Bright Electrical, you work directly with master electricians who take personal responsibility for every circuit, distribution panel, and cable run.
+            At Bright Electrical, we believe dependable electrical infrastructure requires hands-on engineering. We do not pass your project to third-party sub-contractors or leave work unsupervised.
           </p>
           <p>
-            From residential villa wiring in Nilambur to 11kV industrial substations across Kerala, we never cut corners on wire gauges, thermal safety, or statutory KEB compliance.
+            Whether wiring a modern residential home in Malappuram or erecting high-voltage distribution panels for an industrial plant, every installation is tested and certified on site to guarantee safety and compliance.
           </p>
         </div>
 
-        <!-- Trust Highlights -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8 pt-6 border-t border-white/10">
-          <div>
-            <p class="text-white font-bold text-lg sm:text-xl font-display">15+ Years</p>
-            <p class="text-xs text-white/60">Hands-On Experience</p>
+        <!-- Clear Reassurance Checklist -->
+        <div class="space-y-3 mb-8 max-w-xl text-sm text-[#D9E0E5]/90">
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-[#00A6A6] flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Direct engineer consultation for technical planning and execution</span>
           </div>
-          <div>
-            <p class="text-white font-bold text-lg sm:text-xl font-display">Direct</p>
-            <p class="text-xs text-white/60">Engineer Supervision</p>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-[#00A6A6] flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Strict wire-gauge and safety standards on every installation</span>
           </div>
-          <div>
-            <p class="text-white font-bold text-lg sm:text-xl font-display">100% Safety</p>
-            <p class="text-xs text-white/60">KEB Code Compliant</p>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-[#00A6A6] flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Complete statutory documentation and compliance testing</span>
           </div>
         </div>
 
-        <!-- Direct Contact CTAs -->
+        <!-- Direct Action Buttons -->
         <div class="flex flex-wrap items-center gap-3 sm:gap-4">
           <a
             href={`tel:${company.phone}`}
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#00A6A6] hover:bg-[#008E8E] text-white font-semibold text-sm tracking-wide transition-all shadow-md"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#00A6A6] hover:bg-[#008E8E] text-white font-semibold text-sm tracking-wide transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6A6]"
             aria-label={`Call lead engineer at ${company.phoneDisplay}`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15z"/>
             </svg>
-            <span>Speak with Lead Engineer</span>
+            <span>Call {company.phoneDisplay}</span>
           </a>
 
           <a
             href={company.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/20 transition-all"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             aria-label="Chat on WhatsApp"
           >
             <span>Chat on WhatsApp</span>
